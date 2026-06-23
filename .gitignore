@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches and IDEs
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+.antigravityignore
+
+# Python virtual environments
+venv/
+env/
+.env/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Local/scratch folders
+scratch/
+test_venv/
+
+# Intermediate report page previews
+**/page_preview*.png
+**/page_preview_final*.png
+**/page_preview_new*.png
