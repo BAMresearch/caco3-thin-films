@@ -1,18 +1,9 @@
----
-title: "Texture, Polymorphic Phase Confinement, and Growth Mechanics in CaCO$_3$ Thin Films"
-subtitle: "Comprehensive XRD Characterisation: From Precursor 2D-XRD to Azimuthal Rocking Curves"
-date: "16 June 2026"
-geometry: "margin=1in,includeheadfoot,headheight=15pt,headsep=15pt"
-fontsize: "11pt"
-header-includes:
-  - \usepackage{fancyhdr}
-  - \pagestyle{fancy}
-  - \fancyhf{}
-  - \fancyhead[CO,CE]{CaCO$_3$ Thin Film Crystallographic Characterisation Report}
-  - \fancyfoot[CO,CE]{Page \thepage}
-  - \usepackage{graphicx}
----
+# Texture, Polymorphic Phase Confinement, and Growth Mechanics in CaCO$_3$ Thin Films
 
+### Comprehensive XRD Characterisation: From Precursor 2D-XRD to Azimuthal Rocking Curves
+**Date:** 16 June 2026
+
+---
 # 1. Introduction and Rationale for Azimuthal Rocking Curves
 
 ## Rationale for Azimuthal Rocking Curves Based on 2D-XRD Spottiness
@@ -25,24 +16,16 @@ Despite this classification, the azimuthal intensity profiles along the rings ex
 ## 2D-XRD Texture and Orientation Metrics Table
 The quantitative parameters extracted from the initial stationary 2D-XRD patterns are summarised in Table 1.
 
-\begin{table}[htbp]
-\centering
-\small
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{l l c c c c c l}
-\hline
-\textbf{Sample ID} & \textbf{Description} & \textbf{calcite Peaks} & \textbf{vaterite Peaks} & \textbf{calcite CV} & \textbf{vaterite CV} & \textbf{Max DoA} & \textbf{Classification} \\ \hline
-SH-104-1 & CaCO$_3$ Reference Film & 7 & 1 & 0.020 & 0.022 & 0.084 & Mainly Isotropic \\
-SH-124-B3 S1 & CaCO$_3$ Film, Condition B3 & 7 & 1 & 0.012 & 0.010 & - & Mainly Isotropic \\
-SH-124-B3 S2 & CaCO$_3$ Film, Condition B3 (Rep) & 7 & 1 & 0.018 & 0.037 & - & Mainly Isotropic \\
-SH-125-A S1 & CaCO$_3$ Film, Condition A & 5 & 6 & 0.011 & 0.007 & - & Mainly Isotropic \\
-SH-125-A S2 & CaCO$_3$ Film, Condition A (Rep) & 5 & 7 & 0.009 & 0.006 & - & Mainly Isotropic \\
-SH-125-G & CaCO$_3$ Film, Condition G & 7 & 6 & 0.009 & 0.009 & - & Mainly Isotropic \\ \hline
-\end{tabular}%
-}
-\caption{Summary of phase matches and orientation metrics from stationary 2D-XRD cake-plot profiles.}
-\label{tab:table1}
-\end{table}
+| Sample ID | Description | Calcite Peaks | Vaterite Peaks | Calcite CV | Vaterite CV | Max DoA | Classification |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **SH-104-1** | CaCO$_3$ Reference Film | 7 | 1 | 0.020 | 0.022 | 0.084 | Mainly Isotropic |
+| **SH-124-B3 S1** | CaCO$_3$ Film, Condition B3 | 7 | 1 | 0.012 | 0.010 | - | Mainly Isotropic |
+| **SH-124-B3 S2** | CaCO$_3$ Film, Condition B3 (Rep) | 7 | 1 | 0.018 | 0.037 | - | Mainly Isotropic |
+| **SH-125-A S1** | CaCO$_3$ Film, Condition A | 5 | 6 | 0.011 | 0.007 | - | Mainly Isotropic |
+| **SH-125-A S2** | CaCO$_3$ Film, Condition A (Rep) | 5 | 7 | 0.009 | 0.006 | - | Mainly Isotropic |
+| **SH-125-G** | CaCO$_3$ Film, Condition G | 7 | 6 | 0.009 | 0.009 | - | Mainly Isotropic |
+
+**Table 1:** Summary of phase matches and orientation metrics from stationary 2D-XRD cake-plot profiles.
 
 ## 2D-XRD Visualization
 Figure 1 shows the precursor 2D-XRD dataset for the biphasic thin film `SH-125-G`. The continuous rings in the cake plot show subtle intensity modulations (spottiness) that stimulated the rocking curve sweeps.
@@ -108,42 +91,33 @@ The multiple components resolved within the rocking curve profiles provide detai
 ## Rocking Curve Peak Fit Parameters Table
 The quantitative parameters of key active tilt reflections are summarised in Table 2.
 
-\begin{table}[htbp]
-\centering
-\scriptsize
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{l c l c c c r r r}
-\hline
-\textbf{Sample} & \textbf{$\phi$ (°)} & \textbf{Peak Name} & \textbf{Center $\theta$ (°)} & \textbf{Tilt $\chi$ (°)} & \textbf{FWHM (°)} & \textbf{Height (cts)} & \textbf{Area (cts·°)} & \textbf{Area/Base} \\ \hline
-\textbf{Single Crystal} & Reference & calcite (104) reference & 17.455° & 2.769° & 4.133° & 2655872.9 & 11.68M & 3528.6\% \\
-SH-124-B3 & 60 & Peak 1 (Tilt) & 10.114° & -4.603° & 0.650° & 4976.1 & 3442.6 & 17.001\% \\
-SH-124-B3 & 60 & Peak 1b (Tilt) & 10.980° & -3.737° & 0.650° & 2821.5 & 1952.0 & 10.455\% \\
-SH-124-B3 & 60 & Peak 2a (Tilt) & 12.136° & -2.580° & 0.637° & 2124.4 & 1439.6 & 8.511\% \\
-SH-124-B3 & 60 & Peak 2b (Tilt) & 12.763° & -1.954° & 0.650° & 2576.3 & 1782.2 & 11.071\% \\
-SH-124-B3 & 120 & Peak 1 (Tilt) & 10.123° & -4.578° & 0.645° & 1750.1 & 1201.6 & 0.884\% \\
-SH-124-B3 & 120 & Peak 1b (Tilt) & 10.819° & -3.881° & 0.596° & 2313.1 & 1466.9 & 1.152\% \\
-SH-124-B3 & 120 & Peak 2a (Tilt) & 11.700° & -3.000° & 0.613° & 2244.2 & 1464.6 & 1.243\% \\
-SH-124-B3 & 120 & Peak 2b (Tilt) & 13.167° & -1.533° & 0.604° & 2077.8 & 1334.8 & 1.272\% \\
-SH-125-A & 60 & Peak 2a (Tilt) & 11.997° & -2.688° & 0.335° & 1090.6 & 388.3 & 0.423\% \\
-SH-125-A & 60 & Peak 2b (Tilt) & 13.515° & -1.171° & 0.632° & 2392.5 & 1609.5 & 1.973\% \\
-SH-125-A & 60 & Peak 3 (Specular) & 14.373° & -0.312° & 0.629° & 2342.9 & 1569.5 & 2.043\% \\
-SH-125-A & 120 & Peak 2a (Tilt) & 11.827° & -2.886° & 0.000° & 0.0 & 0.0 & 0.000\% \\
-SH-125-A & 120 & Peak 2b (Tilt) & 12.649° & -2.064° & 0.000° & 0.0 & 0.0 & 0.000\% \\
-SH-125-A & 120 & Peak 3 (Specular) & 13.872° & -0.841° & 0.000° & 0.0 & 0.0 & 0.000\% \\
-SH-104-1 & 0 & Peak 2b (Tilt) & 13.600° & -1.116° & 0.636° & 941.8 & 638.0 & 1.088\% \\
-SH-104-1 & 0 & Peak 3 (Specular) & 14.975° & 0.259° & 0.646° & 3210.4 & 2207.3 & 4.136\% \\
-SH-104-1 & 90 & Peak 2b (Tilt) & 13.591° & -1.123° & 0.540° & 2761.4 & 1587.9 & 6.993\% \\
-SH-104-1 & 90 & Peak 3 (Specular) & 14.848° & 0.134° & 0.563° & 4397.7 & 2633.2 & 12.645\% \\
-SH-125-G & 60 & Peak 2a (Tilt) & 12.187° & -2.502° & 0.650° & 1488.8 & 1030.0 & 1.024\% \\
-SH-125-G & 60 & Peak 2b (Tilt) & 13.241° & -1.447° & 0.650° & 1583.0 & 1095.2 & 1.181\% \\
-SH-125-G & 120 & Peak 2b (Tilt) & 13.600° & -1.092° & 0.650° & 990.9 & 685.6 & 24.363\% \\
-SH-125-G & 120 & Peak 3 (Specular) & 14.970° & 0.278° & 0.650° & 2018.7 & 1396.6 & 54.523\% \\
-\hline
-\end{tabular}%
-}
-\caption{Rocking curve peak parameters and tilt state metrics for representative active azimuthal orientations.}
-\label{tab:table2}
-\end{table}
+| Sample | $\phi$ (°) | Peak Name | Center $\theta$ (°) | Tilt $\chi$ (°) | FWHM (°) | Height (cts) | Area (cts·°) | Area/Base |
+| :--- | :---: | :--- | :---: | :---: | :---: | ---: | ---: | ---: |
+| **Single Crystal** | Reference | calcite (104) reference | 17.455° | 2.769° | 4.133° | 2655872.9 | 11.68M | 3528.6% |
+| **SH-124-B3** | 60 | Peak 1 (Tilt) | 10.114° | -4.603° | 0.650° | 4976.1 | 3442.6 | 17.001% |
+| **SH-124-B3** | 60 | Peak 1b (Tilt) | 10.980° | -3.737° | 0.650° | 2821.5 | 1952.0 | 10.455% |
+| **SH-124-B3** | 60 | Peak 2a (Tilt) | 12.136° | -2.580° | 0.637° | 2124.4 | 1439.6 | 8.511% |
+| **SH-124-B3** | 60 | Peak 2b (Tilt) | 12.763° | -1.954° | 0.650° | 2576.3 | 1782.2 | 11.071% |
+| **SH-124-B3** | 120 | Peak 1 (Tilt) | 10.123° | -4.578° | 0.645° | 1750.1 | 1201.6 | 0.884% |
+| **SH-124-B3** | 120 | Peak 1b (Tilt) | 10.819° | -3.881° | 0.596° | 2313.1 | 1466.9 | 1.152% |
+| **SH-124-B3** | 120 | Peak 2a (Tilt) | 11.700° | -3.000° | 0.613° | 2244.2 | 1464.6 | 1.243% |
+| **SH-124-B3** | 120 | Peak 2b (Tilt) | 13.167° | -1.533° | 0.604° | 2077.8 | 1334.8 | 1.272% |
+| **SH-125-A** | 60 | Peak 2a (Tilt) | 11.997° | -2.688° | 0.335° | 1090.6 | 388.3 | 0.423% |
+| **SH-125-A** | 60 | Peak 2b (Tilt) | 13.515° | -1.171° | 0.632° | 2392.5 | 1609.5 | 1.973% |
+| **SH-125-A** | 60 | Peak 3 (Specular) | 14.373° | -0.312° | 0.629° | 2342.9 | 1569.5 | 2.043% |
+| **SH-125-A** | 120 | Peak 2a (Tilt) | 11.827° | -2.886° | 0.000° | 0.0 | 0.0 | 0.000% |
+| **SH-125-A** | 120 | Peak 2b (Tilt) | 12.649° | -2.064° | 0.000° | 0.0 | 0.0 | 0.000% |
+| **SH-125-A** | 120 | Peak 3 (Specular) | 13.872° | -0.841° | 0.000° | 0.0 | 0.0 | 0.000% |
+| **SH-104-1** | 0 | Peak 2b (Tilt) | 13.599° | -1.117° | 0.602° | 1841.9 | 1180.5 | 3.153% |
+| **SH-104-1** | 0 | Peak 3 (Specular) | 14.919° | 0.203° | 0.621° | 3962.3 | 2620.9 | 7.665% |
+| **SH-104-1** | 90 | Peak 2b (Tilt) | 13.599° | -1.115° | 0.614° | 2483.7 | 1622.5 | 5.280% |
+| **SH-104-1** | 90 | Peak 3 (Specular) | 14.874° | 0.160° | 0.628° | 4269.7 | 2852.9 | 10.136% |
+| **SH-125-G** | 60 | Peak 2a (Tilt) | 12.187° | -2.502° | 0.650° | 1488.8 | 1030.0 | 1.024% |
+| **SH-125-G** | 60 | Peak 2b (Tilt) | 13.241° | -1.447° | 0.650° | 1583.0 | 1095.2 | 1.181% |
+| **SH-125-G** | 120 | Peak 2b (Tilt) | 13.600° | -1.092° | 0.650° | 990.9 | 685.6 | 24.363% |
+| **SH-125-G** | 120 | Peak 3 (Specular) | 14.970° | 0.278° | 0.650° | 2018.7 | 1396.6 | 54.523% |
+
+**Table 2:** Rocking curve peak parameters and tilt state metrics for representative active azimuthal orientations.
 
 # 5. Experimental Calibration and Baseline Verification
 

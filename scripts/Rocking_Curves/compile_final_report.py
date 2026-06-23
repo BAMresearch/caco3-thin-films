@@ -34,15 +34,10 @@ if dfs:
 else:
     df_all = pd.DataFrame()
 
-# Generate the LaTeX table for representative peaks
+# Generate the Markdown table for representative peaks
 table_lines = [
-    r"\begin{table}[htbp]",
-    r"\centering",
-    r"\scriptsize",
-    r"\resizebox{\textwidth}{!}{%",
-    r"\begin{tabular}{l c l c c c r r r}",
-    r"\hline",
-    r"\textbf{Sample} & \textbf{$\phi$ (°)} & \textbf{Peak Name} & \textbf{Center $\theta$ (°)} & \textbf{Tilt $\chi$ (°)} & \textbf{FWHM (°)} & \textbf{Height (cts)} & \textbf{Area (cts·°)} & \textbf{Area/Base} \\ \hline"
+    "| Sample | $\\phi$ (°) | Peak Name | Center $\\theta$ (°) | Tilt $\\chi$ (°) | FWHM (°) | Height (cts) | Area (cts·°) | Area/Base |",
+    "| :--- | :---: | :--- | :---: | :---: | :---: | ---: | ---: | ---: |"
 ]
 
 # Add Single Crystal Reference if available
@@ -52,9 +47,9 @@ if os.path.exists(sc_csv_path):
         df_sc = pd.read_csv(sc_csv_path)
         for _, r in df_sc.iterrows():
             ratio_val = r['Area/Base Ratio']
-            ratio_str = f"{ratio_val:.1%}".replace("%", r"\%")
+            ratio_str = f"{ratio_val:.1%}"
             table_lines.append(
-                f"\\textbf{{Single Crystal}} & Reference & calcite (104) reference & {r['Peak Center (Theta)']:.3f}° & {r['Tilt Angle (Chi)']:.3f}° & {r['FWHM (deg)']:.3f}° & {r['Net Height']:.1f} & {r['Net Area (cts deg)']/1e6:.2f}M & {ratio_str} \\\\"
+                f"| **Single Crystal** | Reference | calcite (104) reference | {r['Peak Center (Theta)']:.3f}° | {r['Tilt Angle (Chi)']:.3f}° | {r['FWHM (deg)']:.3f}° | {r['Net Height']:.1f} | {r['Net Area (cts deg)']/1e6:.2f}M | {ratio_str} |"
             )
     except Exception as e:
         print(f"Error reading single crystal metrics: {e}")
@@ -78,59 +73,32 @@ if not df_all.empty:
             if not sub.empty:
                 r = sub.iloc[0]
                 ratio_val = r['Area/Base Ratio']
-                ratio_str = f"{ratio_val:.3%}".replace("%", r"\%") if not pd.isna(ratio_val) else "N/A"
+                ratio_str = f"{ratio_val:.3%}" if not pd.isna(ratio_val) else "N/A"
                 table_lines.append(
-                    f"{s} & {phi} & {pname} & {r['Peak Center (Theta)']:.3f}° & {r['Tilt Angle (Chi)']:.3f}° & {r['FWHM (degrees)']:.3f}° & {r['Net Height']:.1f} & {r['Net Area (cts deg)']:.1f} & {ratio_str} \\\\"
+                    f"| **{s}** | {phi} | {pname} | {r['Peak Center (Theta)']:.3f}° | {r['Tilt Angle (Chi)']:.3f}° | {r['FWHM (degrees)']:.3f}° | {r['Net Height']:.1f} | {r['Net Area (cts deg)']:.1f} | {ratio_str} |"
                 )
 
-table_lines.append(r"\hline")
-table_lines.append(r"\end{tabular}%")
-table_lines.append(r"}")
-table_lines.append(r"\caption{Rocking curve peak parameters and tilt state metrics for representative active azimuthal orientations.}")
-table_lines.append(r"\label{tab:table2}")
-table_lines.append(r"\end{table}")
+table_lines.append("")
+table_lines.append("**Table 2:** Rocking curve peak parameters and tilt state metrics for representative active azimuthal orientations.")
 table_rc_content = "\n".join(table_lines)
 
-# 2. Formulate Table 1 in LaTeX to prevent mangling
+# 2. Formulate Table 1 in Markdown
 table_1_lines = [
-    r"\begin{table}[htbp]",
-    r"\centering",
-    r"\small",
-    r"\resizebox{\textwidth}{!}{%",
-    r"\begin{tabular}{l l c c c c c l}",
-    r"\hline",
-    r"\textbf{Sample ID} & \textbf{Description} & \textbf{calcite Peaks} & \textbf{vaterite Peaks} & \textbf{calcite CV} & \textbf{vaterite CV} & \textbf{Max DoA} & \textbf{Classification} \\ \hline",
-    r"SH-104-1 & CaCO$_3$ Reference Film & 7 & 1 & 0.020 & 0.022 & 0.084 & Mainly Isotropic \\",
-    r"SH-124-B3 S1 & CaCO$_3$ Film, Condition B3 & 7 & 1 & 0.012 & 0.010 & - & Mainly Isotropic \\",
-    r"SH-124-B3 S2 & CaCO$_3$ Film, Condition B3 (Rep) & 7 & 1 & 0.018 & 0.037 & - & Mainly Isotropic \\",
-    r"SH-125-A S1 & CaCO$_3$ Film, Condition A & 5 & 6 & 0.011 & 0.007 & - & Mainly Isotropic \\",
-    r"SH-125-A S2 & CaCO$_3$ Film, Condition A (Rep) & 5 & 7 & 0.009 & 0.006 & - & Mainly Isotropic \\",
-    r"SH-125-G & CaCO$_3$ Film, Condition G & 7 & 6 & 0.009 & 0.009 & - & Mainly Isotropic \\ \hline",
-    r"\end{tabular}%",
-    r"}",
-    r"\caption{Summary of phase matches and orientation metrics from stationary 2D-XRD cake-plot profiles.}",
-    r"\label{tab:table1}",
-    r"\end{table}"
+    "| Sample ID | Description | Calcite Peaks | Vaterite Peaks | Calcite CV | Vaterite CV | Max DoA | Classification |",
+    "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |",
+    "| **SH-104-1** | CaCO$_3$ Reference Film | 7 | 1 | 0.020 | 0.022 | 0.084 | Mainly Isotropic |",
+    "| **SH-124-B3 S1** | CaCO$_3$ Film, Condition B3 | 7 | 1 | 0.012 | 0.010 | - | Mainly Isotropic |",
+    "| **SH-124-B3 S2** | CaCO$_3$ Film, Condition B3 (Rep) | 7 | 1 | 0.018 | 0.037 | - | Mainly Isotropic |",
+    "| **SH-125-A S1** | CaCO$_3$ Film, Condition A | 5 | 6 | 0.011 | 0.007 | - | Mainly Isotropic |",
+    "| **SH-125-A S2** | CaCO$_3$ Film, Condition A (Rep) | 5 | 7 | 0.009 | 0.006 | - | Mainly Isotropic |",
+    "| **SH-125-G** | CaCO$_3$ Film, Condition G | 7 | 6 | 0.009 | 0.009 | - | Mainly Isotropic |",
+    "",
+    "**Table 1:** Summary of phase matches and orientation metrics from stationary 2D-XRD cake-plot profiles."
 ]
 table_2d_content = "\n".join(table_1_lines)
 
-# 3. Define the report content in Markdown format
-report_md = r"""---
-title: "Texture, Polymorphic Phase Confinement, and Growth Mechanics in CaCO$_3$ Thin Films"
-subtitle: "Comprehensive XRD Characterisation: From Precursor 2D-XRD to Azimuthal Rocking Curves"
-date: "16 June 2026"
-geometry: "margin=1in,includeheadfoot,headheight=15pt,headsep=15pt"
-fontsize: "11pt"
-header-includes:
-  - \usepackage{fancyhdr}
-  - \pagestyle{fancy}
-  - \fancyhf{}
-  - \fancyhead[CO,CE]{CaCO$_3$ Thin Film Crystallographic Characterisation Report}
-  - \fancyfoot[CO,CE]{Page \thepage}
-  - \usepackage{graphicx}
----
-
-# 1. Introduction and Rationale for Azimuthal Rocking Curves
+# 3. Define the report content in Markdown format (excluding headers)
+report_body = r"""# 1. Introduction and Rationale for Azimuthal Rocking Curves
 
 ## Rationale for Azimuthal Rocking Curves Based on 2D-XRD Spottiness
 Stationary two-dimensional X-ray diffraction (2D-XRD) measurements using a flat-panel detector represent a standard precursor characterisation step for phase and texture screening. However, a single stationary 2D detector frame only intersects a specific planar slice of reciprocal space. It is therefore mathematically unable to distinguish between an isotropic out-of-plane fibre texture (where crystallite tilts are randomly distributed around the surface normal) and a true template-guided in-plane epitaxial confinement.
@@ -271,20 +239,50 @@ Figure A2 shows the resulting baseline-corrected net intensity profile. Subtract
 """
 
 # Replace placeholders
-report_md = report_md.replace("{table_2d_content}", table_2d_content)
-report_md = report_md.replace("{table_rc_content}", table_rc_content)
+report_body = report_body.replace("{table_2d_content}", table_2d_content)
+report_body = report_body.replace("{table_rc_content}", table_rc_content)
 
-# Write to file
+# Title blocks for GitHub and PDF
+github_title = """# Texture, Polymorphic Phase Confinement, and Growth Mechanics in CaCO$_3$ Thin Films
+
+### Comprehensive XRD Characterisation: From Precursor 2D-XRD to Azimuthal Rocking Curves
+**Date:** 16 June 2026
+
+---
+"""
+
+pdf_yaml = r"""---
+title: "Texture, Polymorphic Phase Confinement, and Growth Mechanics in CaCO$_3$ Thin Films"
+subtitle: "Comprehensive XRD Characterisation: From Precursor 2D-XRD to Azimuthal Rocking Curves"
+date: "16 June 2026"
+geometry: "margin=1in,includeheadfoot,headheight=15pt,headsep=15pt"
+fontsize: "11pt"
+header-includes:
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \fancyhead[CO,CE]{CaCO$_3$ Thin Film Crystallographic Characterisation Report}
+  - \fancyfoot[CO,CE]{Page \thepage}
+  - \usepackage{graphicx}
+---
+"""
+
+# Write the clean markdown report for GitHub
 md_filepath = os.path.join(summary_report_dir, "synthesis_xrd_comprehensive_report.md")
 with open(md_filepath, "w") as f:
-    f.write(report_md)
+    f.write(github_title + report_body)
 print(f"Written Markdown report to {md_filepath}")
+
+# Write the temporary markdown file with YAML header for PDF compilation
+temp_md_filepath = os.path.join(summary_report_dir, "temp_report.md")
+with open(temp_md_filepath, "w") as f:
+    f.write(pdf_yaml + report_body)
 
 # Compile to PDF using pandoc
 pdf_filepath = os.path.join(summary_report_dir, "synthesis_xrd_comprehensive_report.pdf")
 cmd = [
     "pandoc",
-    "synthesis_xrd_comprehensive_report.md",
+    "temp_report.md",
     "-o", "synthesis_xrd_comprehensive_report.pdf",
     "--pdf-engine=pdflatex"
 ]
@@ -296,3 +294,7 @@ else:
     print("Error compiling PDF:")
     print("STDOUT:", result.stdout)
     print("STDERR:", result.stderr)
+
+# Clean up temporary markdown file
+if os.path.exists(temp_md_filepath):
+    os.remove(temp_md_filepath)
