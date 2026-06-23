@@ -54,9 +54,7 @@ thin films/
     └── Rocking_Curves/
         ├── 01_process_rocking_curves.py # Baseline correction and deconvolution processor (Step 1)
         ├── 02_plot_rocking_curves.py  # Interactive and publication plotting routines (Step 2)
-        ├── 03_compare_samples.py      # Specimen-to-specimen peak metric comparisons (Step 3)
-        ├── 04_compile_final_report.py # Gathers metrics and compiles the PDF and MD reports (Step 4)
-        ├── 05_create_publication_package.py # Zip archiver for publication submission (Step 5)
+        └── 03_compare_samples.py      # Specimen-to-specimen peak metric comparisons (Step 3)
 ```
 
 ---
