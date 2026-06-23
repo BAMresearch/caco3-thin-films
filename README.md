@@ -65,6 +65,17 @@ The dataset spans multiple file formats representing different stages of data ac
 
 ---
 
+## Specimen Details
+
+The analysis covers four distinct specimens representing different growth conditions and mineralogical compositions of calcium carbonate ($CaCO_3$) thin films on substrates:
+
+* **`SH-104-1` (Reference Substrate)**: An uncoated reference substrate. The stationary 2D-XRD profile exhibits a mainly isotropic character, providing a baseline measurement of the substrate lattice contributions and instrumental background.
+* **`SH-124-B3` (Pure Calcite Film)**: A $CaCO_3$ thin film grown under Condition B3, consisting of pure calcite phase. Rocking curve deconvolution reveals distinct, narrow domain tilts ($\chi \approx -1.8^\circ$ and $+7.7^\circ$) that suggest a helical columnar microstructure growth mechanism.
+* **`SH-125-A` (Mixed Calcite-Vaterite Film)**: A thin film grown under Condition A, exhibiting a biphasic mineralogical composition with coexisting calcite and vaterite phases. This specimen is used to validate background-subtraction stability and sample-absorption volume corrections.
+* **`SH-125-G` (Mixed Calcite-Vaterite Film)**: A thin film grown under Condition G, featuring a mixed calcite-vaterite composition. The transient vaterite (110) reflection exhibits a highly localized azimuthal selectiveness, satisfying the Bragg condition only at specific rotations ($\phi = 30^\circ$ and $60^\circ$), which indicates template-guided in-plane epitaxial locking.
+
+---
+
 ## Functional Capabilities
 
 The core analysis pipeline (`caco3_diffraction_pipeline.py`) implements the following processing operations:
