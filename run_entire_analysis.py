@@ -26,4 +26,15 @@ if __name__ == "__main__":
     print("Executing CaCO3 XRD analysis pipeline...")
     caco3_diffraction_pipeline.run_data_processing()
     caco3_diffraction_pipeline.generate_all_plots()
+    
+    print("\nCompiling comprehensive crystallographic reports...")
+    import subprocess
+    import sys
+    report_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts/Rocking_Curves/compile_final_report.py")
+    res = subprocess.run([sys.executable, report_script])
+    if res.returncode == 0:
+        print("Reports compiled successfully!")
+    else:
+        print("Error compiling reports.")
+        
     print("All tasks completed successfully!")
