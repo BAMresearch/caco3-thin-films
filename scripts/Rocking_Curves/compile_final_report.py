@@ -15,7 +15,7 @@ import pandas as pd
 import numpy as np
 import subprocess
 
-base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 analysis_dir = os.path.join(base_dir, "data/processed/Rocking_Curves")
 summary_report_dir = os.path.join(base_dir, "results/reports")
 os.makedirs(summary_report_dir, exist_ok=True)

@@ -49,9 +49,14 @@ thin films/
 │   ├── figures/                    # Publication-quality plots (PNG and vector SVG formats)
 │   └── reports/                    # Final PDF and Markdown comprehensive reports
 └── scripts/                        # Consolidated analysis scripts and entrypoints
-    ├── compile_final_report.py     # Gathers metrics and compiles the PDF and MD report
-    ├── generate_plots.py           # Runs the publication figure generation stage
-    └── process_data.py             # Runs the raw-data reduction and fitting stage
+    ├── 2D_XRD/
+    │   └── process_2d_xrd.py       # Precursor 2D-XRD data reduction and screening
+    └── Rocking_Curves/
+        ├── compare_samples.py      # Specimen-to-specimen peak metric comparisons
+        ├── compile_final_report.py # Gathers metrics and compiles the PDF and MD reports
+        ├── create_publication_package.py # Zip archiver for publication submission
+        ├── plot_rocking_curves.py  # Interactive and publication plotting routines
+        └── process_rocking_curves.py # Baseline correction and deconvolution processor
 ```
 
 ---
