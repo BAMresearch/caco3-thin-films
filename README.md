@@ -48,9 +48,10 @@ thin films/
 ├── results/
 │   ├── figures/                    # Publication-quality plots (PNG and vector SVG formats)
 │   └── reports/                    # Final PDF and Markdown comprehensive reports
-└── scripts/                        # Archives of individual processing and plotting scripts
-    ├── 2D_XRD/
-    └── Rocking_Curves/
+└── scripts/                        # Consolidated analysis scripts and entrypoints
+    ├── compile_final_report.py     # Gathers metrics and compiles the PDF and MD report
+    ├── generate_plots.py           # Runs the publication figure generation stage
+    └── process_data.py             # Runs the raw-data reduction and fitting stage
 ```
 
 ---
@@ -134,10 +135,4 @@ python run_entire_analysis.py
 
 This runs the core routines from `caco3_diffraction_pipeline.py`, which populates `data/processed/` with baseline-corrected tables and exports publication-ready figures to `results/figures/`.
 
----
 
-## Authors & Credits
-
-- **Author**: Tomasz Stawski (tomasz.stawski@bam.de)
-- **Version**: 1.0
-- **Date**: 2026-06-23
