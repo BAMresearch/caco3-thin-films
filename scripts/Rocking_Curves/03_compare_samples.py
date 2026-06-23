@@ -49,16 +49,20 @@ two_theta_b3 = 29.44
 two_theta_a = 29.3425
 
 # 1. Fit SH-124-B3 peaks
-peaks_b3_init = [9.36, 12.88, 15.72, 16.30, 22.34]
-ranges_b3 = [(9.0, 9.7), (12.4, 13.4), (15.2, 16.1), (16.1, 16.7), (21.8, 22.8)]
+peaks_b3_init = [9.36, 10.60, 12.10, 12.88, 15.72, 16.30, 17.10, 17.50, 22.34]
+ranges_b3 = [(9.0, 9.7), (10.2, 11.0), (11.7, 12.3), (12.4, 13.4), (15.2, 16.1), (16.1, 16.7), (16.8, 17.3), (17.3, 17.9), (21.8, 22.8)]
 bounds_b3 = [
     ([0, 9.1, 0.05], [10000, 9.5, 0.5]),
+    ([0, 10.3, 0.05], [10000, 10.9, 0.5]),
+    ([0, 11.8, 0.05], [10000, 12.2, 0.5]),
     ([0, 12.6, 0.05], [10000, 13.1, 0.4]),
     ([0, 15.5, 0.05], [10000, 16.0, 0.6]),
     ([0, 16.0, 0.05], [10000, 16.5, 0.5]),
+    ([0, 16.9, 0.05], [10000, 17.2, 0.5]),
+    ([0, 17.4, 0.05], [10000, 17.8, 0.5]),
     ([0, 22.1, 0.05], [10000, 22.6, 0.3])
 ]
-names_b3 = ["B3_Peak_9.22", "B3_Peak_12.92", "B3_Peak_15.70", "B3_Peak_16.19", "B3_Peak_22.34"]
+names_b3 = ["B3_Peak_9.22", "B3_Peak_10.60", "B3_Peak_12.10", "B3_Peak_12.92", "B3_Peak_15.70", "B3_Peak_16.19", "B3_Peak_17.10", "B3_Peak_17.50", "B3_Peak_22.34"]
 results_b3 = []
 
 for name, center, (t_min, t_max), bnd in zip(names_b3, peaks_b3_init, ranges_b3, bounds_b3):
@@ -92,7 +96,7 @@ bounds_a = [
 names_a = ["A_Peak_9.99", "A_Peak_12.81", "A_Peak_14.35", "A_Peak_22.53"]
 results_a = []
 
-for name, center, (t_min, t_max), bnd in zip(names_a, ranges_a, ranges_a, bounds_a):
+for name, center, (t_min, t_max), bnd in zip(names_a, peaks_a_init, ranges_a, bounds_a):
     mask = (theta_a >= t_min) & (theta_a <= t_max)
     try:
         popt_g, _ = curve_fit(gaussian, theta_a[mask], net_a[mask], p0=[1000, center, 0.15], bounds=bnd)
