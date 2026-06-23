@@ -30,7 +30,7 @@ if __name__ == "__main__":
     print("\nCompiling comprehensive crystallographic reports...")
     import subprocess
     import sys
-    report_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts/Rocking_Curves/compile_final_report.py")
+    report_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts/compile_final_report.py")
     res = subprocess.run([sys.executable, report_script])
     if res.returncode == 0:
         print("Reports compiled successfully!")
