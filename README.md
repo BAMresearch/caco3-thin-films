@@ -1,5 +1,13 @@
 # CaCO3 Thin Film Crystallographic Characterisation and Analysis
 
+## Authors & Credits
+
+- **Author**: Tomasz Stawski (tomasz.stawski@bam.de)
+- **Version**: 1.0
+- **Date**: 2026-06-23
+
+---
+
 This repository contains the data processing, peak deconvolution, and plotting scripts for analysing 2D-XRD detector frames and azimuthal rocking curves of calcium carbonate ($CaCO_3$) thin films.
 
 The project is structured to transition raw experimental data (from stationary detector frames and rocking curve scans) into baseline-corrected, multi-peak fitted datasets, and ultimately compile them into high-resolution publication figures and technical reports.
