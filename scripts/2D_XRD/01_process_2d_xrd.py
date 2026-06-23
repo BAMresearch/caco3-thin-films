@@ -140,7 +140,7 @@ def process_single_file(input_gfrm, timestamp, calcite_refs, vaterite_refs):
         values = detector_image.ravel()
         cake_plot = griddata(points, values, (theta_grid, phi_grid), method='linear', fill_value=np.nan)
 
-        pd.DataFrame(cake_plot, index=phi_lin, columns=theta_lin).to_excel(writer, sheet_name='Cake_Plot_data')
+        pd.DataFrame(cake_plot, index=phi_lin, columns=theta_lin).to_excel(writer, sheet_name='Cake_Plot_Data')
 
         plt.figure(figsize=(10, 6))
         plt.imshow(cake_plot, extent=[theta_lin.min(), theta_lin.max(), phi_lin.min(), phi_lin.max()],

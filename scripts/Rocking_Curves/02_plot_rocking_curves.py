@@ -87,7 +87,7 @@ def generate_all_plots():
     excel_path = os.path.join(PROCESSED_DIR, "2D_XRD/SH-125-G_output_data.xlsx")
     if os.path.exists(excel_path):
         try:
-            df_cake = pd.read_excel(excel_path, sheet_name='Cake_Plot_data', index_col=0)
+            df_cake = pd.read_excel(excel_path, sheet_name='Cake_Plot_Data', index_col=0)
             df_profile = pd.read_excel(excel_path, sheet_name='Corrected_Profiles')
             theta_lin = df_cake.columns.values.astype(float)
             phi_lin = df_cake.index.values.astype(float)
