@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title>XRD Analysis Report: raw_2D_XRD</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1000px; margin: 0 auto; padding: 20px; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 30px; border-left: 4px solid #3498db; padding-left: 10px; }
+        p { font-size: 1.1em; }
+        .metadata { background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 4px solid #3498db; margin-bottom: 20px; }
+        .image-container { text-align: center; margin: 20px 0; }
+        img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .conclusion { background: #e8f4f8; padding: 20px; border-radius: 5px; font-weight: bold; font-size: 1.2em; text-align: center; margin-top: 40px; border: 2px solid #bce8f1; }
+    </style>
+    </head>
+    <body>
+        <h1>XRD Analysis Report</h1>
+        
+        <div class="metadata">
+            <strong>Sample Name:</strong> raw_2D_XRD<br>
+            <strong>Processing Time:</strong> 20260623_113706<br>
+            <strong>Source File:</strong> Universtitaet Erlangen Nuernberg Institut_1345_250124_091118-000.gfrm
+        </div>
+
+        <h2>Stage 1: Data Conversion & Resampling</h2>
+        <p>The raw 2D detector image is converted from proprietary format to standard Cartesian coordinates. It is then resampled into polar coordinates (Cake Plot) to map 2Theta against the Azimuthal angle.</p>
+        <div class="image-container">
+            <img src="plot_1_original_2D.png" alt="Detector Image">
+        </div>
+        <div class="image-container">
+            <img src="plot_2_cake_plot.png" alt="Cake Plot">
+        </div>
+
+        <h2>Stage 2 & 3: Baseline Correction & Phase Identification</h2>
+        <p>The Cake Plot is integrated into a 1D profile. A morphological top-hat baseline filter is applied to subtract background scatter while preserving peak shapes. Peak positions are matched against standard Calcite and Vaterite reference databases.</p>
+        <div class="image-container">
+            <img src="plot_3_combined.png" alt="Combined Phase Plot">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_4_calcite_only.png" alt="Calcite Only Plot">
+        </div>
+    
+        <h2>Stage 4: Orientation and Texture Analysis</h2>
+        <p>For each detected peak, the azimuthal intensity profile is extracted. The Degree of Anisotropy (DoA) and Coefficient of Variation (CV) are calculated to assess preferred orientation and texture characteristics.</p>
+    
+        <div class="image-container">
+            <img src="plot_peak_1.png" alt="Peak 1 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_2.png" alt="Peak 2 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_3.png" alt="Peak 3 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_4.png" alt="Peak 4 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_5.png" alt="Peak 5 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_6.png" alt="Peak 6 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_7.png" alt="Peak 7 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_8.png" alt="Peak 8 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_9.png" alt="Peak 9 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_10.png" alt="Peak 10 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_11.png" alt="Peak 11 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_12.png" alt="Peak 12 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_13.png" alt="Peak 13 Profile">
+        </div>
+    
+        <div class="image-container">
+            <img src="plot_peak_14.png" alt="Peak 14 Profile">
+        </div>
+    
+        <div class="conclusion">
+            <p>Detected Phases: Calcite (7 peaks matched) and Vaterite (6 peaks matched)</p>
+            <p>Orientation Conclusion: Mainly Isotropic</p>
+        </div>
+    </body>
+    </html>
+    
