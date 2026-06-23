@@ -29,8 +29,8 @@ PROCESSED_DIR = os.path.join(base_dir, "data/processed")
 
 def extract_brml_data(brml_path):
     """
-    Extracts theta and intensity data arrays from a zipped .brml file.
-    If the file is missing or empty, it attempts recovery from binary .raw file.
+    Extracts scattering angles and diffraction intensity data arrays from a zipped .brml file.
+    Falls back to reading from a corresponding binary .raw file if the .brml file is empty or missing.
     """
     if not os.path.exists(brml_path) or os.path.getsize(brml_path) == 0:
         raw_path = brml_path.replace(".brml", ".raw")
@@ -72,15 +72,15 @@ def extract_brml_data(brml_path):
         return np.array(data_list)
 
 def gaussian(t, h, t0, w):
-    """Gaussian peak model."""
+    """Evaluates a Gaussian peak profile."""
     return h * np.exp(-(t - t0)**2 / (2 * w**2))
 
 def bg_model(t, I0, c0, c1, c2, c3):
-    """Isotropic volume correction + 3rd order polynomial background."""
+    """Defines the background model comprising an isotropic volume correction term and a 3rd-order polynomial."""
     return I0 / np.sin(np.radians(t)) + c0 + c1*t + c2*t**2 + c3*t**3
 
 def fit_symmetric_scan(twotheta, intensity):
-    """Fits background baseline and Bragg peaks (calcite 104 and vaterite 110)."""
+    """Fits background baseline and symmetric Bragg reflections for calcite (104) and vaterite (110)."""
     mask = (twotheta >= 27.5) & (twotheta <= 34.5)
     twotheta_f = twotheta[mask]
     intensity_f = intensity[mask]
@@ -124,7 +124,7 @@ def fit_symmetric_scan(twotheta, intensity):
                 "vaterite_center": t0_v, "vaterite_area": h_v * 0.15 * np.sqrt(2 * np.pi)}
 
 def process_rocking_curves():
-    """Main processing execution loop for rocking curves."""
+    """Coordinates processing and peak parameter extraction for rocking curve measurements across all samples and references."""
     sample_configs = {
         "SH-124-B3": {
             "raw_sub_dir": "SH-124-B3",

@@ -26,6 +26,7 @@ os.makedirs(output_dir, exist_ok=True)
 
 # Load data helper
 def load_csv(path):
+    """Loads baseline-corrected rocking curve profiles from a CSV file, returning scattering angle and intensity arrays."""
     if not os.path.exists(path):
         raise FileNotFoundError(f"Processed file not found: {path}")
     df = pd.read_csv(path)
@@ -40,6 +41,7 @@ except Exception as e:
 
 # Fitting models
 def gaussian(t, h, t0, w):
+    """Evaluates a Gaussian peak profile."""
     return h * np.exp(-(t-t0)**2 / (2*w**2))
 
 # Nominal 2Theta values for alignment and Chi calculation

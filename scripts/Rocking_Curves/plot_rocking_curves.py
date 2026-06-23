@@ -29,11 +29,11 @@ PLOT_DIR = os.path.join(base_dir, "results/figures")
 os.makedirs(PLOT_DIR, exist_ok=True)
 
 def gaussian(t, h, t0, w):
-    """Gaussian peak model."""
+    """Evaluates a Gaussian peak profile."""
     return h * np.exp(-(t - t0)**2 / (2 * w**2))
 
 def fit_symmetric_scan(twotheta, intensity):
-    """Fits background baseline and Bragg peaks (calcite 104 and vaterite 110)."""
+    """Fits background baseline and symmetric Bragg reflections for calcite (104) and vaterite (110)."""
     mask = (twotheta >= 27.5) & (twotheta <= 34.5)
     twotheta_f = twotheta[mask]
     intensity_f = intensity[mask]
@@ -77,7 +77,7 @@ def fit_symmetric_scan(twotheta, intensity):
                 "vaterite_center": t0_v, "vaterite_area": h_v * 0.15 * np.sqrt(2 * np.pi)}
 
 def generate_all_plots():
-    """Generates all publication-grade plots and saves them to results/figures/."""
+    """Generates all publication-grade plots and saves them as PNG/SVG files under results/figures/."""
     print("\n======================================================================")
     print("STAGE 2: GENERATING ALL PUBLICATION FIGURES")
     print("======================================================================")

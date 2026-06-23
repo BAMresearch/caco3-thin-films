@@ -114,8 +114,8 @@ The quantitative parameters of key active tilt reflections are summarised in Tab
 | **SH-104-1** | 90 | Peak 3 (Specular) | 14.848° | 0.134° | 0.563° | 4397.7 | 2633.2 | 12.645% |
 | **SH-125-G** | 60 | Peak 2a (Tilt) | 12.187° | -2.502° | 0.650° | 1488.8 | 1030.0 | 1.024% |
 | **SH-125-G** | 60 | Peak 2b (Tilt) | 13.241° | -1.447° | 0.650° | 1583.0 | 1095.2 | 1.181% |
-| **SH-125-G** | 120 | Peak 2b (Tilt) | 13.600° | -1.092° | 0.650° | 990.9 | 685.6 | 24.363% |
-| **SH-125-G** | 120 | Peak 3 (Specular) | 14.970° | 0.278° | 0.650° | 2018.7 | 1396.6 | 54.523% |
+| **SH-125-G** | 120 | Peak 2b (Tilt) | 13.600° | -1.092° | 0.650° | 991.2 | 685.7 | 24.368% |
+| **SH-125-G** | 120 | Peak 3 (Specular) | 14.970° | 0.278° | 0.650° | 2019.7 | 1397.3 | 54.551% |
 
 **Table 2:** Rocking curve peak parameters and tilt state metrics for representative active azimuthal orientations.
 

@@ -86,8 +86,8 @@ plt.rcParams.update({
 # ==============================================================================
 def extract_brml_data(brml_path):
     """
-    Extracts data from a Bruker .brml XML file.
-    If the file is corrupted or missing, it falls back to the binary .raw file.
+    Extracts scattering angles and diffraction intensity data arrays from a zipped .brml file.
+    Falls back to reading from a corresponding binary .raw file if the .brml file is empty or missing.
     """
     if not os.path.exists(brml_path) or os.path.getsize(brml_path) == 0:
         raw_path = brml_path.replace(".brml", ".raw")
@@ -129,7 +129,7 @@ def extract_brml_data(brml_path):
         return np.array(data_list)
 
 def load_reference_peaks(filepath, min_intensity=2.0):
-    """Parses crystallographic reference data from a text file."""
+    """Parses crystallographic reference peak positions and intensities from a text file."""
     ref_peaks = []
     if os.path.exists(filepath):
         with open(filepath, 'r') as f:
@@ -150,15 +150,15 @@ def load_reference_peaks(filepath, min_intensity=2.0):
 # FITTING HELPERS
 # ==============================================================================
 def gaussian(t, h, t0, w):
-    """Gaussian peak definition."""
+    """Evaluates a Gaussian peak profile."""
     return h * np.exp(-(t - t0)**2 / (2 * w**2))
 
 def bg_model(t, I0, c0, c1, c2, c3):
-    """Isotropic volume correction + 3rd order polynomial background."""
+    """Defines the background model comprising an isotropic volume correction term and a 3rd-order polynomial."""
     return I0 / np.sin(np.radians(t)) + c0 + c1*t + c2*t**2 + c3*t**3
 
 def fit_symmetric_scan(twotheta, intensity):
-    """Fits background baseline and Bragg peaks (calcite 104 and vaterite 110)."""
+    """Fits background baseline and symmetric Bragg reflections for calcite (104) and vaterite (110)."""
     poly_coeff = np.polyfit(twotheta, intensity, 3)
     baseline = np.polyval(poly_coeff, twotheta)
     net_intensity = intensity - baseline
@@ -198,9 +198,7 @@ def fit_symmetric_scan(twotheta, intensity):
 # PIPELINE STAGE 1: RAW DATA PROCESSING
 # ==============================================================================
 def run_data_processing():
-    print("\n======================================================================")
-    print("STAGE 1: PROCESSING ALL RAW MEASUREMENT DATA")
-    print("======================================================================")
+    """Coordinates the extraction, volume correction, and peak fitting for all 2D-XRD and rocking curve raw data."""
     
     # 1. 2D-XRD GFRM processing
     print("\nProcessing 2D-XRD Detector Frame...")
@@ -629,6 +627,7 @@ def run_data_processing():
 # PIPELINE STAGE 2: FIGURE GENERATION
 # ==============================================================================
 def generate_all_plots():
+    """Generates all publication-grade figures from the processed datasets and saves them as PNG and SVG files under results/figures/."""
     print("\n======================================================================")
     print("STAGE 2: GENERATING ALL PUBLICATION FIGURES")
     print("======================================================================")

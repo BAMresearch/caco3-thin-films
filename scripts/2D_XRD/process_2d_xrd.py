@@ -405,7 +405,7 @@ def process_single_file(input_gfrm, timestamp, calcite_refs, vaterite_refs):
         </div>
 
         <h2>Stage 2 & 3: Baseline Correction & Phase Identification</h2>
-        <p>The Cake Plot is integrated into a 1D profile. A robust morphological top-hat baseline is applied to remove background scatter without inducing negative artefacts. Detected peaks are matched against standard Calcite and Vaterite reference files.</p>
+        <p>The Cake Plot is integrated into a 1D profile. A morphological top-hat baseline filter is applied to subtract background scatter while preserving peak shapes. Peak positions are matched against standard Calcite and Vaterite reference databases.</p>
         <div class="image-container">
             <img src="plot_3_combined.png" alt="Combined Phase Plot">
         </div>
@@ -419,7 +419,7 @@ def process_single_file(input_gfrm, timestamp, calcite_refs, vaterite_refs):
 
         f.write(f"""
         <h2>Stage 4: Orientation and Texture Analysis</h2>
-        <p>For each detected peak, the azimuthal intensity profile is extracted. The Degree of Anisotropy (DoA) and Coefficient of Variation (CV) are calculated to assess preferred orientation, poor powder statistics (large grains), or columnar growth.</p>
+        <p>For each detected peak, the azimuthal intensity profile is extracted. The Degree of Anisotropy (DoA) and Coefficient of Variation (CV) are calculated to assess preferred orientation and texture characteristics.</p>
     """)
         for idx in range(len(peaks)):
             f.write(f"""
