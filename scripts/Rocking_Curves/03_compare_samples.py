@@ -85,21 +85,18 @@ for name, center, (t_min, t_max), bnd in zip(names_b3, peaks_b3_init, ranges_b3,
         print(f"Error fitting SH-124-B3 peak {name}: {e}")
 
 # 2. Fit SH-125-A peaks
-peaks_a_init = [9.97, 12.77, 14.35, 22.52]
-ranges_a = [(9.5, 10.5), (12.3, 13.3), (13.7, 15.0), (22.0, 23.0)]
+peaks_a_init = [13.7]
+ranges_a = [(8.0, 19.0)]
 bounds_a = [
-    ([0, 9.7, 0.05], [200000, 10.2, 0.4]),
-    ([0, 12.5, 0.05], [200000, 13.1, 0.4]),
-    ([0, 14.0, 0.05], [200000, 14.6, 0.4]),
-    ([0, 22.2, 0.05], [200000, 22.8, 0.3])
+    ([0, 11.0, 1.0], [200000, 16.0, 8.0])
 ]
-names_a = ["A_Peak_9.99", "A_Peak_12.81", "A_Peak_14.35", "A_Peak_22.53"]
+names_a = ["A_Broad_Specular_Peak"]
 results_a = []
 
 for name, center, (t_min, t_max), bnd in zip(names_a, peaks_a_init, ranges_a, bounds_a):
     mask = (theta_a >= t_min) & (theta_a <= t_max)
     try:
-        popt_g, _ = curve_fit(gaussian, theta_a[mask], net_a[mask], p0=[1000, center, 0.15], bounds=bnd)
+        popt_g, _ = curve_fit(gaussian, theta_a[mask], net_a[mask], p0=[2000, center, 4.0], bounds=bnd)
         h, t0, w = popt_g
         fwhm = 2.355 * w
         area = h * w * np.sqrt(2 * np.pi)

@@ -298,13 +298,7 @@ def run_data_processing():
             "bg_mask_fn": lambda theta: (theta >= 4.0) & \
                                        ((theta < 9.0) | ((theta > 18.5) & (theta < 21.5)) | (theta > 23.5)),
             "peaks": [
-                {"name": "Peak 1 (Tilt)", "init_center": 9.97, "bounds": ([0, 9.0, 0.0425], [200000, 10.8, 0.276])},
-                {"name": "Peak 2a (Tilt)", "init_center": 11.70, "bounds": ([0, 11.7, 0.0425], [200000, 12.3, 0.276])},
-                {"name": "Peak 2b (Tilt)", "init_center": 12.77, "bounds": ([0, 12.4, 0.0425], [200000, 13.6, 0.276])},
-                {"name": "Peak 3 (Specular)", "init_center": 14.35, "bounds": ([0, 13.7, 0.0425], [200000, 15.0, 0.276])},
-                {"name": "Minor Peak A (Tilt)", "init_center": 17.10, "bounds": ([0, 16.8, 0.0425], [100000, 17.3, 0.276])},
-                {"name": "Minor Peak B (Tilt)", "init_center": 17.50, "bounds": ([0, 17.3, 0.0425], [100000, 17.9, 0.276])},
-                {"name": "Peak 4 (Tilt)", "init_center": 22.52, "bounds": ([0, 21.5, 0.0425], [200000, 23.2, 0.276])}
+                {"name": "Broad Specular Peak", "init_center": 13.70, "bounds": ([0, 11.0, 1.0], [200000, 16.0, 8.0])}
             ],
             "default_2theta": 29.3425
         },
@@ -313,13 +307,7 @@ def run_data_processing():
             "bg_mask_fn": lambda theta: (theta >= 4.0) & \
                                        ((theta < 9.0) | ((theta > 18.5) & (theta < 21.5)) | (theta > 23.5)),
             "peaks": [
-                {"name": "Peak 1 (Tilt)", "init_center": 9.97, "bounds": ([0, 9.0, 0.0425], [200000, 10.8, 0.276])},
-                {"name": "Peak 2a (Tilt)", "init_center": 11.70, "bounds": ([0, 11.0, 0.0425], [200000, 12.2, 0.276])},
-                {"name": "Peak 2b (Tilt)", "init_center": 12.77, "bounds": ([0, 12.3, 0.0425], [200000, 13.6, 0.276])},
-                {"name": "Peak 3 (Specular)", "init_center": 14.35, "bounds": ([0, 13.7, 0.0425], [200000, 15.0, 0.276])},
-                {"name": "Minor Peak A (Tilt)", "init_center": 17.10, "bounds": ([0, 16.8, 0.0425], [100000, 17.3, 0.276])},
-                {"name": "Minor Peak B (Tilt)", "init_center": 17.50, "bounds": ([0, 17.3, 0.0425], [100000, 17.9, 0.276])},
-                {"name": "Peak 4 (Tilt)", "init_center": 22.52, "bounds": ([0, 21.5, 0.0425], [200000, 23.2, 0.276])}
+                {"name": "Broad Specular Peak", "init_center": 13.70, "bounds": ([0, 11.0, 1.0], [200000, 16.0, 8.0])}
             ],
             "default_2theta": 29.3425
         },
@@ -328,13 +316,7 @@ def run_data_processing():
             "bg_mask_fn": lambda theta: (theta >= 4.0) & \
                                        ((theta < 9.0) | ((theta > 18.5) & (theta < 21.5)) | (theta > 23.5)),
             "peaks": [
-                {"name": "Peak 1 (Tilt)", "init_center": 9.97, "bounds": ([0, 9.0, 0.0425], [200000, 10.8, 0.276])},
-                {"name": "Peak 2a (Tilt)", "init_center": 11.70, "bounds": ([0, 11.0, 0.0425], [200000, 12.2, 0.276])},
-                {"name": "Peak 2b (Tilt)", "init_center": 12.77, "bounds": ([0, 12.3, 0.0425], [200000, 13.6, 0.276])},
-                {"name": "Peak 3 (Specular)", "init_center": 14.35, "bounds": ([0, 13.7, 0.0425], [200000, 15.0, 0.276])},
-                {"name": "Minor Peak A (Tilt)", "init_center": 17.10, "bounds": ([0, 16.8, 0.0425], [100000, 17.3, 0.276])},
-                {"name": "Minor Peak B (Tilt)", "init_center": 17.50, "bounds": ([0, 17.3, 0.0425], [100000, 17.9, 0.276])},
-                {"name": "Peak 4 (Tilt)", "init_center": 22.52, "bounds": ([0, 21.5, 0.0425], [200000, 23.2, 0.276])}
+                {"name": "Broad Specular Peak", "init_center": 13.70, "bounds": ([0, 11.0, 1.0], [200000, 16.0, 8.0])}
             ],
             "default_2theta": 29.3425
         }
