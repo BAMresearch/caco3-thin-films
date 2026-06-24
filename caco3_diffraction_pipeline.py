@@ -887,6 +887,15 @@ def generate_all_plots():
                 ax.text(theta.max() + 0.3, idx_phi * step_offset, f"{phi}°", 
                          verticalalignment='center', fontsize=9, fontweight='bold', color=colors[idx_phi])
                          
+            # Highlight active tilt domains
+            ax.axvspan(11.5, 13.5, color='#1f77b4', alpha=0.08) # Tilted 1 (chi ~ -1.8)
+            ax.axvspan(13.7, 16.7, color='#2ca02c', alpha=0.08) # Specular (chi ~ 0)
+            ax.axvspan(21.0, 23.5, color='#d62728', alpha=0.08) # Tilted 2 (chi ~ +7.7)
+            
+            ax.text(12.5, 0.96, "Tilted 1", transform=ax.get_xaxis_transform(), color='#1d6396', ha='center', va='top', fontsize=8, fontweight='bold')
+            ax.text(15.2, 0.96, "Specular", transform=ax.get_xaxis_transform(), color='#238023', ha='center', va='top', fontsize=8, fontweight='bold')
+            ax.text(22.2, 0.96, "Tilted 2", transform=ax.get_xaxis_transform(), color='#b32021', ha='center', va='top', fontsize=8, fontweight='bold')
+
             ax.set_xlabel("Theta $\\theta$ (°)")
             ax.set_ylabel("Net Intensity (counts, stacked)")
             ax.set_title(config["title"], fontweight='bold', fontsize=12)
@@ -996,6 +1005,12 @@ def generate_all_plots():
             ax.set_xticks(np.radians(np.arange(0, 360, 30)))
             ax.set_xticklabels([f"{d}°" for d in np.arange(0, 360, 30)], size=9)
             ax.grid(True, color="grey", linestyle=":", alpha=0.5)
+            
+            # Highlight active tilt domains with concentric dashed rings
+            theta_grid = np.linspace(0, 2 * np.pi, 200)
+            ax.plot(theta_grid, np.ones_like(theta_grid) * 1.8, color="#1d6396", linestyle="--", linewidth=1.2, alpha=0.7)
+            ax.plot(theta_grid, np.ones_like(theta_grid) * 7.7, color="#b32021", linestyle="--", linewidth=1.2, alpha=0.7)
+            
             ax.set_title(f"({chr(97 + idx_s)}) {sample}", y=1.08, fontweight='bold', fontsize=12)
             
             cbar = fig.colorbar(contour, ax=ax, pad=0.08, shrink=0.7)
@@ -1190,6 +1205,13 @@ def generate_all_plots():
                 ax2.plot(theta, y_val, '-', linewidth=1.5, label=f"Phi = {phi}°")
                 ax2.axhline(y=idx * step_offset, color='grey', linestyle='--', linewidth=0.8, alpha=0.7)
                 ax2.text(theta.max() + 0.2, idx * step_offset, f"{phi}°", verticalalignment='center', fontsize=9, fontweight='bold')
+            # Highlight active tilt domains
+            ax2.axvspan(11.5, 13.5, color='#1f77b4', alpha=0.08) # Tilted 1 (chi ~ -1.8)
+            ax2.axvspan(13.7, 16.7, color='#2ca02c', alpha=0.08) # Specular (chi ~ 0)
+            
+            ax2.text(12.5, 0.96, "Tilted 1", transform=ax2.get_xaxis_transform(), color='#1d6396', ha='center', va='top', fontsize=8, fontweight='bold')
+            ax2.text(15.2, 0.96, "Specular", transform=ax2.get_xaxis_transform(), color='#238023', ha='center', va='top', fontsize=8, fontweight='bold')
+
             ax2.set_xlabel("Theta (degrees)")
             ax2.set_ylabel("Net Intensity (counts, stacked linear scale)")
             ax2.set_title("Baseline-Corrected Net Curves (Linear Scale)")
@@ -1242,6 +1264,13 @@ def generate_all_plots():
                 ax2.plot(theta, y_val, '-', linewidth=1.5, label=f"Phi = {phi}°")
                 ax2.axhline(y=idx * step_offset, color='grey', linestyle='--', linewidth=0.8, alpha=0.7)
                 ax2.text(theta.max() + 0.2, idx * step_offset, f"{phi}°", verticalalignment='center', fontsize=9, fontweight='bold')
+            # Highlight active tilt domains
+            ax2.axvspan(11.5, 13.5, color='#1f77b4', alpha=0.08) # Tilted 1 (chi ~ -1.8)
+            ax2.axvspan(13.7, 16.7, color='#2ca02c', alpha=0.08) # Specular (chi ~ 0)
+            
+            ax2.text(12.5, 0.96, "Tilted 1", transform=ax2.get_xaxis_transform(), color='#1d6396', ha='center', va='top', fontsize=8, fontweight='bold')
+            ax2.text(15.2, 0.96, "Specular", transform=ax2.get_xaxis_transform(), color='#238023', ha='center', va='top', fontsize=8, fontweight='bold')
+
             ax2.set_xlabel("Theta (degrees)")
             ax2.set_ylabel("Net Intensity (counts, stacked linear scale)")
             ax2.set_title("Baseline-Corrected Net Curves (Linear Scale)")
