@@ -89,8 +89,8 @@ Furthermore, the individual peak components exhibit narrow line shapes, with ful
 
 ## Microstructural interpretation of the resolved peaks
 The multiple components resolved within the rocking curve profiles provide detailed insights into the thin-film growth history:
-1. **The specular orientation peak ($\chi \approx 0^\circ$):** The peak centered near $\chi \approx -0.3^\circ$ (active in samples like `SH-125-A`, `SH-125-G`, and `SH-104-1`) corresponds to the specular condition. It represents a population of calcite crystallites whose (104) lattice planes grow parallel to the substrate surface, forming a standard out-of-plane fibre texture. Unlike the sharp tilt domain peaks of `SH-124-B3` (FWHM $\approx 0.6^\circ$), these specular reflections are extremely broad (FWHM $\approx 5.5^\circ - 12.8^\circ$), indicating a wide orientation distribution (high mosaicity) of the specularly aligned crystallites.
-2. **The symmetrical tilt peaks ($\chi \approx -1.8^\circ$ and $+7.7^\circ$$):** These peaks match the precession of the (104) plane normals in helical columns. The asymmetric tilt distribution suggests a slight tilt of the column growth axes or a preferred chirality during growth. Specifically, the component at $\chi \approx -1.8^\circ$ may represent early-stage column growth before the helical twist pitch is fully established.
+1. **The coexistence of specular and tilted domains in isotropic-like samples:** In the mainly isotropic-like samples (`SH-125-A`, `SH-125-G`, and `SH-104-1`), a 2-peak deconvolution reveals that the rocking curves are not composed of a single extremely broad specular reflection. Instead, they consist of two distinct, overlapping components: a **Specular Peak** centered near the specular angle ($\theta \approx 14.5^\circ$ to $16.5^\circ$, corresponding to $\chi \approx -0.8^\circ$ to $+2.0^\circ$) and a **Tilted Peak** centered at $\theta \approx 11.5^\circ$ to $13.0^\circ$ ($\chi \approx -2.5^\circ$ to $-3.0^\circ$). Both components exhibit moderate mosaicity (FWHM $\approx 3.0^\circ$ - $4.5^\circ$). This resolves the previously inferred, unphysically broad single-peak widths, confirming that tilted crystallographic domains are a universal growth feature of these carbonate films, regardless of their apparent 1D azimuthal symmetry.
+2. **The symmetrical tilt peaks ($\chi \approx -1.8^\circ$ and $+7.7^\circ$):** These peaks match the precession of the (104) plane normals in helical columns. The asymmetric tilt distribution suggests a slight tilt of the column growth axes or a preferred chirality during growth. Specifically, the component at $\chi \approx -1.8^\circ$ may represent early-stage column growth before the helical twist pitch is fully established.
 3. **The minor peak components ($\chi \approx +2.5^\circ$ and $+2.9^\circ$):** These narrow tilt reflections represent secondary crystalline facets or variations in the helical pitch as the columnar structures evolve. The high reproducibility of these minor tilt components across independent growth series (`SH-124-B3` and `SH-125-A`) indicates a highly deterministic orientation pathway, likely dictated by specific low-energy growth facets.
 
 ## Rocking curve peak fit parameters table
@@ -107,9 +107,12 @@ The quantitative parameters of key active tilt reflections are summarised in Tab
 | **SH-124-B3** | 120 | Peak 1b (Tilt) | 10.819° | -3.881° | 0.596° | 2313.1 | 1466.9 | 1.152% |
 | **SH-124-B3** | 120 | Peak 2a (Tilt) | 11.700° | -3.000° | 0.613° | 2244.2 | 1464.6 | 1.243% |
 | **SH-124-B3** | 120 | Peak 2b (Tilt) | 13.167° | -1.533° | 0.604° | 2077.8 | 1334.8 | 1.272% |
-| **SH-125-A** | 0 | Broad Specular Peak | 13.484° | -1.221° | 12.793° | 5078.6 | 69.15k | 72.930% |
-| **SH-125-G** | 60 | Broad Specular Peak | 13.030° | -1.659° | 5.681° | 3775.9 | 22.83k | 29.558% |
-| **SH-104-1** | 60 | Broad Specular Peak | 14.613° | -0.104° | 5.954° | 5932.3 | 37.60k | 114.908% |
+| **SH-125-A** | 0 | Tilted Peak | 11.867° | -2.838° | 3.665° | 4791.4 | 18.69k | 17.385% |
+| **SH-125-A** | 0 | Specular Peak | 15.588° | 0.883° | 3.969° | 4562.1 | 19.27k | 23.424% |
+| **SH-125-G** | 60 | Specular Peak | 15.335° | 0.646° | 4.362° | 1927.6 | 8.95k | 13.592% |
+| **SH-125-G** | 60 | Tilted Peak | 12.130° | -2.558° | 4.039° | 3303.6 | 14.20k | 17.137% |
+| **SH-104-1** | 60 | Tilted Peak | 16.958° | 2.241° | 3.099° | 2819.5 | 9.30k | 32.856% |
+| **SH-104-1** | 60 | Specular Peak | 13.897° | -0.820° | 4.341° | 5641.4 | 26.07k | 75.848% |
 
 **Table 2:** Rocking curve peak parameters and tilt state metrics for representative active azimuthal orientations.
 
@@ -125,9 +128,9 @@ Diffraction scans of the empty sample holder show a featureless, flat background
 ## Baseline verification for isotropic thin-film specimens
 For the mainly isotropic thin-film specimens (`SH-125-A`, `SH-125-G`, and `SH-104-1`), the baseline subtraction procedure is verified by plotting the raw intensity alongside the fitted morphological/isotropic model baseline and the resulting net residual intensity.
 
-Figure 9 shows this comparison for sample `SH-125-A` at $\phi = 0^\circ$. The isotropic model baseline (red line) successfully fits the broad diffuse scatter, and the net residual intensity (purple line) isolates the single broad specular peak component.
+Figure 9 shows this comparison for sample `SH-125-A` at $\phi = 0^\circ$. The isotropic model baseline (red line) successfully fits the broad diffuse scatter, and the net residual intensity (purple line) resolves the deconvolution into tilted and specular peak components.
 
-![**Figure 9:** Raw vs. volume-corrected rocking curve analysis for sample `SH-125-A` at $\phi = 0^\circ$. (a) Raw intensity and fitted model baseline. (b) Baseline-corrected net residual intensity showing the single broad specular peak.](../figures/SH-125-A_rocking_curve_analysis.png){width=85%}
+![**Figure 9:** Raw vs. volume-corrected rocking curve analysis for sample `SH-125-A` at $\phi = 0^\circ$. (a) Raw intensity and fitted model baseline. (b) Baseline-corrected net residual intensity showing the deconvolution into tilted and specular peak components.](../figures/SH-125-A_rocking_curve_analysis.png){width=85%}
 
 Figures 10 and 11 show the stacked raw curves and corresponding baseline-corrected net curves at all measured azimuthal angles for samples `SH-125-G` and `SH-104-1`, respectively. These plots demonstrate the stability of the baseline subtraction routine across the entire azimuthal range, confirming that the weak, broad specular features are consistently isolated without generating unphysical artefacts.
 

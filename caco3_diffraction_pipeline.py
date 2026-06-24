@@ -310,7 +310,8 @@ def run_data_processing():
             "bg_mask_fn": lambda theta: (theta >= 4.0) & \
                                        ((theta < 9.0) | ((theta > 18.5) & (theta < 21.5)) | (theta > 23.5)),
             "peaks": [
-                {"name": "Broad Specular Peak", "init_center": 13.70, "bounds": ([0, 11.0, 1.0], [200000, 16.0, 8.0])}
+                {"name": "Tilted Peak", "init_center": 12.00, "bounds": ([0, 9.0, 0.2], [200000, 21.0, 4.0])},
+                {"name": "Specular Peak", "init_center": 15.00, "bounds": ([0, 9.0, 0.2], [200000, 21.0, 4.0])}
             ],
             "default_2theta": 29.3425
         },
@@ -319,7 +320,8 @@ def run_data_processing():
             "bg_mask_fn": lambda theta: (theta >= 4.0) & \
                                        ((theta < 9.0) | ((theta > 18.5) & (theta < 21.5)) | (theta > 23.5)),
             "peaks": [
-                {"name": "Broad Specular Peak", "init_center": 13.70, "bounds": ([0, 11.0, 1.0], [200000, 16.0, 8.0])}
+                {"name": "Tilted Peak", "init_center": 12.00, "bounds": ([0, 9.0, 0.2], [200000, 21.0, 4.0])},
+                {"name": "Specular Peak", "init_center": 15.00, "bounds": ([0, 9.0, 0.2], [200000, 21.0, 4.0])}
             ],
             "default_2theta": 29.3425
         },
@@ -328,7 +330,8 @@ def run_data_processing():
             "bg_mask_fn": lambda theta: (theta >= 4.0) & \
                                        ((theta < 9.0) | ((theta > 18.5) & (theta < 21.5)) | (theta > 23.5)),
             "peaks": [
-                {"name": "Broad Specular Peak", "init_center": 13.70, "bounds": ([0, 11.0, 1.0], [200000, 16.0, 8.0])}
+                {"name": "Tilted Peak", "init_center": 12.00, "bounds": ([0, 9.0, 0.2], [200000, 21.0, 4.0])},
+                {"name": "Specular Peak", "init_center": 15.00, "bounds": ([0, 9.0, 0.2], [200000, 21.0, 4.0])}
             ],
             "default_2theta": 29.3425
         }
@@ -467,7 +470,7 @@ def run_data_processing():
                             h_guess = 100.0
                         
                         h_guess = max(h_guess, 100.0)
-                        w_guess = 2.0 if sample in ["SH-125-A", "SH-125-G", "SH-104-1"] else 0.15
+                        w_guess = 1.5 if sample in ["SH-125-A", "SH-125-G", "SH-104-1"] else 0.15
                         flat_guesses.extend([h_guess, center_guess, w_guess])
                         bounds_min.extend(p["bounds"][0])
                         bounds_max.extend(p["bounds"][1])
@@ -1104,14 +1107,28 @@ def generate_all_plots():
             axes[0].grid(True)
             axes[0].set_title('SH-125-A Rocking Curve Analysis (2Theta = 29.3425°)')
             
-            axes[1].plot(theta, net_intensity, 'purple', label='Net Residual Intensity (Corrected)')
+            axes[1].plot(theta, net_intensity, '.', color='#7f7f7f', markersize=4, alpha=0.5, label='Experimental Net Data')
+            fit_total = np.zeros_like(theta)
             for idx, row in df_scan.iterrows():
                 t0 = row['Peak Center (Theta)']
                 h = row['Net Height']
-                w = row['FWHM (degrees)'] / 2.355
+                fwhm = row['FWHM (degrees)']
+                w = fwhm / 2.355
+                p_name = row['Peak Name']
                 if h > 0:
-                    axes[1].plot(theta, gaussian(theta, h, t0, w), 'r--', alpha=0.8)
-                    axes[1].text(t0 + 0.1, h * 0.9, f"{t0:.2f}°\n$\\chi$={row['Tilt Angle (Chi)']:.2f}°", fontsize=9, color='red')
+                    y_peak = gaussian(theta, h, t0, w)
+                    fit_total += y_peak
+                    is_tilt = "Tilt" in p_name or "Tilted" in p_name
+                    p_color = '#2ca02c' if is_tilt else '#1f77b4'
+                    axes[1].plot(theta, y_peak, color=p_color, linestyle=':', linewidth=1.5, label=f'Fitted {p_name}')
+                    axes[1].fill_between(theta, 0, y_peak, color=p_color, alpha=0.08)
+                    # Stagger annotations to prevent overlapping
+                    text_x = t0 - 1.8 if is_tilt else t0 + 0.3
+                    text_y = h * 0.6 if is_tilt else h * 0.8
+                    axes[1].text(text_x, text_y, f"{p_name}\nCenter={t0:.2f}°\nFWHM={fwhm:.2f}°\n$\\chi$={row['Tilt Angle (Chi)']:.2f}°", 
+                                 fontsize=9, color=p_color, fontweight='bold', 
+                                 bbox=dict(facecolor='white', alpha=0.85, boxstyle='round,pad=0.2'))
+            axes[1].plot(theta, fit_total, 'k-', linewidth=2, label='Total Fit Envelope')
             axes[1].axhline(0, color='gray', linestyle='--')
             axes[1].set_xlabel('Theta (degrees)')
             axes[1].set_ylabel('Net Residual Intensity (counts)')
@@ -1809,7 +1826,7 @@ def generate_all_plots():
                             fit_net_intensity += y_peak
                             
                             # Plot individual peak
-                            is_tilt = "Tilt" in row_p["Peak Name"]
+                            is_tilt = "Tilt" in row_p["Peak Name"] or "Tilted" in row_p["Peak Name"]
                             p_color = '#2ca02c' if is_tilt else '#1f77b4'
                             p_name = 'Fitted Tilt Component' if is_tilt else 'Fitted Specular Component'
                             if idx_phi == 0 and p_name not in added_labels:
