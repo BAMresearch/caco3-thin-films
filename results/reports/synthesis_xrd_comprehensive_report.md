@@ -62,7 +62,15 @@ Figure 6 displays the integrated area of the calcite (104) and vaterite (110) pe
 # 3. Rocking curve analysis and 2D texture pole figures
 
 ## Resolution of 2D polar texture (pole figures)
-By collecting 1D rocking curves ($\theta$) at multiple azimuthal rotation angles $\phi$ and mapping the baseline-corrected intensities to a 2D polar coordinate system (where radius represents the domain tilt angle $\chi = \theta - \theta_0$), the full texture distribution is resolved.
+By collecting 1D rocking curves ($\theta$) at multiple azimuthal rotation angles $\phi$ and mapping the baseline-corrected intensities to a 2D polar coordinate system (where radius represents the domain tilt angle $\chi$), the full texture distribution is resolved. 
+
+Here, the tilt angle $\chi$ represents the crystallographic tilt of the calcite (104) lattice planes relative to the physical substrate/film surface normal. In this geometry, the specular Bragg condition for flat, non-tilted planes is met when the angle of incidence $\theta$ is exactly half of the scattering angle $2\theta_{Bragg}$ (where $2\theta_{Bragg} \approx 29.4^\circ$ for calcite (104)). This defines the nominal specular reference angle $\theta_0 \approx 14.7^\circ$. 
+
+Specifically, to correct for any minor physical sample misalignment, height displacement, or goniometer zero-point offset during the measurement, the specular reference angle $\theta_0(\phi)$ is determined dynamically for each azimuthal orientation $\phi$ by fitting the calcite (104) reflection in the corresponding symmetric $2\theta-\theta$ scan:
+$$\theta_0(\phi) = \frac{2\theta_{Bragg}(\phi)}{2}$$
+The net crystallite tilt angle $\chi$ is then calculated for each data point as the angular deviation of the rocking angle $\theta$ from this local specular reference:
+$$\chi = \theta - \theta_0(\phi)$$
+
 
 The baseline-corrected net intensity profiles are highly anisotropic and depend strongly on the azimuth $\phi$. For the pure calcite film `SH-124-B3`, active tilt domains appear at $\chi \approx -1.8^\circ$ and $+7.7^\circ$$, localised within the $\phi = 60^\circ - 120^\circ$$ sector. Similarly, the biphasic film `SH-125-G` exhibits active tilt reflections peaking at $\phi = 60^\circ$ and $120^\circ$$, while showing negligible intensity at other rotations. This localised, grainy modulation of rocking curve peak profiles as a function of $\phi$ provides direct crystallographic evidence of in-plane epitaxial locking and confirms the absence of an isotropic out-of-plane fibre texture (shown in Figure 7 and mapped in 2D polar projection in Figure 8).
 
