@@ -687,9 +687,8 @@ def generate_all_plots():
                 ax3.axvline(29.4, color='#2ca02c', linestyle='--', alpha=0.7, label='calcite (104) ref')
                 ax3.text(29.4, y_max * 0.9, ' calcite (104)\n 3.03 Å', color='#2ca02c', ha='left', va='top', fontsize=9)
                 
-                if sname in ["SH-125-G", "SH-104-1"]:
-                    ax3.axvline(32.8, color='#9467bd', linestyle='--', alpha=0.7, label='vaterite (110) ref')
-                    ax3.text(32.8, y_max * 0.9, ' vaterite (110)\n 2.73 Å', color='#9467bd', ha='left', va='top', fontsize=9)
+                ax3.axvline(32.8, color='#9467bd', linestyle='--', alpha=0.7, label='vaterite (110) ref')
+                ax3.text(32.8, y_max * 0.9, ' vaterite (110)\n 2.73 Å', color='#9467bd', ha='left', va='top', fontsize=9)
                 
                 ax3.legend(loc='upper right', framealpha=0.9)
                 ax3.set_xlim(20, 55)
