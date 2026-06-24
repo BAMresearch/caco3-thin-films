@@ -1571,36 +1571,84 @@ def generate_all_plots():
             twotheta = arr[:, 0]
             intensity = arr[:, 1]
             
-            # Re-run fitting to get individual components
-            bg_mask = (twotheta < 28.0) | ((twotheta > 31.0) & (twotheta < 31.8)) | (twotheta > 34.0)
-            if not bg_mask.any():
-                bg_mask = np.ones_like(twotheta, dtype=bool)
-            poly_coeff = np.polyfit(twotheta[bg_mask], intensity[bg_mask], 3)
-            baseline = np.polyval(poly_coeff, twotheta)
+            # Joint fitting function with a linear background baseline
+            def joint_fit_linear(t, c0, c1, *peak_params):
+                baseline = c0 + c1*t
+                y = baseline.copy()
+                n = len(peak_params) // 3
+                for i in range(n):
+                    h = peak_params[3*i]
+                    t0 = peak_params[3*i+1]
+                    w = peak_params[3*i+2]
+                    y += h * np.exp(-(t - t0)**2 / (2 * w**2))
+                return y
+                
+            # Initial guess for background by fitting to the extremes
+            bg_mask = (twotheta < 27.5) | (twotheta > 34.5)
+            poly_coeff = np.polyfit(twotheta[bg_mask], intensity[bg_mask], 1)
+            c1_guess, c0_guess = poly_coeff
+            
+            p0 = [
+                c0_guess, c1_guess,   # Background baseline
+                2000.0, 28.5, 0.15,   # Peak 1 (28.5)
+                18000.0, 29.4, 0.15,  # Peak 2 (29.4, Calcite 104)
+                1000.0, 31.5, 0.15,   # Peak 3 (31.5)
+                1000.0, 32.8, 0.15,   # Peak 4 (32.8, Vaterite 110)
+                1000.0, 33.8, 0.15    # Peak 5 (33.8)
+            ]
+            
+            bounds = (
+                [-np.inf, -np.inf,
+                 0.0, 28.2, 0.05,
+                 0.0, 29.2, 0.05,
+                 0.0, 31.2, 0.05,
+                 0.0, 32.4, 0.05,
+                 0.0, 33.5, 0.05],
+                [np.inf, np.inf,
+                 20000.0, 28.8, 0.5,
+                 50000.0, 29.6, 0.5,
+                 20000.0, 31.8, 0.5,
+                 20000.0, 33.2, 0.5,
+                 20000.0, 34.2, 0.5]
+            )
+            
+            fit_mask = (twotheta >= 27.0) & (twotheta <= 35.0)
+            popt, _ = curve_fit(joint_fit_linear, twotheta[fit_mask], intensity[fit_mask], p0=p0, bounds=bounds)
+            
+            c0_fit, c1_fit = popt[0], popt[1]
+            baseline = c0_fit + c1_fit * twotheta
             net_intensity = intensity - baseline
             
-            c_mask = (twotheta >= 28.2) & (twotheta <= 30.8)
-            popt_c, _ = curve_fit(gaussian, twotheta[c_mask], net_intensity[c_mask], p0=[intensity.max() - baseline.max(), 29.4, 0.15])
-            h_c, t0_c, w_c = popt_c
-            area_c = h_c * w_c * np.sqrt(2 * np.pi)
+            # Extract fitted peak parameters
+            h1, t1, w1 = popt[2], popt[3], popt[4]
+            h2, t2, w2 = popt[5], popt[6], popt[7]
+            h3, t3, w3 = popt[8], popt[9], popt[10]
+            h4, t4, w4 = popt[11], popt[12], popt[13]
+            h5, t5, w5 = popt[14], popt[15], popt[16]
             
-            # Vaterite (110) at ~32.8
-            v_mask = (twotheta >= 31.8) & (twotheta <= 33.8)
-            popt_v, _ = curve_fit(gaussian, twotheta[v_mask], net_intensity[v_mask], p0=[1000.0, 32.8, 0.15])
-            h_v, t0_v, w_v = popt_v
-            area_v = h_v * w_v * np.sqrt(2 * np.pi)
+            # Individual peaks
+            fit_p1 = gaussian(twotheta, h1, t1, w1)
+            fit_calcite = gaussian(twotheta, h2, t2, w2)
+            fit_p2 = gaussian(twotheta, h3, t3, w3)
+            fit_vaterite = gaussian(twotheta, h4, t4, w4)
+            fit_p3 = gaussian(twotheta, h5, t5, w5)
             
-            # Full model fit
-            fit_calcite = gaussian(twotheta, h_c, t0_c, w_c)
-            fit_vaterite = gaussian(twotheta, h_v, t0_v, w_v)
-            total_fit = baseline + fit_calcite + fit_vaterite
+            total_fit = baseline + fit_p1 + fit_calcite + fit_p2 + fit_vaterite + fit_p3
+            sum_peaks = fit_p1 + fit_calcite + fit_p2 + fit_vaterite + fit_p3
+            
+            # Areas
+            area_p1 = h1 * w1 * np.sqrt(2 * np.pi)
+            area_calcite = h2 * w2 * np.sqrt(2 * np.pi)
+            area_p2 = h3 * w3 * np.sqrt(2 * np.pi)
+            area_vaterite = h4 * w4 * np.sqrt(2 * np.pi)
+            area_p3 = h5 * w5 * np.sqrt(2 * np.pi)
             
             fig, axes = plt.subplots(2, 1, figsize=(10, 9), sharex=True)
             
             # Panel (a): Raw data and baseline
             axes[0].plot(twotheta, intensity, 'o', color='#7f7f7f', markersize=4, alpha=0.6, label='Raw Symmetric Scan Data')
-            axes[0].plot(twotheta, baseline, 'r-', linewidth=2, label='Fitted 3rd-order Polynomial Background')
-            axes[0].plot(twotheta, total_fit, 'k--', linewidth=1.5, label='Total Fit (Background + Bragg Peaks)')
+            axes[0].plot(twotheta, baseline, 'r-', linewidth=2, label='Fitted Linear Background Baseline')
+            axes[0].plot(twotheta, total_fit, 'k--', linewidth=1.5, label='Total Fit (Background + 5 Peaks)')
             axes[0].set_ylabel('Intensity (counts)', fontsize=12)
             axes[0].legend(loc='upper right', framealpha=0.9)
             axes[0].grid(True, linestyle=':', alpha=0.5)
@@ -1609,33 +1657,45 @@ def generate_all_plots():
             
             # Panel (b): Net intensity and Gaussian deconvolution
             axes[1].plot(twotheta, net_intensity, 'o', color='#7f7f7f', markersize=4, alpha=0.6, label='Experimental Net Data (Raw - Background)')
-            axes[1].plot(twotheta, fit_calcite + fit_vaterite, 'k-', linewidth=2, label='Sum of Crystalline Reflections')
+            axes[1].plot(twotheta, sum_peaks, 'k-', linewidth=2, label='Sum of Fitted Peak Components')
             
-            axes[1].plot(twotheta, fit_calcite, color='#2ca02c', linewidth=1.8, linestyle='--', label='Fitted Calcite (104)')
+            # Plot individual peaks
+            axes[1].plot(twotheta, fit_p1, color='#1f77b4', linewidth=1.5, linestyle='--', label='Peak 28.5°')
+            axes[1].fill_between(twotheta, 0, fit_p1, color='#1f77b4', alpha=0.12)
+            
+            axes[1].plot(twotheta, fit_calcite, color='#2ca02c', linewidth=1.8, linestyle='--', label='Fitted Calcite (104) ~29.4°')
             axes[1].fill_between(twotheta, 0, fit_calcite, color='#2ca02c', alpha=0.15)
             
-            axes[1].plot(twotheta, fit_vaterite, color='#9467bd', linewidth=1.8, linestyle='--', label='Fitted Vaterite (110)')
+            axes[1].plot(twotheta, fit_p2, color='#ff7f0e', linewidth=1.5, linestyle='--', label='Peak 31.5°')
+            axes[1].fill_between(twotheta, 0, fit_p2, color='#ff7f0e', alpha=0.12)
+            
+            axes[1].plot(twotheta, fit_vaterite, color='#9467bd', linewidth=1.8, linestyle='--', label='Fitted Vaterite (110) ~32.8°')
             axes[1].fill_between(twotheta, 0, fit_vaterite, color='#9467bd', alpha=0.15)
+            
+            axes[1].plot(twotheta, fit_p3, color='#e377c2', linewidth=1.5, linestyle='--', label='Peak 33.8°')
+            axes[1].fill_between(twotheta, 0, fit_p3, color='#e377c2', alpha=0.12)
             
             axes[1].axhline(0, color='gray', linestyle='--', linewidth=0.8)
             axes[1].set_xlabel('2$\\theta$ (°)', fontsize=12)
             axes[1].set_ylabel('Net Residual Intensity (counts)', fontsize=12)
             axes[1].set_xlim(27.0, 35.0)
-            axes[1].legend(loc='upper right', framealpha=0.9)
+            axes[1].legend(loc='upper right', framealpha=0.9, fontsize=9.5)
             axes[1].grid(True, linestyle=':', alpha=0.5)
             axes[1].text(-0.08, 1.05, "(b)", transform=axes[1].transAxes, fontsize=14, fontweight='bold', va='top')
             
             # Add text box with fit results
             fit_text = (
-                f"Calcite (104) Fit:\n"
-                f"  Center = {t0_c:.3f}°\n"
-                f"  Area = {area_c/1e3:.2f} kcounts·°\n\n"
-                f"Vaterite (110) Fit:\n"
-                f"  Center = {t0_v:.3f}°\n"
-                f"  Area = {area_v/1e3:.2f} kcounts·°"
+                f"Fit Results (Joint Fit):\n"
+                f"  Peak 28.5°: Center = {t1:.3f}°, FWHM = {w1*2.355:.3f}°, Area = {area_p1/1e3:.2f} kcts·°\n"
+                f"  Calcite (104): Center = {t2:.3f}°, FWHM = {w2*2.355:.3f}°, Area = {area_calcite/1e3:.2f} kcts·°\n"
+                f"  Peak 31.5°: Center = {t3:.3f}°, FWHM = {w3*2.355:.3f}°, Area = {area_p2/1e3:.2f} kcts·°\n"
+                f"  Vaterite (110): Center = {t4:.3f}°, FWHM = {w4*2.355:.3f}°, Area = {area_vaterite/1e3:.2f} kcts·°\n"
+                f"  Peak 33.8°: Center = {t5:.3f}°, FWHM = {w5*2.355:.3f}°, Area = {area_p3/1e3:.2f} kcts·°"
             )
-            axes[1].text(27.2, axes[1].get_ylim()[1]*0.45, fit_text, fontsize=10, 
-                         bbox=dict(facecolor='white', alpha=0.8, boxstyle='round,pad=0.4'))
+            # Find max net intensity to place text safely
+            max_net_val = np.max(net_intensity)
+            axes[1].text(27.1, max_net_val*0.42, fit_text, fontsize=8.5, 
+                         bbox=dict(facecolor='white', alpha=0.85, boxstyle='round,pad=0.4'))
             
             plt.tight_layout()
             plt.savefig(os.path.join(PLOT_DIR, "fig_a6_symmetric_peak_fits.png"), dpi=300, bbox_inches='tight')

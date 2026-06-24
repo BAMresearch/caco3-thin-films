@@ -207,9 +207,9 @@ Figure A5 shows the rocking curve and Gaussian fit for the calcite single crysta
 
 ![**Figure A5:** Calcite single crystal rocking curve analysis. (a) Raw intensity with fitted model baseline. (b) Net residual intensity showing a single, narrow cleavage-miscut peak.](../figures/calcite_single_crystal_rocking_curve_analysis.png){width=85%}
 
-Figure A6 shows a representative symmetric diffraction scan peak fitting sequence for sample `SH-125-G` at $\phi = 30^\circ$. This specimen contains both calcite and vaterite phases, demonstrating how the 3rd-order polynomial baseline and the individual Gaussian functions are fitted to resolve the integrated areas of the calcite (104) and vaterite (110) reflections.
+Figure A6 shows a representative symmetric diffraction scan peak fitting sequence for sample `SH-125-G` at $\phi = 30^\circ$. This specimen contains both calcite and vaterite phases, demonstrating how the linear background baseline and the 5-peak Gaussian functions are fitted jointly to resolve the integrated areas of the calcite (104), vaterite (110), and secondary reflections at 28.5°, 31.5°, and ~33.8°.
 
-![**Figure A6:** Symmetric diffraction scan peak fitting sequence for `SH-125-G` at $\phi = 30^\circ$. (a) Raw intensity, fitted 3rd-order polynomial background, and total fit envelope. (b) Baseline-corrected net intensity showing the individual fitted Gaussians and areas for the calcite (104) and vaterite (110) reflections.](../figures/fig_a6_symmetric_peak_fits.png){width=85%}
+![**Figure A6:** Symmetric diffraction scan peak fitting sequence for `SH-125-G` at $\phi = 30^\circ$. (a) Raw intensity, fitted linear background, and total fit envelope. (b) Baseline-corrected net intensity showing the individual fitted Gaussians and areas for the calcite (104), vaterite (110), and reflections at 28.5°, 31.5°, and ~33.8°.](../figures/fig_a6_symmetric_peak_fits.png){width=85%}
 
 Figures A7 to A10 compile the complete, step-by-step rocking curve fits for all samples at all measured azimuthal orientations $\phi$, allowing a detailed review of the fits on a log-intensity scale.
 
