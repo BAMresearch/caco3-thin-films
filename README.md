@@ -59,25 +59,25 @@ thin films/
 
 ---
 
-## Data Structure
+## Data structure
 
 The dataset spans multiple file formats representing different stages of data acquisition and reduction:
 
-### 1. Raw Data (`data/raw/`)
+### 1. Raw data (`data/raw/`)
 * **`.gfrm`**: Bruker 2D flat-panel detector frames containing spatial intensity data from stationary measurements.
 * **`.h5`**: Hierarchical Data Format (HDF5) files containing resampled arrays, converted from `.gfrm` files using the `silx` library for open access.
 * **`.brml`**: Compressed Bruker XML-wrapped files containing 1D scanning data, including symmetric $2\theta-\theta$ scans and azimuthal rocking curves ($\theta$ scans).
 * **`.raw`**: Legacy Bruker binary data blocks containing raw measurement arrays, used as fallbacks if `.brml` files are corrupted or missing.
 * **`.txt`**: Tab-delimited crystal reference data (e.g. `Calcite__0000985.txt`, `Vaterite__0004854.txt`) listing reflection indices ($hkl$), $d$-spacings, and relative intensities.
 
-### 2. Processed Data (`data/processed/`)
+### 2. Processed data (`data/processed/`)
 * **`.xlsx`**: Multi-sheet Excel workbooks containing scan metadata, interpolated grid points, and corrected cake profiles.
 * **`.xy`**: Clean, space-delimited text profiles (2theta and intensity) suitable for external plotting or refinement software.
 * **`.csv`**: Tabular data containing fitted peak parameters, net residual intensities, and model baselines for each azimuthal angle ($\phi$).
 
 ---
 
-## Specimen Details
+## Specimen details
 
 The analysis covers four distinct specimens representing different growth conditions and mineralogical compositions of calcium carbonate ($CaCO_3$) thin films on substrates:
 
@@ -88,34 +88,34 @@ The analysis covers four distinct specimens representing different growth condit
 
 ---
 
-## Functional Capabilities
+## Functional capabilities
 
 The core analysis pipeline (`caco3_diffraction_pipeline.py`) implements the following processing operations:
 
-### 1. 2D-XRD Detector Frame Integration
+### 1. 2D-XRD detector frame integration
 * **Grid Interpolation**: Converts flat-panel Bruker detector coordinates into polar cake plots ($2\theta$ vs. $\phi$) using bivariate linear grid interpolation.
 * **Azimuthal Integration**: Integrates the 2D cake plot over the azimuthal angle range to produce 1D profiles.
 * **Morphological Baseline Correction**: Estimates the background signal using rolling minimum-maximum filters and subtracts it to isolate Bragg diffraction peaks.
 
-### 2. Symmetric Scan Extraction and Fitting
+### 2. Symmetric scan extraction and fitting
 * **Profile Extraction**: Automatically parses symmetric $2\theta-\theta$ scans for each specimen across multiple azimuthal angles ($\phi$).
 * **Polynomial Baseline Correction**: Models diffuse background scatter with a third-order polynomial.
 * **Peak Parameterisation**: Fits Gaussian functions to the calcite (104) and vaterite (110) reflections to extract peak centers, heights, and integrated areas.
 
-### 3. Rocking Curve Background Correction
+### 3. Rocking curve background correction
 * **Isotropic Volume Correction**: Accounts for sample-geometry absorption effects using an isotropic $I_0 / \sin(\theta)$ model.
 * **Iterative Baseline Fitting**: Combines the volume correction with a polynomial background, iteratively fitting the model to regions free of Bragg reflections.
 
-### 4. Bragg Peak Deconvolution
+### 4. Bragg peak deconvolution
 * **Multi-Peak Log-Scale Fitting**: Fits overlapping rocking curve features in log-intensity space to resolve distinct tilt components.
 * **Parameter Extraction**: Computes tilt angles ($\chi$), peak heights, full width at half maximum (FWHM) values, and relative calcite/vaterite phase distributions.
 
-### 5. Automated Publication Plot Generation
+### 5. Automated publication plot generation
 * Renders 20 publication-ready PNG and vector SVG diagrams, including waterfall plots, stacked net rocking curves, phase composition maps, and polar projection pole figures (texture maps).
 
 ---
 
-## Installation & Requirements
+## Installation & requirements
 
 The scripts require Python 3.8+ and standard scientific packages. Install the requirements using:
 
@@ -123,7 +123,7 @@ The scripts require Python 3.8+ and standard scientific packages. Install the re
 pip install -r requirements.txt
 ```
 
-### Optional Dependency for GFRM Conversion
+### Optional dependency for GFRM conversion
 To convert binary `.gfrm` Bruker frame files directly, `silx` is used. If `silx` is not installed, the pipeline automatically falls back to reading the pre-converted `.gfrm.h5` files located in the raw data directory.
 
 ---
