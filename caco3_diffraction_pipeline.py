@@ -1666,20 +1666,23 @@ def generate_all_plots():
                         ax.text(0.5, 0.5, f"No data for $\\phi$ = {phi}°", ha='center', va='center')
                         continue
                     
+
                     df_rc = pd.read_csv(csv_path)
                     theta = df_rc["Theta (degrees)"].values
                     intensity = df_rc["Raw Intensity"].values
                     baseline = df_rc["Model Baseline"].values
+                    net_intensity = intensity - baseline
                     
-                    # Reconstruct fit
-                    fit_intensity = baseline.copy()
+                    # Reconstruct fit (in net intensity space)
+                    fit_net_intensity = np.zeros_like(theta)
                     
                     # Get peak metrics for this sample and phi
                     df_p = df_metrics[(df_metrics["Sample"] == sample) & (df_metrics["Phi (degrees)"] == phi)]
                     
-                    ax.plot(theta, intensity, '.', color='#7f7f7f', markersize=3, alpha=0.5, label='Raw Data' if idx_phi == 0 else '')
-                    ax.plot(theta, baseline, 'r--', linewidth=1.2, label='Model Baseline' if idx_phi == 0 else '')
+                    ax.plot(theta, net_intensity, '.', color='#7f7f7f', markersize=3, alpha=0.5, label='Experimental Net Data' if idx_phi == 0 else '')
+                    ax.plot(theta, np.zeros_like(theta), 'r--', linewidth=1.2, label='Subtracted Baseline (y=0)' if idx_phi == 0 else '')
                     
+                    added_labels = set()
                     for _, row_p in df_p.iterrows():
                         h = row_p["Net Height"]
                         t0 = row_p["Peak Center (Theta)"]
@@ -1687,23 +1690,32 @@ def generate_all_plots():
                         if h > 0 and fwhm > 0:
                             w = fwhm / 2.355
                             y_peak = h * np.exp(-(theta - t0)**2 / (2 * w**2))
-                            fit_intensity += y_peak
+                            fit_net_intensity += y_peak
                             
                             # Plot individual peak
-                            p_color = '#2ca02c' if "Tilt" in row_p["Peak Name"] else '#1f77b4'
-                            ax.plot(theta, baseline + y_peak, color=p_color, linewidth=0.8, linestyle=':')
-                            ax.fill_between(theta, baseline, baseline + y_peak, color=p_color, alpha=0.08)
+                            is_tilt = "Tilt" in row_p["Peak Name"]
+                            p_color = '#2ca02c' if is_tilt else '#1f77b4'
+                            p_name = 'Fitted Tilt Component' if is_tilt else 'Fitted Specular Component'
+                            if idx_phi == 0 and p_name not in added_labels:
+                                p_label = p_name
+                                added_labels.add(p_name)
+                            else:
+                                p_label = ''
+                            ax.plot(theta, y_peak, color=p_color, linewidth=0.8, linestyle=':', label=p_label)
+                            ax.fill_between(theta, 0, y_peak, color=p_color, alpha=0.08)
+                    ax.plot(theta, fit_net_intensity, 'k-', linewidth=1.5, label='Total Net Fit' if idx_phi == 0 else '')
                     
-                    ax.plot(theta, fit_intensity, 'k-', linewidth=1.5, label='Total Fit' if idx_phi == 0 else '')
-                    
-                    ymin = max(0, intensity.min() * 0.95)
-                    ymax = intensity.max() * 1.05
+                    # Set y-limits dynamically based on net intensity
+                    ymin = net_intensity.min() - 0.1 * (net_intensity.max() - net_intensity.min())
+                    ymax = net_intensity.max() + 0.1 * (net_intensity.max() - net_intensity.min())
+                    if ymax - ymin < 500:
+                        ymin, ymax = -250, 250
                     ax.set_ylim(ymin, ymax)
-                    ax.set_title(f"$\phi$ = {phi}°", fontweight='bold', fontsize=11)
+                    ax.set_title(f"$\\phi$ = {phi}°", fontweight='bold', fontsize=11)
                     ax.grid(True, linestyle=':', alpha=0.4)
                     
                     if idx_phi % cols == 0:
-                        ax.set_ylabel('Intensity (counts)')
+                        ax.set_ylabel('Net Intensity (counts)')
                     if idx_phi >= (rows - 1) * cols or idx_phi == len(info["phi_values"]) - 1:
                         ax.set_xlabel('Theta $\\theta$ (°)')
                         
