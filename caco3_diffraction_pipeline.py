@@ -708,51 +708,67 @@ def generate_all_plots():
                 print(f"  Error loading/plotting 2D-XRD for {sname}: {e}")
             
     # --------------------------------------------------------------------------
-    # FIGURE 2: STACKED 2THETA SCANS FOR SH-125-G
+    # FIGURE 2: STACKED 2THETA SCANS FOR ALL MEASURED SAMPLES (2x2 GRID)
     # --------------------------------------------------------------------------
-    print("Generating Figure 2: Stacked 2Theta scans for SH-125-G...")
-    g_sym_dir = os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-G")
-    if os.path.exists(g_sym_dir):
-        try:
-            xy_files = sorted(glob.glob(os.path.join(g_sym_dir, "*_2Theta_*_exported.xy")))
-            if xy_files:
-                fig, ax = plt.subplots(figsize=(8, 9))
-                offset = 0.0
-                phi_to_file = {}
-                for f in xy_files:
-                    phi_val = int(os.path.basename(f).split("2Theta_")[1].split("_")[0])
-                    phi_to_file[phi_val] = f
-                sorted_phis = sorted(phi_to_file.keys())
-                colors = plt.cm.viridis(np.linspace(0, 0.85, len(sorted_phis)))
+    print("Generating Figure 2: Stacked 2Theta scans for all samples...")
+    samples_2theta = {
+        "SH-125-G": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-G"), "title": "(a) SH-125-G (mixed calcite-vaterite)"},
+        "SH-124-B3": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-124-B3"), "title": "(b) SH-124-B3 (pure calcite)"},
+        "SH-125-A": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-A"), "title": "(c) SH-125-A (mixed calcite-vaterite)"},
+        "SH-104-1": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-104-1"), "title": "(d) SH-104-1 (reference, mainly calcite)"}
+    }
+    
+    try:
+        fig, axes = plt.subplots(2, 2, figsize=(14, 13), sharex=True)
+        axes_flat = axes.flatten()
+        
+        for idx_s, (sname, config) in enumerate(samples_2theta.items()):
+            ax = axes_flat[idx_s]
+            s_dir = config["dir"]
+            if not os.path.exists(s_dir):
+                continue
+            xy_files = sorted(glob.glob(os.path.join(s_dir, "*_2Theta_*_exported.xy")))
+            if not xy_files:
+                continue
                 
-                for idx, phi in enumerate(sorted_phis):
-                    arr = np.loadtxt(phi_to_file[phi], skiprows=1)
-                    twotheta = arr[:, 0]
-                    intensity_k = arr[:, 1] / 1e3
-                    ax.plot(twotheta, intensity_k + offset, color=colors[idx], linewidth=1.5, label=f"$\phi$ = {phi}°")
-                    ax.axhline(y=offset, color='grey', linestyle='--', linewidth=0.5, alpha=0.5)
-                    ax.text(twotheta.max() + 0.1, offset + 10.0, f"{phi}°", fontweight='bold', va='center', color=colors[idx])
-                    offset += 60.0
-                    
-                ax.set_xlabel('2$\\theta$ (°)')
-                ax.set_ylabel('Intensity (kcounts, stacked)')
-                ax.set_title('Azimuthal dependence of symmetric 2$\\theta-\\theta$ diffraction scans (SH-125-G)', fontweight='bold')
-                ax.set_xlim(27.0, 35.0)
-                ax.set_ylim(-10.0, offset + 150.0)
-                ax.axvspan(32.4, 33.4, color='#9467bd', alpha=0.08, label='vaterite (110) range')
-                ax.axvline(29.4, color='#2ca02c', linestyle=':', alpha=0.5)
-                ax.axvline(32.8, color='#9467bd', linestyle=':', alpha=0.5)
-                ax.text(29.4, offset + 50.0, 'calcite (104)', color='#2ca02c', ha='center', va='bottom', fontsize=9, fontweight='bold', rotation=90)
-                ax.text(32.8, offset + 50.0, 'vaterite (110)', color='#9467bd', ha='center', va='bottom', fontsize=9, fontweight='bold', rotation=90)
-                ax.grid(True, which='both', axis='x', linestyle=':', alpha=0.5)
-                ax.legend(loc='lower left', framealpha=0.5)
-                plt.tight_layout()
-                plt.savefig(os.path.join(PLOT_DIR, "fig2_stacked_2theta_sh125g.png"), dpi=300, bbox_inches='tight')
-                plt.savefig(os.path.join(PLOT_DIR, "fig2_stacked_2theta_sh125g.svg"), dpi=300, bbox_inches='tight')
-                plt.close()
-                print("  Saved Figure 2 to results/figures/")
-        except Exception as e:
-            print(f"  Error plotting Figure 2: {e}")
+            offset = 0.0
+            phi_to_file = {}
+            for f in xy_files:
+                phi_val = int(os.path.basename(f).split("2Theta_")[1].split("_")[0])
+                phi_to_file[phi_val] = f
+            sorted_phis = sorted(phi_to_file.keys())
+            colors = plt.cm.viridis(np.linspace(0, 0.85, len(sorted_phis)))
+            
+            for idx, phi in enumerate(sorted_phis):
+                arr = np.loadtxt(phi_to_file[phi], skiprows=1)
+                twotheta = arr[:, 0]
+                intensity_k = arr[:, 1] / 1e3
+                ax.plot(twotheta, intensity_k + offset, color=colors[idx], linewidth=1.5, label=f"$\phi$ = {phi}°")
+                ax.axhline(y=offset, color='grey', linestyle='--', linewidth=0.5, alpha=0.5)
+                ax.text(twotheta.max() + 0.1, offset + 10.0, f"{phi}°", fontweight='bold', va='center', color=colors[idx])
+                offset += 60.0
+                
+            ax.set_xlabel('2$\\theta$ (°)')
+            ax.set_ylabel('Intensity (kcounts, stacked)')
+            ax.set_title(config["title"], fontweight='bold', fontsize=12)
+            ax.set_xlim(27.0, 35.0)
+            ax.set_ylim(-10.0, offset + 150.0)
+            ax.axvspan(32.4, 33.4, color='#9467bd', alpha=0.08)
+            ax.axvline(29.4, color='#2ca02c', linestyle=':', alpha=0.5)
+            ax.axvline(32.8, color='#9467bd', linestyle=':', alpha=0.5)
+            ax.text(29.4, offset + 30.0, 'calcite (104)', color='#2ca02c', ha='center', va='bottom', fontsize=9, fontweight='bold', rotation=90)
+            ax.text(32.8, offset + 30.0, 'vaterite (110)', color='#9467bd', ha='center', va='bottom', fontsize=9, fontweight='bold', rotation=90)
+            ax.grid(True, which='both', axis='x', linestyle=':', alpha=0.5)
+            ax.legend(loc='lower left', framealpha=0.5, fontsize=9)
+            
+        plt.suptitle("Azimuthal dependence of symmetric 2$\\theta-\\theta$ scans for all samples", fontsize=15, fontweight='bold', y=0.98)
+        plt.tight_layout()
+        plt.savefig(os.path.join(PLOT_DIR, "fig2_stacked_2theta_all_samples.png"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig2_stacked_2theta_all_samples.svg"), dpi=300, bbox_inches='tight')
+        plt.close()
+        print("  Saved Figure 2 to results/figures/")
+    except Exception as e:
+        print(f"  Error plotting Figure 2: {e}")
 
     # --------------------------------------------------------------------------
     # FIGURE 3: STACKED ROCKING CURVES FOR ALL MEASURED CaCO3 SAMPLES (2x2 GRID)

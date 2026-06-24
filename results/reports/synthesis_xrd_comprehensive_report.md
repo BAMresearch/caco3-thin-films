@@ -48,9 +48,9 @@ Symmetric $2\theta-\theta$ diffraction scans collected at different azimuthal ro
 In sample `SH-125-G`, vaterite is exclusively resolved at $\phi = 30^\circ$ and $\phi = 60^\circ$ (with calcite-to-vaterite integrated area ratios of 5.61 and 4.74, respectively; see Figure 6 for the phase area analysis and Figure 5 for the stacked $2\theta-\theta$ scans). In sample `SH-104-1`, vaterite is resolved only at $\phi = 60^\circ$ (with an area ratio of 5.79; see Figure 6). At all other azimuthal angles, the vaterite reflection falls below the detection limit. Since the physical phase fraction in the film is stationary, this azimuthal selectivity demonstrates that the vaterite crystallites are not randomly oriented in-plane. Instead, they exhibit a strong preferred in-plane epitaxial confinement, satisfying the Bragg condition only at these specific substrate-guided azimuthal orientations.
 
 ## Symmetric 2Theta scans stacked
-Figure 5 shows the symmetric diffraction patterns of `SH-125-G` stacked with vertical offsets, highlighting the selective emergence of the vaterite (110) reflection.
+Figure 5 shows the symmetric $2\theta-\theta$ diffraction patterns for all measured $CaCO_3$ thin-film samples, stacked with vertical offsets. Panel (a) highlights the highly selective azimuthal emergence of the vaterite (110) reflection in `SH-125-G`, while panels (b) and (c) display the profiles for `SH-124-B3` (pure calcite) and `SH-125-A` (isotropic mixed phase), respectively, and panel (d) shows the reference film `SH-104-1`.
 
-![**Figure 5:** Azimuthal dependence of symmetric $2\theta-\theta$ scans for `SH-125-G`. The vaterite (110) reflection at $2\theta \approx 32.8^\circ$ is only visible at $\phi = 30^\circ$ and $60^\circ$. High-resolution vector graphics are available in [fig2_stacked_2theta_sh125g.svg](../figures/fig2_stacked_2theta_sh125g.svg).](../figures/fig2_stacked_2theta_sh125g.png){width=80%}
+![**Figure 5:** Azimuthal dependence of symmetric $2\theta-\theta$ scans for all samples: (a) `SH-125-G`, (b) `SH-124-B3`, (c) `SH-125-A`, and (d) `SH-104-1`. The shaded band indicates the scattering angle range for the vaterite (110) reflection. High-resolution vector graphics are available in [fig2_stacked_2theta_all_samples.svg](../figures/fig2_stacked_2theta_all_samples.svg).](../figures/fig2_stacked_2theta_all_samples.png){width=85%}
 
 ## Phase metrics vs. phi
 Figure 6 displays the integrated area of the calcite (104) and vaterite (110) peaks as a function of the azimuthal angle $\phi$, illustrating the selective orientation window.
@@ -139,7 +139,7 @@ The figures presented in this report have been exported as high-resolution, vect
    - Sample `SH-124-B3`: [fig1_2d_xrd_analysis_sh_124_b3.svg](../figures/fig1_2d_xrd_analysis_sh_124_b3.svg)
    - Sample `SH-125-A`: [fig1_2d_xrd_analysis_sh_125_a.svg](../figures/fig1_2d_xrd_analysis_sh_125_a.svg)
    - Sample `SH-104-1`: [fig1_2d_xrd_analysis_sh_104_1.svg](../figures/fig1_2d_xrd_analysis_sh_104_1.svg)
-2. Figure 5 (Stacked 2Theta scans for `SH-125-G` vaterite confinement): [fig2_stacked_2theta_sh125g.svg](../figures/fig2_stacked_2theta_sh125g.svg)
+2. Figure 5 (Azimuthal dependence of symmetric 2Theta scans for all samples): [fig2_stacked_2theta_all_samples.svg](../figures/fig2_stacked_2theta_all_samples.svg)
 3. Figure 6 (Phase areas vs. azimuthal angle $\phi$ for all samples): [fig5_phase_metrics_vs_phi.svg](../figures/fig5_phase_metrics_vs_phi.svg)
 4. Figure 7 (Stacked baseline-corrected net rocking curves for all samples): [fig3_stacked_net_rocking_curves.svg](../figures/fig3_stacked_net_rocking_curves.svg)
 5. Figure 8 (2D polar texture pole figures for all samples): [fig4_texture_pole_figures.svg](../figures/fig4_texture_pole_figures.svg)
