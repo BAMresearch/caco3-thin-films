@@ -201,78 +201,88 @@ def run_data_processing():
     """Coordinates the extraction, volume correction, and peak fitting for all 2D-XRD and rocking curve raw data."""
     
     # 1. 2D-XRD GFRM processing
-    print("\nProcessing 2D-XRD Detector Frame...")
-    gfrm_file = os.path.join(RAW_DIR, "2D_XRD/Universtitaet Erlangen Nuernberg Institut_1345_250124_091118-000.gfrm")
-    h5_file = gfrm_file + ".h5"
+    print("\nProcessing 2D-XRD Detector Frames...")
+    gfrm_files = {
+        "SH-125-G": "Universtitaet Erlangen Nuernberg Institut_1345_250124_091118-000.gfrm",
+        "SH-124-B3": "Universtitaet Erlangen Nuernberg Institut_1343_250123_162242-000.gfrm",
+        "SH-125-A": "Universtitaet Erlangen Nuernberg Institut_1339_250115_125507-000.gfrm",
+        "SH-104-1": "Universtitaet Erlangen Nuernberg Institut_1347_250128_084659-000.gfrm"
+    }
     
-    if not os.path.exists(h5_file):
-        if HAS_SILX:
-            print(f"  Converting {os.path.basename(gfrm_file)} to HDF5 using silx...")
-            convert(gfrm_file, h5_file)
-        else:
-            raise FileNotFoundError("silx library not installed, and pre-converted HDF5 file not found!")
-    else:
-        print("  Using pre-converted HDF5 frame file.")
+    for sample_name, gfrm_filename in gfrm_files.items():
+        print(f"\nProcessing 2D-XRD for {sample_name}...")
+        gfrm_file = os.path.join(RAW_DIR, f"2D_XRD/{gfrm_filename}")
+        h5_file = gfrm_file + ".h5"
         
-    # Read detector image
-    with h5py.File(h5_file, 'r') as file:
-        start_angle = float(file['scan_0/instrument/detector_0/others/ANGLES'][()][0].decode().strip().split()[0])
-        increment = float(file['scan_0/instrument/detector_0/others/INCREME'][()][0])
-        ncols = int(file['scan_0/instrument/detector_0/others/NCOLS'][()][0].decode().strip().split()[0])
-        ending_angle = float(file['scan_0/instrument/detector_0/others/ENDING'][()][0].decode().strip().split()[0])
-        detector_image = file['scan_0/instrument/detector_0/data'][()]
-
-    calculated_end = start_angle + (ncols - 1) * increment
-    pixel_size = 0.075  # mm
-    D = 305.809         # mm
-    num_y, num_x = detector_image.shape
-    y_mid = (num_y - 1) / 2
-
-    two_theta_x = np.linspace(start_angle, calculated_end, ncols)
-    y_pixel_pos = (np.arange(num_y) - y_mid) * pixel_size
-    two_theta_y = np.degrees(np.arctan2(y_pixel_pos, D))
-    two_theta_X_grid, two_theta_Y_grid = np.meshgrid(two_theta_x, two_theta_y)
-    two_theta_total = np.sqrt(two_theta_X_grid**2 + two_theta_Y_grid**2)
-    phi = np.degrees(np.arctan2(two_theta_Y_grid, two_theta_X_grid))
-
-    max_phi = max(abs(np.degrees(np.arctan2((num_y - y_mid - 1) * pixel_size, D))),
-                  abs(np.degrees(np.arctan2((0 - y_mid) * pixel_size, D))))
-    phi_lin = np.linspace(-max_phi, max_phi, 500)
-    theta_lin = two_theta_x
-    theta_grid, phi_grid = np.meshgrid(theta_lin, phi_lin)
+        if not os.path.exists(h5_file):
+            if HAS_SILX:
+                print(f"  Converting {os.path.basename(gfrm_file)} to HDF5 using silx...")
+                convert(gfrm_file, h5_file)
+            else:
+                raise FileNotFoundError(f"silx library not installed, and pre-converted HDF5 file {h5_file} not found!")
+        else:
+            print(f"  Using pre-converted HDF5 frame file for {sample_name}.")
+            
+        # Read detector image
+        with h5py.File(h5_file, 'r') as file:
+            start_angle = float(file['scan_0/instrument/detector_0/others/ANGLES'][()][0].decode().strip().split()[0])
+            increment = float(file['scan_0/instrument/detector_0/others/INCREME'][()][0])
+            ncols = int(file['scan_0/instrument/detector_0/others/NCOLS'][()][0].decode().strip().split()[0])
+            ending_angle = float(file['scan_0/instrument/detector_0/others/ENDING'][()][0].decode().strip().split()[0])
+            detector_image = file['scan_0/instrument/detector_0/data'][()]
     
-    points = np.vstack((two_theta_total.ravel(), phi.ravel())).T
-    values = detector_image.ravel()
-    cake_plot = griddata(points, values, (theta_grid, phi_grid), method='linear', fill_value=np.nan)
-
-    # 1D profile integration
-    integrated_profile = np.nansum(cake_plot, axis=0)
-    smoothed_profile = savgol_filter(integrated_profile, window_length=31, polyorder=3)
+        calculated_end = start_angle + (ncols - 1) * increment
+        pixel_size = 0.075  # mm
+        D = 305.809         # mm
+        num_y, num_x = detector_image.shape
+        y_mid = (num_y - 1) / 2
     
-    # morphological baseline
-    window_size = 151
-    bg_min = ndimage.minimum_filter1d(smoothed_profile, size=window_size)
-    bg_max = ndimage.maximum_filter1d(bg_min, size=window_size)
-    baseline = savgol_filter(bg_max, window_length=101, polyorder=2)
-    corrected_profile = smoothed_profile - baseline
-    corrected_profile[corrected_profile < 0] = 0
-
-    # Save Excel sheets
-    excel_path = os.path.join(PROCESSED_DIR, "2D_XRD/SH-125-G_output_data.xlsx")
-    os.makedirs(os.path.dirname(excel_path), exist_ok=True)
-    with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
-        pd.DataFrame({
-            'Parameter': ['Start_Angle', 'Increment', 'NCOLS', 'Ending_Angle', 'Calculated_Ending'],
-            'Value': [start_angle, increment, ncols, ending_angle, calculated_end]
-        }).to_excel(writer, sheet_name='Scan_Metadata', index=False)
-        pd.DataFrame(cake_plot, index=phi_lin, columns=theta_lin).to_excel(writer, sheet_name='Cake_Plot_Data')
-        pd.DataFrame({
-            '2Theta': theta_lin,
-            'Smoothed Profile': smoothed_profile,
-            'Baseline': baseline,
-            'Corrected Profile': corrected_profile
-        }).to_excel(writer, sheet_name='Corrected_Profiles')
-    print(f"  Processed Excel data written to: {excel_path}")
+        two_theta_x = np.linspace(start_angle, calculated_end, ncols)
+        y_pixel_pos = (np.arange(num_y) - y_mid) * pixel_size
+        two_theta_y = np.degrees(np.arctan2(y_pixel_pos, D))
+        two_theta_X_grid, two_theta_Y_grid = np.meshgrid(two_theta_x, two_theta_y)
+        two_theta_total = np.sqrt(two_theta_X_grid**2 + two_theta_Y_grid**2)
+        phi = np.degrees(np.arctan2(two_theta_Y_grid, two_theta_X_grid))
+    
+        max_phi = max(abs(np.degrees(np.arctan2((num_y - y_mid - 1) * pixel_size, D))),
+                      abs(np.degrees(np.arctan2((0 - y_mid) * pixel_size, D))))
+        phi_lin = np.linspace(-max_phi, max_phi, 500)
+        theta_lin = two_theta_x
+        theta_grid, phi_grid = np.meshgrid(theta_lin, phi_lin)
+        
+        points = np.vstack((two_theta_total.ravel(), phi.ravel())).T
+        values = detector_image.ravel()
+        cake_plot = griddata(points, values, (theta_grid, phi_grid), method='linear', fill_value=np.nan)
+    
+        # 1D profile integration
+        integrated_profile = np.nansum(cake_plot, axis=0)
+        smoothed_profile = savgol_filter(integrated_profile, window_length=31, polyorder=3)
+        
+        # morphological baseline
+        window_size = 151
+        bg_min = ndimage.minimum_filter1d(smoothed_profile, size=window_size)
+        bg_max = ndimage.maximum_filter1d(bg_min, size=window_size)
+        baseline = savgol_filter(bg_max, window_length=101, polyorder=2)
+        corrected_profile = smoothed_profile - baseline
+        corrected_profile[corrected_profile < 0] = 0
+    
+        # Save Excel sheets
+        excel_path = os.path.join(PROCESSED_DIR, f"2D_XRD/{sample_name}_output_data.xlsx")
+        os.makedirs(os.path.dirname(excel_path), exist_ok=True)
+        with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
+            pd.DataFrame({
+                'Parameter': ['Start_Angle', 'Increment', 'NCOLS', 'Ending_Angle', 'Calculated_Ending'],
+                'Value': [start_angle, increment, ncols, ending_angle, calculated_end]
+            }).to_excel(writer, sheet_name='Scan_Metadata', index=False)
+            pd.DataFrame(cake_plot, index=phi_lin, columns=theta_lin).to_excel(writer, sheet_name='Cake_Plot_Data')
+            pd.DataFrame(detector_image, index=two_theta_y, columns=two_theta_x).to_excel(writer, sheet_name='2D_Original_2ThetaXY')
+            pd.DataFrame({
+                '2Theta': theta_lin,
+                'Smoothed Profile': smoothed_profile,
+                'Baseline': baseline,
+                'Corrected Profile': corrected_profile
+            }).to_excel(writer, sheet_name='Corrected_Profiles')
+        print(f"  Processed Excel data written to: {excel_path}")
 
     # 2. Rocking curve peak fitting configuration
     sample_configs = {
@@ -615,54 +625,88 @@ def generate_all_plots():
     print("======================================================================")
     
     # --------------------------------------------------------------------------
-    # FIGURE 1: 2D-XRD CAKE PLOT AND INTEGRATED PROFILE
+    # FIGURE 1: 2D-XRD DETECTOR FRAMES, CAKE PLOTS, AND INTEGRATED PROFILES
     # --------------------------------------------------------------------------
-    print("Generating Figure 1: 2D-XRD detector cake plot + 1D profile...")
-    excel_path = os.path.join(PROCESSED_DIR, "2D_XRD/SH-125-G_output_data.xlsx")
-    if os.path.exists(excel_path):
-        try:
-            df_cake = pd.read_excel(excel_path, sheet_name='Cake_Plot_Data', index_col=0)
-            df_profile = pd.read_excel(excel_path, sheet_name='Corrected_Profiles')
-            theta_lin = df_cake.columns.values.astype(float)
-            phi_lin = df_cake.index.values.astype(float)
-            cake_plot = df_cake.values
-            
-            fig = plt.figure(figsize=(10, 8))
-            gs = gridspec.GridSpec(2, 1, height_ratios=[1.2, 1.0], hspace=0.25)
-            
-            ax1 = fig.add_subplot(gs[0])
-            vmin = np.percentile(cake_plot[~np.isnan(cake_plot)], 1)
-            vmax = np.percentile(cake_plot[~np.isnan(cake_plot)], 99)
-            im = ax1.imshow(cake_plot, extent=[theta_lin.min(), theta_lin.max(), phi_lin.min(), phi_lin.max()],
-                            aspect='auto', origin='lower', cmap='inferno', vmin=vmin, vmax=vmax)
-            ax1.set_ylabel('Azimuthal Angle $\phi$ (°)')
-            ax1.set_title('Resampled 2D-XRD detector cake plot (2$\\theta$ vs. $\phi$)', fontweight='bold', fontsize=11)
-            fig.colorbar(im, ax=ax1, label='Intensity (counts)', pad=0.02)
-            ax1.text(-0.08, 1.05, "(a)", transform=ax1.transAxes, fontsize=14, fontweight='bold', va='top')
-            
-            ax2 = fig.add_subplot(gs[1])
-            ax2.plot(df_profile['2Theta'], df_profile['Smoothed Profile'], color='#3182bd', alpha=0.5, label='Integrated profile')
-            ax2.plot(df_profile['2Theta'], df_profile['Corrected Profile'], color='#e6550d', linewidth=1.5, label='Baseline-corrected')
-            ax2.plot(df_profile['2Theta'], df_profile['Baseline'], color='grey', linestyle=':', label='Morphological baseline')
-            ax2.set_xlabel('2$\\theta$ (°)')
-            ax2.set_ylabel('Intensity (counts)')
-            ax2.set_title('Azimuthally integrated 1D profile and phase identification', fontweight='bold', fontsize=11)
-            ax2.grid(True, linestyle=':', alpha=0.5)
-            
-            y_max = df_profile['Smoothed Profile'].max()
-            ax2.axvline(29.4, color='#2ca02c', linestyle='--', alpha=0.7, label='calcite (104) ref')
-            ax2.text(29.4, y_max * 0.9, ' calcite (104)\n 3.03 Å', color='#2ca02c', ha='left', va='top', fontsize=9)
-            ax2.axvline(32.8, color='#9467bd', linestyle='--', alpha=0.7, label='vaterite (110) ref')
-            ax2.text(32.8, y_max * 0.9, ' vaterite (110)\n 2.73 Å', color='#9467bd', ha='left', va='top', fontsize=9)
-            ax2.legend(loc='upper right', framealpha=0.9)
-            ax2.set_xlim(20, 55)
-            ax2.text(-0.08, 1.05, "(b)", transform=ax2.transAxes, fontsize=14, fontweight='bold', va='top')
-            
-            plt.savefig(os.path.join(PLOT_DIR, "fig1_2d_xrd_analysis.png"), dpi=300, bbox_inches='tight')
-            plt.close()
-            print("  Saved Figure 1 to results/figures/")
-        except Exception as e:
-            print(f"  Error loading/plotting Figure 1: {e}")
+    print("Generating Figure 1 (2D-XRD analysis for all samples)...")
+    samples_2d = ["SH-125-G", "SH-124-B3", "SH-125-A", "SH-104-1"]
+    for sname in samples_2d:
+        excel_path = os.path.join(PROCESSED_DIR, f"2D_XRD/{sname}_output_data.xlsx")
+        if os.path.exists(excel_path):
+            try:
+                print(f"  Plotting 2D-XRD analysis for {sname}...")
+                df_orig = pd.read_excel(excel_path, sheet_name='2D_Original_2ThetaXY', index_col=0)
+                df_cake = pd.read_excel(excel_path, sheet_name='Cake_Plot_Data', index_col=0)
+                df_profile = pd.read_excel(excel_path, sheet_name='Corrected_Profiles')
+                
+                orig_x = df_orig.columns.values.astype(float)
+                orig_y = df_orig.index.values.astype(float)
+                orig_image = df_orig.values
+                
+                theta_lin = df_cake.columns.values.astype(float)
+                phi_lin = df_cake.index.values.astype(float)
+                cake_plot = df_cake.values
+                
+                fig = plt.figure(figsize=(10, 12))
+                gs = gridspec.GridSpec(3, 1, height_ratios=[1.2, 1.2, 1.0], hspace=0.35)
+                
+                # Panel (a): Original detector frame
+                ax1 = fig.add_subplot(gs[0])
+                vmin = np.percentile(orig_image[~np.isnan(orig_image)], 1)
+                vmax = np.percentile(orig_image[~np.isnan(orig_image)], 99)
+                im1 = ax1.imshow(orig_image, extent=[orig_x.min(), orig_x.max(), orig_y.min(), orig_y.max()],
+                                 aspect='auto', origin='lower', cmap='inferno', vmin=vmin, vmax=vmax)
+                ax1.set_xlabel('2$\\theta_X$ (°)')
+                ax1.set_ylabel('2$\\theta_Y$ (°)')
+                ax1.set_title(f'Original 2D detector frame ({sname})', fontweight='bold', fontsize=11)
+                fig.colorbar(im1, ax=ax1, label='Intensity (counts)', pad=0.02)
+                ax1.text(-0.08, 1.05, "(a)", transform=ax1.transAxes, fontsize=14, fontweight='bold', va='top')
+                
+                # Panel (b): Resampled polar cake plot
+                ax2 = fig.add_subplot(gs[1])
+                vmin_c = np.percentile(cake_plot[~np.isnan(cake_plot)], 1)
+                vmax_c = np.percentile(cake_plot[~np.isnan(cake_plot)], 99)
+                im2 = ax2.imshow(cake_plot, extent=[theta_lin.min(), theta_lin.max(), phi_lin.min(), phi_lin.max()],
+                                 aspect='auto', origin='lower', cmap='inferno', vmin=vmin_c, vmax=vmax_c)
+                ax2.set_xlabel('2$\\theta$ (°)')
+                ax2.set_ylabel('Azimuthal Angle $\phi$ (°)')
+                ax2.set_title('Resampled 2D polar cake plot (2$\\theta$ vs. $\phi$)', fontweight='bold', fontsize=11)
+                fig.colorbar(im2, ax=ax2, label='Intensity (counts)', pad=0.02)
+                ax2.text(-0.08, 1.05, "(b)", transform=ax2.transAxes, fontsize=14, fontweight='bold', va='top')
+                
+                # Panel (c): 1D integrated profile
+                ax3 = fig.add_subplot(gs[2])
+                ax3.plot(df_profile['2Theta'], df_profile['Smoothed Profile'], color='#3182bd', alpha=0.5, label='Integrated profile')
+                ax3.plot(df_profile['2Theta'], df_profile['Corrected Profile'], color='#e6550d', linewidth=1.5, label='Baseline-corrected')
+                ax3.plot(df_profile['2Theta'], df_profile['Baseline'], color='grey', linestyle=':', label='Morphological baseline')
+                ax3.set_xlabel('2$\\theta$ (°)')
+                ax3.set_ylabel('Intensity (counts)')
+                ax3.set_title('Azimuthally integrated 1D profile and phase identification', fontweight='bold', fontsize=11)
+                ax3.grid(True, linestyle=':', alpha=0.5)
+                
+                y_max = df_profile['Smoothed Profile'].max()
+                ax3.axvline(29.4, color='#2ca02c', linestyle='--', alpha=0.7, label='calcite (104) ref')
+                ax3.text(29.4, y_max * 0.9, ' calcite (104)\n 3.03 Å', color='#2ca02c', ha='left', va='top', fontsize=9)
+                
+                if sname in ["SH-125-G", "SH-104-1"]:
+                    ax3.axvline(32.8, color='#9467bd', linestyle='--', alpha=0.7, label='vaterite (110) ref')
+                    ax3.text(32.8, y_max * 0.9, ' vaterite (110)\n 2.73 Å', color='#9467bd', ha='left', va='top', fontsize=9)
+                
+                ax3.legend(loc='upper right', framealpha=0.9)
+                ax3.set_xlim(20, 55)
+                ax3.text(-0.08, 1.05, "(c)", transform=ax3.transAxes, fontsize=14, fontweight='bold', va='top')
+                
+                fig_name = f"fig1_2d_xrd_analysis_{sname.lower().replace('-', '_')}"
+                plt.savefig(os.path.join(PLOT_DIR, f"{fig_name}.png"), dpi=300, bbox_inches='tight')
+                plt.savefig(os.path.join(PLOT_DIR, f"{fig_name}.svg"), dpi=300, bbox_inches='tight')
+                
+                # Keep compatibility with original file name for G
+                if sname == "SH-125-G":
+                    plt.savefig(os.path.join(PLOT_DIR, "fig1_2d_xrd_analysis.png"), dpi=300, bbox_inches='tight')
+                    plt.savefig(os.path.join(PLOT_DIR, "fig1_2d_xrd_analysis.svg"), dpi=300, bbox_inches='tight')
+                    
+                plt.close()
+            except Exception as e:
+                print(f"  Error loading/plotting 2D-XRD for {sname}: {e}")
             
     # --------------------------------------------------------------------------
     # FIGURE 2: STACKED 2THETA SCANS FOR SH-125-G
@@ -705,21 +749,34 @@ def generate_all_plots():
                 ax.legend(loc='lower left', framealpha=0.5)
                 plt.tight_layout()
                 plt.savefig(os.path.join(PLOT_DIR, "fig2_stacked_2theta_sh125g.png"), dpi=300, bbox_inches='tight')
+                plt.savefig(os.path.join(PLOT_DIR, "fig2_stacked_2theta_sh125g.svg"), dpi=300, bbox_inches='tight')
                 plt.close()
                 print("  Saved Figure 2 to results/figures/")
         except Exception as e:
             print(f"  Error plotting Figure 2: {e}")
 
     # --------------------------------------------------------------------------
-    # FIGURE 3: STACKED ROCKING CURVES FOR B3 AND G
+    # FIGURE 3: STACKED ROCKING CURVES FOR ALL MEASURED CaCO3 SAMPLES (2x2 GRID)
     # --------------------------------------------------------------------------
-    print("Generating Figure 3: Stacked Rocking Curves (B3 and G)...")
+    print("Generating Figure 3: Stacked Rocking Curves (2x2 Grid, all samples)...")
     samples_config = {
         "SH-124-B3": {
             "processed_dir": os.path.join(PROCESSED_DIR, "Rocking_Curves/SH-124-B3"),
             "phi_values": [0, 30, 60, 90, 120, 150, 180],
             "net_offset": 5000,
             "title": "Sample SH-124-B3 (pure calcite)"
+        },
+        "SH-125-A": {
+            "processed_dir": os.path.join(PROCESSED_DIR, "Rocking_Curves/SH-125-A"),
+            "phi_values": [0, 30, 60, 90, 120, 150],
+            "net_offset": 5000,
+            "title": "Sample SH-125-A (pure calcite)"
+        },
+        "SH-104-1": {
+            "processed_dir": os.path.join(PROCESSED_DIR, "Rocking_Curves/SH-104-1"),
+            "phi_values": [0, 30, 60, 90, 120, 150],
+            "net_offset": 3000,
+            "title": "Sample SH-104-1 (mixed calcite-vaterite)"
         },
         "SH-125-G": {
             "processed_dir": os.path.join(PROCESSED_DIR, "Rocking_Curves/SH-125-G"),
@@ -729,10 +786,10 @@ def generate_all_plots():
         }
     }
     try:
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 7), sharex=True)
-        axes = [ax1, ax2]
+        fig, axes = plt.subplots(2, 2, figsize=(14, 12), sharex=True)
+        axes_flat = axes.flatten()
         for idx_s, (sample_name, config) in enumerate(samples_config.items()):
-            ax = axes[idx_s]
+            ax = axes_flat[idx_s]
             phi_values = config["phi_values"]
             step_offset = config["net_offset"]
             colors = plt.cm.plasma(np.linspace(0.1, 0.9, len(phi_values)))
@@ -752,7 +809,7 @@ def generate_all_plots():
                          verticalalignment='center', fontsize=9, fontweight='bold', color=colors[idx_phi])
                          
             ax.set_xlabel("Theta $\\theta$ (°)")
-            ax.set_ylabel("Net Intensity (counts, stacked linear scale)")
+            ax.set_ylabel("Net Intensity (counts, stacked)")
             ax.set_title(config["title"], fontweight='bold', fontsize=12)
             ax.grid(True, which='both', linestyle=':', alpha=0.5)
             ax.set_xlim(4.0, 26.0)
@@ -761,6 +818,7 @@ def generate_all_plots():
         plt.suptitle("Baseline-corrected net rocking curves vs. azimuthal angle $\phi$", fontsize=14, fontweight='bold', y=0.98)
         plt.tight_layout()
         plt.savefig(os.path.join(PLOT_DIR, "fig3_stacked_net_rocking_curves.png"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig3_stacked_net_rocking_curves.svg"), dpi=300, bbox_inches='tight')
         plt.close()
         print("  Saved Figure 3 to results/figures/")
     except Exception as e:
@@ -867,16 +925,22 @@ def generate_all_plots():
             
         plt.suptitle("Compiled calcite (104) 2D polar texture pole figures", fontsize=15, fontweight='bold', y=0.98)
         plt.savefig(os.path.join(PLOT_DIR, "fig4_texture_pole_figures.png"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig4_texture_pole_figures.svg"), dpi=300, bbox_inches='tight')
         plt.close()
         print("  Saved Figure 4 to results/figures/")
     except Exception as e:
         print(f"  Error plotting Figure 4: {e}")
 
     # --------------------------------------------------------------------------
-    # FIGURE 5: PHASE METRICS VS PHI
+    # FIGURE 5: PHASE METRICS VS PHI FOR ALL MEASURED SAMPLES
     # --------------------------------------------------------------------------
     print("Generating Figure 5: Phase Areas vs. Phi...")
     samples_phase = {
+        "SH-124-B3": {
+            "dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-124-B3"),
+            "phis": [0, 30, 60, 90, 120, 150, 180],
+            "color_c": "#7f7f7f", "color_v": "#bcbd22", "marker": "d", "ls": ":"
+        },
         "SH-125-A": {
             "dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-A"),
             "phis": [0, 30, 60, 90, 120, 150],
@@ -942,6 +1006,7 @@ def generate_all_plots():
         
         plt.tight_layout()
         plt.savefig(os.path.join(PLOT_DIR, "fig5_phase_metrics_vs_phi.png"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig5_phase_metrics_vs_phi.svg"), dpi=300, bbox_inches='tight')
         plt.close()
         print("  Saved Figure 5 to results/figures/")
     except Exception as e:
