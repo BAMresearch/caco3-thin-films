@@ -1610,6 +1610,114 @@ def generate_all_plots():
         except Exception as e:
             print(f"  Error plotting Figure A6: {e}")
 
+    # --------------------------------------------------------------------------
+    # FIGURES A7-A10: COMPREHENSIVE PEAK FITS FOR ALL ROCKING CURVES
+    # --------------------------------------------------------------------------
+    print("Generating Appendix Figures A7-A10: Rocking curve fits for all samples...")
+    metrics_path = os.path.join(PROCESSED_DIR, "Rocking_Curves/Reference/all_samples_rocking_peaks_vs_phi.csv")
+    if os.path.exists(metrics_path):
+        try:
+            df_metrics = pd.read_csv(metrics_path)
+            
+            fit_configs = {
+                "SH-124-B3": {
+                    "phi_values": [0, 30, 60, 90, 120, 150, 180],
+                    "grid": (4, 2),
+                    "fig_size": (12, 16),
+                    "fig_name": "fig_a7_sh124b3_fits",
+                    "title": "Appendix Figure A7: Rocking Curve Fits for Sample SH-124-B3"
+                },
+                "SH-125-A": {
+                    "phi_values": [0, 30, 60, 90, 120, 150],
+                    "grid": (3, 2),
+                    "fig_size": (12, 12),
+                    "fig_name": "fig_a8_sh125a_fits",
+                    "title": "Appendix Figure A8: Rocking Curve Fits for Sample SH-125-A"
+                },
+                "SH-125-G": {
+                    "phi_values": [0, 30, 60, 120, 150, 180],
+                    "grid": (3, 2),
+                    "fig_size": (12, 12),
+                    "fig_name": "fig_a9_sh125g_fits",
+                    "title": "Appendix Figure A9: Rocking Curve Fits for Sample SH-125-G"
+                },
+                "SH-104-1": {
+                    "phi_values": [0, 30, 60, 90, 120, 150],
+                    "grid": (3, 2),
+                    "fig_size": (12, 12),
+                    "fig_name": "fig_a10_sh1041_fits",
+                    "title": "Appendix Figure A10: Rocking Curve Fits for Sample SH-104-1"
+                }
+            }
+            
+            for sample, info in fit_configs.items():
+                rows, cols = info["grid"]
+                fig, axes = plt.subplots(rows, cols, figsize=info["fig_size"], sharex=True)
+                axes_flat = axes.flatten()
+                
+                for idx_phi, phi in enumerate(info["phi_values"]):
+                    ax = axes_flat[idx_phi]
+                    csv_path = os.path.join(PROCESSED_DIR, f"Rocking_Curves/{sample}/{sample}_corrected_rocking_{phi}.csv")
+                    if not os.path.exists(csv_path):
+                        ax.text(0.5, 0.5, f"No data for $\\phi$ = {phi}°", ha='center', va='center')
+                        continue
+                    
+                    df_rc = pd.read_csv(csv_path)
+                    theta = df_rc["Theta (degrees)"].values
+                    intensity = df_rc["Raw Intensity"].values
+                    baseline = df_rc["Model Baseline"].values
+                    
+                    # Reconstruct fit
+                    fit_intensity = baseline.copy()
+                    
+                    # Get peak metrics for this sample and phi
+                    df_p = df_metrics[(df_metrics["Sample"] == sample) & (df_metrics["Phi (degrees)"] == phi)]
+                    
+                    ax.plot(theta, intensity, '.', color='#7f7f7f', markersize=3, alpha=0.5, label='Raw Data' if idx_phi == 0 else '')
+                    ax.plot(theta, baseline, 'r--', linewidth=1.2, label='Model Baseline' if idx_phi == 0 else '')
+                    
+                    for _, row_p in df_p.iterrows():
+                        h = row_p["Net Height"]
+                        t0 = row_p["Peak Center (Theta)"]
+                        fwhm = row_p["FWHM (degrees)"]
+                        if h > 0 and fwhm > 0:
+                            w = fwhm / 2.355
+                            y_peak = h * np.exp(-(theta - t0)**2 / (2 * w**2))
+                            fit_intensity += y_peak
+                            
+                            # Plot individual peak
+                            p_color = '#2ca02c' if "Tilt" in row_p["Peak Name"] else '#1f77b4'
+                            ax.plot(theta, baseline + y_peak, color=p_color, linewidth=0.8, linestyle=':')
+                            ax.fill_between(theta, baseline, baseline + y_peak, color=p_color, alpha=0.08)
+                    
+                    ax.plot(theta, fit_intensity, 'k-', linewidth=1.5, label='Total Fit' if idx_phi == 0 else '')
+                    
+                    ax.set_yscale('log')
+                    ax.set_ylim(100, 3e5)
+                    ax.set_title(f"$\\phi$ = {phi}°", fontweight='bold', fontsize=11)
+                    ax.grid(True, which='both', linestyle=':', alpha=0.4)
+                    
+                    if idx_phi % cols == 0:
+                        ax.set_ylabel('Intensity (counts, log scale)')
+                    if idx_phi >= (rows - 1) * cols or idx_phi == len(info["phi_values"]) - 1:
+                        ax.set_xlabel('Theta $\\theta$ (°)')
+                        
+                # Hide unused axes
+                for idx_ax in range(len(info["phi_values"]), len(axes_flat)):
+                    fig.delaxes(axes_flat[idx_ax])
+                    
+                # Add legend to the first subplot
+                axes_flat[0].legend(loc='lower left', fontsize=9, framealpha=0.8)
+                
+                plt.suptitle(info["title"], fontsize=14, fontweight='bold', y=0.98)
+                plt.tight_layout()
+                plt.savefig(os.path.join(PLOT_DIR, f"{info['fig_name']}.png"), dpi=150, bbox_inches='tight')
+                plt.savefig(os.path.join(PLOT_DIR, f"{info['fig_name']}.svg"), dpi=150, bbox_inches='tight')
+                plt.close()
+                print(f"  Saved {info['fig_name']} to results/figures/")
+        except Exception as e:
+            print(f"  Error plotting comprehensive rocking curve fits: {e}")
+
     print("\nSTAGE 2 COMPLETE: All publication figures generated successfully in results/figures/ directory.")
 
 if __name__ == "__main__":

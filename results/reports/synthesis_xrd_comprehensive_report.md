@@ -152,6 +152,10 @@ The figures presented in this report have been exported as high-resolution, vect
 9. Figure A4 (Zoomed net peak deconvolution at phi=30): [SH-124-B3_fit_phi_30_net_zoom.png](../figures/SH-124-B3_fit_phi_30_net_zoom.png)
 10. Figure A5 (Calcite single crystal rocking curve): [calcite_single_crystal_rocking_curve_analysis.png](../figures/calcite_single_crystal_rocking_curve_analysis.png)
 11. Figure A6 (Symmetric diffraction scan peak fitting demonstration): [fig_a6_symmetric_peak_fits.svg](../figures/fig_a6_symmetric_peak_fits.svg)
+12. Figure A7 (Comprehensive rocking curve fits for sample `SH-124-B3` at all azimuthal angles): [fig_a7_sh124b3_fits.svg](../figures/fig_a7_sh124b3_fits.svg)
+13. Figure A8 (Comprehensive rocking curve fits for sample `SH-125-A` at all azimuthal angles): [fig_a8_sh125a_fits.svg](../figures/fig_a8_sh125a_fits.svg)
+14. Figure A9 (Comprehensive rocking curve fits for sample `SH-125-G` at all azimuthal angles): [fig_a9_sh125g_fits.svg](../figures/fig_a9_sh125g_fits.svg)
+15. Figure A10 (Comprehensive rocking curve fits for sample `SH-104-1` at all azimuthal angles): [fig_a10_sh1041_fits.svg](../figures/fig_a10_sh1041_fits.svg)
 
 \newpage
 
@@ -206,3 +210,14 @@ Figure A5 shows the rocking curve and Gaussian fit for the calcite single crysta
 Figure A6 shows a representative symmetric diffraction scan peak fitting sequence for sample `SH-125-G` at $\phi = 30^\circ$. This specimen contains both calcite and vaterite phases, demonstrating how the 3rd-order polynomial baseline and the individual Gaussian functions are fitted to resolve the integrated areas of the calcite (104) and vaterite (110) reflections.
 
 ![**Figure A6:** Symmetric diffraction scan peak fitting sequence for `SH-125-G` at $\phi = 30^\circ$. (a) Raw intensity, fitted 3rd-order polynomial background, and total fit envelope. (b) Baseline-corrected net intensity showing the individual fitted Gaussians and areas for the calcite (104) and vaterite (110) reflections.](../figures/fig_a6_symmetric_peak_fits.png){width=85%}
+
+Figures A7 to A10 compile the complete, step-by-step rocking curve fits for all samples at all measured azimuthal orientations $\phi$, allowing a detailed review of the fits on a log-intensity scale.
+
+![**Figure A7:** Rocking curve fits for sample `SH-124-B3` across all azimuthal orientations $\phi = 0^\circ$ to $180^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline background, solid black line is the total fit envelope, and shaded peaks represent the resolved tilt domains.](../figures/fig_a7_sh124b3_fits.png){width=100%}
+
+![**Figure A8:** Rocking curve fits for sample `SH-125-A` across all azimuthal orientations $\phi = 0^\circ$ to $150^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline, solid black line is the total fit, and the blue shaded peak represents the broad specular reflection.](../figures/fig_a8_sh125a_fits.png){width=100%}
+
+![**Figure A9:** Rocking curve fits for sample `SH-125-G` across all azimuthal orientations $\phi = 0^\circ$ to $180^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline, solid black line is the total fit, and the blue shaded peak represents the broad specular reflection.](../figures/fig_a9_sh125g_fits.png){width=100%}
+
+![**Figure A10:** Rocking curve fits for sample `SH-104-1` across all azimuthal orientations $\phi = 0^\circ$ to $150^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline, solid black line is the total fit, and the blue shaded peak represents the broad specular reflection.](../figures/fig_a10_sh1041_fits.png){width=100%}
+
