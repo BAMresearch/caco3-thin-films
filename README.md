@@ -1,6 +1,6 @@
 # CaCO3 thin film crystallographic characterisation and analysis
 
-## Authors & credits
+## Authors
 
 - **Author**: Tomasz Stawski (tomasz.stawski@bam.de)
 - **Version**: 1.0
@@ -10,7 +10,9 @@
 
 This repository contains the data processing, peak deconvolution, and plotting scripts for analysing 2D-XRD detector frames and azimuthal rocking curves of calcium carbonate ($CaCO_3$) thin films.
 
-The project is structured to transition raw experimental data (from stationary detector frames and rocking curve scans) into baseline-corrected, multi-peak fitted datasets, and ultimately compile them into high-resolution publication figures and technical reports.
+The project is structured to transition raw experimental data (from stationary detector frames and rocking curve scans) into baseline-corrected, multi-peak fitted datasets, and compile them into publication figures and technical reports.
+
+This repository serves as supporting information for our publication (not submitted yet).
 
 ---
 
@@ -71,7 +73,7 @@ The dataset spans multiple file formats representing different stages of data ac
 * **`.txt`**: Tab-delimited crystal reference data (e.g. `Calcite__0000985.txt`, `Vaterite__0004854.txt`) listing reflection indices ($hkl$), $d$-spacings, and relative intensities.
 
 ### 2. Processed data (`data/processed/`)
-* **`.xlsx`**: Multi-sheet Excel workbooks containing scan metadata, interpolated grid points, and corrected cake profiles.
+* **`.xlsx`**: Multi-sheet workbooks containing scan metadata, interpolated grid points, and corrected cake profiles.
 * **`.xy`**: Clean, space-delimited text profiles (2theta and intensity) suitable for external plotting or refinement software.
 * **`.csv`**: Tabular data containing fitted peak parameters, net residual intensities, and model baselines for each azimuthal angle ($\phi$).
 
