@@ -776,7 +776,7 @@ def generate_all_plots():
         "SH-125-G": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-G"), "title": "(a) SH-125-G (mixed calcite-vaterite)"},
         "SH-124-B3": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-124-B3"), "title": "(b) SH-124-B3 (pure calcite)"},
         "SH-125-A": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-A"), "title": "(c) SH-125-A (mixed calcite-vaterite)"},
-        "SH-104-1": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-104-1"), "title": "(d) SH-104-1 (reference, mainly calcite)"}
+        "SH-104-1": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-104-1"), "title": "(d) SH-104-1 (mainly calcite)"}
     }
     
     try:

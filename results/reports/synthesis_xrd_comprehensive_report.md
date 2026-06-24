@@ -9,7 +9,7 @@
 ## Rationale for azimuthal rocking curves based on 2D-XRD graininess
 Two-dimensional X-ray diffraction (2D-XRD) measurements using a flat-panel detector represent a standard initial characterisation step for phase and texture screening. However, a single stationary 2D detector frame only intersects a specific (and random) planar slice of reciprocal space. It is therefore mathematically unable to distinguish between an isotropic out-of-plane fibre texture (where crystallite tilts are randomly distributed around the surface normal) and a true template-guided in-plane epitaxial confinement.
 
-Initial 2D-XRD characterisation of the calcium carbonate (CaCO<sub>3</sub>) films (samples `SH-124-B3`, `SH-125-A`, `SH-125-G`, and the `SH-104-1` reference film) yielded continuous Debye–Scherrer rings. Automated statistical analysis of the azimuthal intensity variations along these rings, executed by the screening script `scripts/2D_XRD/01_process_2d_xrd.py` and output to the 2D texture metrics table (Table 1), resulted in low values for both the Coefficient of Variation (CV < 0.04) and the Degree of Anisotropy (DoA < 0.10). Consequently, all samples were automatically classified as "mainly isotropic".
+Initial 2D-XRD characterisation of the calcium carbonate (CaCO<sub>3</sub>) films (samples `SH-124-B3`, `SH-125-A`, `SH-125-G`, and `SH-104-1`) yielded continuous Debye–Scherrer rings. Automated statistical analysis of the azimuthal intensity variations along these rings, executed by the screening script `scripts/2D_XRD/01_process_2d_xrd.py` and output to the 2D texture metrics table (Table 1), resulted in low values for both the Coefficient of Variation (CV < 0.04) and the Degree of Anisotropy (DoA < 0.10). Consequently, all samples were automatically classified as "mainly isotropic".
 
 Despite this classification, the azimuthal intensity profiles along the rings exhibited distinct localised intensity fluctuations and discrete high-intensity reflections (graininess). This graininess is physically inconsistent with a homogeneous, fine-grained isotropic powder. Instead, it indicates a multimodal crystallite size distribution consisting of a fine-grained, randomly oriented polycrystalline matrix superimposed with larger, possibly, co-orientated crystalline domains. To resolve whether these co-orientated domains represent a weak fibre texture or are epitaxially locked to the substrate lattice, systematic azimuthal-rotation-dependent ($\phi$) rocking curve ($\theta$) sweeps were performed.
 
@@ -18,7 +18,7 @@ The quantitative parameters extracted from the initial stationary 2D-XRD pattern
 
 | Sample ID | Description | calcite peaks | vaterite peaks | calcite CV | vaterite CV | Max DoA | Classification |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **SH-104-1** | CaCO<sub>3</sub> Reference Film | 7 | 1 | 0.020 | 0.022 | 0.084 | Mainly Isotropic |
+| **SH-104-1** | CaCO<sub>3</sub> Thin Film | 7 | 1 | 0.020 | 0.022 | 0.084 | Mainly Isotropic |
 | **SH-124-B3 S1** | CaCO<sub>3</sub> Film, Condition B3 | 7 | 1 | 0.012 | 0.010 | - | Mainly Isotropic |
 | **SH-124-B3 S2** | CaCO<sub>3</sub> Film, Condition B3 (Rep) | 7 | 1 | 0.018 | 0.037 | - | Mainly Isotropic |
 | **SH-125-A S1** | CaCO<sub>3</sub> Film, Condition A | 5 | 6 | 0.011 | 0.007 | - | Mainly Isotropic |
@@ -36,7 +36,7 @@ Figure 1 shows the precursor 2D-XRD dataset for the biphasic thin film `SH-125-G
 
 ![**Figure 3:** 2D-XRD analysis of sample `SH-125-A`. (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile. High-resolution vector graphics are available in [fig3_2d_xrd_analysis_sh_125_a.svg](../figures/fig3_2d_xrd_analysis_sh_125_a.svg).](../figures/fig3_2d_xrd_analysis_sh_125_a.png){width=85%}
 
-![**Figure 4:** 2D-XRD analysis of reference sample `SH-104-1`. (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile. High-resolution vector graphics are available in [fig4_2d_xrd_analysis_sh_104_1.svg](../figures/fig4_2d_xrd_analysis_sh_104_1.svg).](../figures/fig4_2d_xrd_analysis_sh_104_1.png){width=85%}
+![**Figure 4:** 2D-XRD analysis of sample `SH-104-1`. (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile. High-resolution vector graphics are available in [fig4_2d_xrd_analysis_sh_104_1.svg](../figures/fig4_2d_xrd_analysis_sh_104_1.svg).](../figures/fig4_2d_xrd_analysis_sh_104_1.png){width=85%}
 
 \newpage
 
@@ -45,10 +45,10 @@ Figure 1 shows the precursor 2D-XRD dataset for the biphasic thin film `SH-125-G
 ## Epitaxial locking of transient vaterite (110) crystallites
 Symmetric $2\theta-\theta$ diffraction scans collected at different azimuthal rotation angles $\phi$ (varying from $0^\circ$ to $180^\circ$ in steps of $30^\circ$) reveal distinct phase-stability and texture behaviours. While calcite (104) is stable and detected at $2\theta \approx 29.4^\circ$ across all azimuthal rotations, the vaterite (110) reflection (at $2\theta \approx 32.8^\circ$) is highly localised.
 
-In sample `SH-125-G`, vaterite is exclusively resolved at $\phi = 30^\circ$ and $\phi = 60^\circ$ (with calcite-to-vaterite integrated area ratios of 189.2 and 117.5, respectively; see Figure 6 for the phase area analysis and Figure 5 for the stacked $2\theta-\theta$ scans). In reference samples `SH-104-1` and `SH-124-B3`, vaterite is not resolved above the detection limit at any azimuthal angle. Since the physical phase fraction in the film is stationary, this azimuthal selectivity demonstrates that the vaterite crystallites are not randomly oriented in-plane. Instead, they exhibit a strong preferred in-plane epitaxial confinement, satisfying the Bragg condition only at these specific substrate-guided azimuthal orientations.
+In sample `SH-125-G`, vaterite is exclusively resolved at $\phi = 30^\circ$ and $\phi = 60^\circ$ (with calcite-to-vaterite integrated area ratios of 189.2 and 117.5, respectively; see Figure 6 for the phase area analysis and Figure 5 for the stacked $2\theta-\theta$ scans). In samples `SH-104-1` and `SH-124-B3`, vaterite is not resolved above the detection limit at any azimuthal angle. Since the physical phase fraction in the film is stationary, this azimuthal selectivity demonstrates that the vaterite crystallites are not randomly oriented in-plane. Instead, they exhibit a strong preferred in-plane epitaxial confinement, satisfying the Bragg condition only at these specific substrate-guided azimuthal orientations.
 
 ## Symmetric 2Theta scans stacked
-Figure 5 shows the symmetric $2\theta-\theta$ diffraction patterns for all measured $CaCO_3$ thin-film samples, stacked with vertical offsets. Panel (a) highlights the highly selective azimuthal emergence of the vaterite (110) reflection in `SH-125-G`, while panels (b) and (c) display the profiles for `SH-124-B3` (pure calcite) and `SH-125-A` (isotropic mixed phase), respectively, and panel (d) shows the reference film `SH-104-1`.
+Figure 5 shows the symmetric $2\theta-\theta$ diffraction patterns for all measured $CaCO_3$ thin-film samples, stacked with vertical offsets. Panel (a) highlights the highly selective azimuthal emergence of the vaterite (110) reflection in `SH-125-G`, while panels (b) and (c) display the profiles for `SH-124-B3` (pure calcite) and `SH-125-A` (isotropic mixed phase), respectively, and panel (d) shows sample `SH-104-1`.
 
 ![**Figure 5:** Azimuthal dependence of symmetric $2\theta-\theta$ scans for all samples: (a) `SH-125-G`, (b) `SH-124-B3`, (c) `SH-125-A`, and (d) `SH-104-1`. The shaded band indicates the scattering angle range for the vaterite (110) reflection. High-resolution vector graphics are available in [fig5_stacked_2theta_all_samples.svg](../figures/fig5_stacked_2theta_all_samples.svg).](../figures/fig5_stacked_2theta_all_samples.png){width=85%}
 
@@ -164,7 +164,7 @@ Figures 10 and 11 show the stacked raw curves and corresponding baseline-correct
 
 ![**Figure 10:** Stacked side-by-side rocking curve analysis for sample `SH-125-G` across all azimuthal angles $\phi$. (a) Raw intensity with fitted model baselines in log scale. (b) Stacked baseline-corrected net curves in linear scale.](../figures/fig10_sh125g_side_by_side.png){width=85%}
 
-![**Figure 11:** Stacked side-by-side rocking curve analysis for reference sample `SH-104-1` across all azimuthal angles $\phi$. (a) Raw intensity with fitted baselines in log scale. (b) Stacked baseline-corrected net curves in linear scale.](../figures/fig11_sh1041_side_by_side.png){width=85%}
+![**Figure 11:** Stacked side-by-side rocking curve analysis for sample `SH-104-1` across all azimuthal angles $\phi$. (a) Raw intensity with fitted baselines in log scale. (b) Stacked baseline-corrected net curves in linear scale.](../figures/fig11_sh1041_side_by_side.png){width=85%}
 
 # 6. High-Resolution Figure Source Files
 The figures presented in this report have been exported as high-resolution, vector-format SVG files to enable direct incorporation into the manuscript:
