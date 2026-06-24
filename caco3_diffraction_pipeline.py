@@ -169,9 +169,13 @@ def fit_symmetric_scan(twotheta, intensity):
     c_mask = (twotheta >= 28.2) & (twotheta <= 30.8)
     h_c, t0_c, w_c, area_c = 0.0, 29.4, 0.15, 0.0
     try:
-        popt_c, _ = curve_fit(gaussian, twotheta[c_mask], net_intensity[c_mask], p0=[intensity.max() - baseline.max(), 29.4, 0.15])
+        popt_c, _ = curve_fit(
+            gaussian, twotheta[c_mask], net_intensity[c_mask],
+            p0=[max(intensity.max() - baseline.max(), 10.0), 29.4, 0.15],
+            bounds=([0.0, 29.0, 0.01], [np.inf, 29.8, 1.0])
+        )
         h_c, t0_c, w_c = popt_c
-        area_c = h_c * w_c * np.sqrt(2 * np.pi)
+        area_c = h_c * abs(w_c) * np.sqrt(2 * np.pi)
     except:
         pass
         
@@ -179,12 +183,16 @@ def fit_symmetric_scan(twotheta, intensity):
     v_mask = (twotheta >= 31.8) & (twotheta <= 33.8)
     h_v, t0_v, w_v, area_v = 0.0, 32.8, 0.15, 0.0
     try:
-        popt_v, _ = curve_fit(gaussian, twotheta[v_mask], net_intensity[v_mask], p0=[1000.0, 32.8, 0.15])
+        popt_v, _ = curve_fit(
+            gaussian, twotheta[v_mask], net_intensity[v_mask],
+            p0=[1000.0, 32.8, 0.15],
+            bounds=([0.0, 32.4, 0.01], [np.inf, 33.4, 1.0])
+        )
         h_v_fit, t0_v_fit, w_v_fit = popt_v
-        fwhm_v_fit = 2.355 * w_v_fit
+        fwhm_v_fit = 2.355 * abs(w_v_fit)
         if h_v_fit > 0.01 * h_c and 32.4 < t0_v_fit < 33.4 and fwhm_v_fit < 1.0:
             h_v, t0_v, w_v = popt_v
-            area_v = h_v * w_v * np.sqrt(2 * np.pi)
+            area_v = h_v * abs(w_v) * np.sqrt(2 * np.pi)
     except:
         pass
         
@@ -195,6 +203,7 @@ def fit_symmetric_scan(twotheta, intensity):
         "vaterite_center": t0_v,
         "baseline": baseline
     }
+
 
 # ==============================================================================
 # PIPELINE STAGE 1: RAW DATA PROCESSING
@@ -1055,8 +1064,9 @@ def generate_all_plots():
                     
             ax1.plot(valid_phis, calcite_areas, marker=config["marker"], linestyle=config["ls"],
                      color=config["color_c"], linewidth=2, label=f"{sample} calcite (104)")
-            ax2.plot(valid_phis, vaterite_areas, marker=config["marker"], linestyle=config["ls"],
-                     color=config["color_v"], linewidth=2, label=f"{sample} vaterite (110)")
+            if any(a > 0.0 for a in vaterite_areas):
+                ax2.plot(valid_phis, vaterite_areas, marker=config["marker"], linestyle=config["ls"],
+                         color=config["color_v"], linewidth=2, label=f"{sample} vaterite (110)")
                      
         ax1.set_ylabel("calcite (104) peak area\n(kcounts·°)")
         ax1.set_title("Peak areas vs. azimuthal angle $\phi$ (symmetric XRD scans)", fontweight='bold')
