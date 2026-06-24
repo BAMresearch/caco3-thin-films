@@ -172,6 +172,18 @@ Figures 10 and 11 show the stacked raw curves and corresponding baseline-correct
 
 ![**Figure 11:** Stacked side-by-side rocking curve analysis for sample `SH-104-1` across all azimuthal angles $\phi$. (a) Raw intensity with fitted baselines in log scale. (b) Stacked baseline-corrected net curves in linear scale.](../figures/fig11_sh1041_side_by_side.png){width=85%}
 
+## Statistical and methodological basis of baseline subtraction
+The baseline subtraction procedure involves fitting a smooth background model to the off-peak regions (where there are no active Bragg reflections). Mathematically, the measured intensity at any angle is a combination of the physical Bragg reflections, the diffuse background baseline (arising from air scatter, sample holder, and substrate), and statistical measurement noise:
+$$\text{Raw Intensity}(\theta) = I_{\text{Bragg}}(\theta) + I_{\text{Baseline}}(\theta) + \epsilon(\theta)$$
+where $\epsilon(\theta)$ represents the statistical noise (Poisson/Gaussian fluctuations) of the measurement.
+
+Subtracting the baseline yields the net intensity:
+$$I_{\text{Net}}(\theta) = I_{\text{Raw}}(\theta) - I_{\text{Baseline}}(\theta) = I_{\text{Bragg}}(\theta) + \epsilon(\theta)$$
+
+In the off-peak background regions where $I_{\text{Bragg}}(\theta) = 0$, the net intensity is purely noise: $I_{\text{Net}}(\theta) = \epsilon(\theta)$. Because statistical noise fluctuates symmetrically around zero, approximately half of the background data points will naturally yield a negative net intensity after subtraction. These negative values do not represent physical "negative diffraction," but are a normal and expected statistical consequence of baseline correction.
+
+To ensure unbiased peak integrations, the baseline is fitted to the *mean* background level rather than its *minima* (lower envelope). If the baseline were fitted to the minima (e.g., by tracing the lowest points of the noise), the baseline would be systematically underestimated by a value equal to the noise floor height. This would leave a persistent positive background offset across the entire range, artificially inflating the calculated peak areas and distorting peak widths during deconvolution. Tracing the mean of the background region guarantees that the expectation value of the integrated background noise is zero, yielding mathematically rigorous, unbiased peak intensities and widths.
+
 # 6. High-Resolution Figure Source Files
 The figures presented in this report have been exported as high-resolution, vector-format SVG files to enable direct incorporation into the manuscript:
 1. Figures 1-4 (2D-XRD detector frame, cake plot, and 1D profile for all samples):
