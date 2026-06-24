@@ -1,14 +1,15 @@
-### Comprehensive XRD characterisation {-}
-**Date:** 16 June 2026
-
-\thispagestyle{plain}
-
----
 # Summary
 
 This study establishes the crystallographic texture and helical columnar growth mechanism of calcium carbonate ($\text{CaCO}_3$) thin films through a combination of two-dimensional X-ray diffraction (2D-XRD) screening and systematic azimuthal-rotation-dependent ($\phi$) rocking curve ($\theta$) sweeps. While initial stationary 2D-XRD measurements yield continuous Debye–Scherrer rings that classify all films as "mainly isotropic" (Figures 1–4, Table 1), the local intensity fluctuations (graininess) along the rings suggest a highly oriented microstructure. High-resolution $\theta-\phi$ rocking curve mapping of the calcite (104) reflection reveals a clear distinction in texture: samples `SH-125-A`, `SH-125-G`, and `SH-104-1` exhibit a uniaxial fibre texture (in-plane isotropic but out-of-plane tilted, Figure 7b–d and Figure 8b–d), whereas sample `SH-124-B3` exhibits strong template-guided in-plane epitaxial locking, with intensities concentrated at specific substrate-guided azimuthal orientations ($\phi \approx 60^\circ$ and $120^\circ$, Figure 8a). Multi-peak fitting of the baseline-corrected rocking curves resolves discrete tilt domains (Table 2); for the epitaxially locked `SH-124-B3`, the intensity peaks symmetrically at $\chi_1 \approx -4.6^\circ$ (Tilted 1) and $\chi_2 \approx +7.7^\circ$ (Tilted 2), while falling to near-zero at the specular orientation ($\chi \approx 0^\circ$, Figure 7a). This split tilt distribution is crystallographically consistent with a helical columnar growth model where the calcite (104) plane normals precess in a cone around a slightly tilted growth axis ($\delta \approx 1.5^\circ$) with a helix tilt angle $\alpha_0 \approx 5^\circ - 8^\circ$. The universal emergence of these tilted components—both in the epitaxially locked film and as broad deconvoluted domains in the fibre-textured films (Figures 9–11)—demonstrates that tilted columnar growth is an intrinsic feature of the carbonate film synthesis, with substrate-template interaction determining the degree of in-plane alignment.
 
----
+\newpage
+
+# Supporting Information: Comprehensive XRD characterisation
+
+**Date:** 16 June 2026
+
+\thispagestyle{plain}
+
 # 1. Introduction and rationale for azimuthal rocking curves
 
 ## Rationale for azimuthal rocking curves based on 2D-XRD graininess
