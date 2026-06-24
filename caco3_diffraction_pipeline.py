@@ -1571,6 +1571,11 @@ def generate_all_plots():
             twotheta = arr[:, 0]
             intensity = arr[:, 1]
             
+            # Subset data strictly to user-requested range [27.5, 34.5] degrees
+            mask = (twotheta >= 27.5) & (twotheta <= 34.5)
+            twotheta = twotheta[mask]
+            intensity = intensity[mask]
+            
             # Joint fitting function with a linear background baseline
             def joint_fit_linear(t, c0, c1, *peak_params):
                 baseline = c0 + c1*t
@@ -1583,8 +1588,8 @@ def generate_all_plots():
                     y += h * np.exp(-(t - t0)**2 / (2 * w**2))
                 return y
                 
-            # Initial guess for background by fitting to the extremes
-            bg_mask = (twotheta < 27.5) | (twotheta > 34.5)
+            # Initial guess for background by fitting to the extremes of the subset
+            bg_mask = (twotheta < 28.0) | (twotheta > 34.2)
             poly_coeff = np.polyfit(twotheta[bg_mask], intensity[bg_mask], 1)
             c1_guess, c0_guess = poly_coeff
             
@@ -1609,11 +1614,10 @@ def generate_all_plots():
                  50000.0, 29.6, 0.5,
                  20000.0, 31.8, 0.5,
                  20000.0, 33.2, 0.5,
-                 20000.0, 34.2, 0.5]
+                 20000.0, 33.95, 0.25]
             )
             
-            fit_mask = (twotheta >= 27.0) & (twotheta <= 35.0)
-            popt, _ = curve_fit(joint_fit_linear, twotheta[fit_mask], intensity[fit_mask], p0=p0, bounds=bounds)
+            popt, _ = curve_fit(joint_fit_linear, twotheta, intensity, p0=p0, bounds=bounds)
             
             c0_fit, c1_fit = popt[0], popt[1]
             baseline = c0_fit + c1_fit * twotheta
@@ -1678,7 +1682,7 @@ def generate_all_plots():
             axes[1].axhline(0, color='gray', linestyle='--', linewidth=0.8)
             axes[1].set_xlabel('2$\\theta$ (°)', fontsize=12)
             axes[1].set_ylabel('Net Residual Intensity (counts)', fontsize=12)
-            axes[1].set_xlim(27.0, 35.0)
+            axes[1].set_xlim(27.5, 34.5)
             axes[1].legend(loc='upper right', framealpha=0.9, fontsize=9.5)
             axes[1].grid(True, linestyle=':', alpha=0.5)
             axes[1].text(-0.08, 1.05, "(b)", transform=axes[1].transAxes, fontsize=14, fontweight='bold', va='top')
@@ -1694,7 +1698,7 @@ def generate_all_plots():
             )
             # Find max net intensity to place text safely
             max_net_val = np.max(net_intensity)
-            axes[1].text(27.1, max_net_val*0.42, fit_text, fontsize=8.5, 
+            axes[1].text(27.6, max_net_val*0.42, fit_text, fontsize=8.5, 
                          bbox=dict(facecolor='white', alpha=0.85, boxstyle='round,pad=0.4'))
             
             plt.tight_layout()
