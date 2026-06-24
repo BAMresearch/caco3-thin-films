@@ -1,6 +1,6 @@
-# CaCO3 Thin Film Crystallographic Characterisation and Analysis
+# CaCO3 thin film crystallographic characterisation and analysis
 
-## Authors & Credits
+## Authors & credits
 
 - **Author**: Tomasz Stawski (tomasz.stawski@bam.de)
 - **Version**: 1.0
@@ -14,7 +14,7 @@ The project is structured to transition raw experimental data (from stationary d
 
 ---
 
-## Directory Structure
+## Directory structure
 
 The repository is organised as follows:
 
