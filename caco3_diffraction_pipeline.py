@@ -758,14 +758,11 @@ def generate_all_plots():
                 ax3.set_xlim(20, 55)
                 ax3.text(-0.08, 1.05, "(c)", transform=ax3.transAxes, fontsize=14, fontweight='bold', va='top')
                 
-                fig_name = f"fig1_2d_xrd_analysis_{sname.lower().replace('-', '_')}"
+                fig_num_map = {"SH-125-G": "fig1", "SH-124-B3": "fig2", "SH-125-A": "fig3", "SH-104-1": "fig4"}
+                fprefix = fig_num_map.get(sname, "fig1")
+                fig_name = f"{fprefix}_2d_xrd_analysis_{sname.lower().replace('-', '_')}"
                 plt.savefig(os.path.join(PLOT_DIR, f"{fig_name}.png"), dpi=300, bbox_inches='tight')
                 plt.savefig(os.path.join(PLOT_DIR, f"{fig_name}.svg"), dpi=300, bbox_inches='tight')
-                
-                # Keep compatibility with original file name for G
-                if sname == "SH-125-G":
-                    plt.savefig(os.path.join(PLOT_DIR, "fig1_2d_xrd_analysis.png"), dpi=300, bbox_inches='tight')
-                    plt.savefig(os.path.join(PLOT_DIR, "fig1_2d_xrd_analysis.svg"), dpi=300, bbox_inches='tight')
                     
                 plt.close()
             except Exception as e:
@@ -827,10 +824,10 @@ def generate_all_plots():
             
         plt.suptitle("Azimuthal dependence of symmetric 2$\\theta-\\theta$ scans for all samples", fontsize=15, fontweight='bold', y=0.98)
         plt.tight_layout()
-        plt.savefig(os.path.join(PLOT_DIR, "fig2_stacked_2theta_all_samples.png"), dpi=300, bbox_inches='tight')
-        plt.savefig(os.path.join(PLOT_DIR, "fig2_stacked_2theta_all_samples.svg"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig5_stacked_2theta_all_samples.png"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig5_stacked_2theta_all_samples.svg"), dpi=300, bbox_inches='tight')
         plt.close()
-        print("  Saved Figure 2 to results/figures/")
+        print("  Saved Figure 5 to results/figures/")
     except Exception as e:
         print(f"  Error plotting Figure 2: {e}")
 
@@ -905,10 +902,10 @@ def generate_all_plots():
             
         plt.suptitle("Baseline-corrected net rocking curves vs. azimuthal angle $\phi$", fontsize=14, fontweight='bold', y=0.98)
         plt.tight_layout()
-        plt.savefig(os.path.join(PLOT_DIR, "fig3_stacked_net_rocking_curves.png"), dpi=300, bbox_inches='tight')
-        plt.savefig(os.path.join(PLOT_DIR, "fig3_stacked_net_rocking_curves.svg"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig7_stacked_net_rocking_curves.png"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig7_stacked_net_rocking_curves.svg"), dpi=300, bbox_inches='tight')
         plt.close()
-        print("  Saved Figure 3 to results/figures/")
+        print("  Saved Figure 7 to results/figures/")
     except Exception as e:
         print(f"  Error plotting Figure 3: {e}")
 
@@ -1009,7 +1006,7 @@ def generate_all_plots():
             # Highlight active tilt domains with concentric dashed rings
             theta_grid = np.linspace(0, 2 * np.pi, 200)
             ax.plot(theta_grid, np.ones_like(theta_grid) * 1.8, color="#1d6396", linestyle="--", linewidth=1.2, alpha=0.7)
-            ax.plot(theta_grid, np.ones_like(theta_grid) * 7.7, color="#b32021", linestyle="--", linewidth=1.2, alpha=0.7)
+            ax.plot(theta_grid, np.ones_like(theta_grid) * 7.7, color="#2ca02c", linestyle="--", linewidth=1.2, alpha=0.7)
             
             ax.set_title(f"({chr(97 + idx_s)}) {sample}", y=1.08, fontweight='bold', fontsize=12)
             
@@ -1018,10 +1015,10 @@ def generate_all_plots():
             cbar.set_label("Net Intensity (counts)", fontsize=9)
             
         plt.suptitle("Compiled calcite (104) 2D polar texture pole figures", fontsize=15, fontweight='bold', y=0.98)
-        plt.savefig(os.path.join(PLOT_DIR, "fig4_texture_pole_figures.png"), dpi=300, bbox_inches='tight')
-        plt.savefig(os.path.join(PLOT_DIR, "fig4_texture_pole_figures.svg"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig8_texture_pole_figures.png"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig8_texture_pole_figures.svg"), dpi=300, bbox_inches='tight')
         plt.close()
-        print("  Saved Figure 4 to results/figures/")
+        print("  Saved Figure 8 to results/figures/")
     except Exception as e:
         print(f"  Error plotting Figure 4: {e}")
 
@@ -1100,10 +1097,10 @@ def generate_all_plots():
         ax2.text(45, ax2.get_ylim()[1]*0.8, "Epitaxial vaterite\norientation zone", color='#5c3d75', ha='center', fontweight='bold', fontsize=9)
         
         plt.tight_layout()
-        plt.savefig(os.path.join(PLOT_DIR, "fig5_phase_metrics_vs_phi.png"), dpi=300, bbox_inches='tight')
-        plt.savefig(os.path.join(PLOT_DIR, "fig5_phase_metrics_vs_phi.svg"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig6_phase_metrics_vs_phi.png"), dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(PLOT_DIR, "fig6_phase_metrics_vs_phi.svg"), dpi=300, bbox_inches='tight')
         plt.close()
-        print("  Saved Figure 5 to results/figures/")
+        print("  Saved Figure 6 to results/figures/")
     except Exception as e:
         print(f"  Error plotting Figure 5: {e}")
 
@@ -1160,9 +1157,10 @@ def generate_all_plots():
             axes[1].legend()
             axes[1].grid(True)
             plt.tight_layout()
-            plt.savefig(os.path.join(PLOT_DIR, "SH-125-A_rocking_curve_analysis.png"), dpi=150)
+            plt.savefig(os.path.join(PLOT_DIR, "fig9_sh125a_rocking_curve_analysis.png"), dpi=300, bbox_inches='tight')
+            plt.savefig(os.path.join(PLOT_DIR, "fig9_sh125a_rocking_curve_analysis.svg"), dpi=300, bbox_inches='tight')
             plt.close()
-            print("  Saved Figure 6 to results/figures/")
+            print("  Saved Figure 9 to results/figures/")
         except Exception as e:
             print(f"  Error plotting Figure 6: {e}")
 
@@ -1219,9 +1217,10 @@ def generate_all_plots():
             ax2.set_xlim(theta.min() - 0.5, theta.max() + 1.5)
             fig.suptitle("SH-125-G Rocking Curve Analysis: Raw vs. Baseline-Corrected", fontsize=14, fontweight='bold')
             plt.tight_layout()
-            plt.savefig(os.path.join(PLOT_DIR, "SH-125-G_side_by_side.png"), dpi=150)
+            plt.savefig(os.path.join(PLOT_DIR, "fig10_sh125g_side_by_side.png"), dpi=300, bbox_inches='tight')
+            plt.savefig(os.path.join(PLOT_DIR, "fig10_sh125g_side_by_side.svg"), dpi=300, bbox_inches='tight')
             plt.close()
-            print("  Saved Figure 7 to results/figures/")
+            print("  Saved Figure 10 to results/figures/")
         except Exception as e:
             print(f"  Error plotting Figure 7: {e}")
 
@@ -1278,9 +1277,10 @@ def generate_all_plots():
             ax2.set_xlim(theta.min() - 0.5, theta.max() + 1.5)
             fig.suptitle("SH-104-1 Rocking Curve Analysis: Raw vs. Baseline-Corrected", fontsize=14, fontweight='bold')
             plt.tight_layout()
-            plt.savefig(os.path.join(PLOT_DIR, "SH-104-1_side_by_side.png"), dpi=150)
+            plt.savefig(os.path.join(PLOT_DIR, "fig11_sh1041_side_by_side.png"), dpi=300, bbox_inches='tight')
+            plt.savefig(os.path.join(PLOT_DIR, "fig11_sh1041_side_by_side.svg"), dpi=300, bbox_inches='tight')
             plt.close()
-            print("  Saved Figure 8 to results/figures/")
+            print("  Saved Figure 11 to results/figures/")
         except Exception as e:
             print(f"  Error plotting Figure 8: {e}")
 
@@ -1497,7 +1497,8 @@ def generate_all_plots():
             plt.grid(True, which='both', linestyle=':', alpha=0.6)
             plt.legend(loc='upper right', fontsize=10, framealpha=0.9)
             plt.tight_layout()
-            plt.savefig(os.path.join(PLOT_DIR, "SH-124-B3_fit_phi_30_zoom.png"), dpi=150)
+            plt.savefig(os.path.join(PLOT_DIR, "fig_a3_sh124b3_fit_phi_30_zoom.png"), dpi=300, bbox_inches='tight')
+            plt.savefig(os.path.join(PLOT_DIR, "fig_a3_sh124b3_fit_phi_30_zoom.svg"), dpi=300, bbox_inches='tight')
             plt.close()
             print("  Saved Figure A3 to results/figures/")
         except Exception as e:
@@ -1565,7 +1566,8 @@ def generate_all_plots():
             plt.grid(True, which='both', linestyle=':', alpha=0.6)
             plt.legend(loc='upper right', fontsize=10, framealpha=0.9)
             plt.tight_layout()
-            plt.savefig(os.path.join(PLOT_DIR, "SH-124-B3_fit_phi_30_net_zoom.png"), dpi=150)
+            plt.savefig(os.path.join(PLOT_DIR, "fig_a4_sh124b3_fit_phi_30_net_zoom.png"), dpi=300, bbox_inches='tight')
+            plt.savefig(os.path.join(PLOT_DIR, "fig_a4_sh124b3_fit_phi_30_net_zoom.svg"), dpi=300, bbox_inches='tight')
             plt.close()
             print("  Saved Figure A4 to results/figures/")
         except Exception as e:
@@ -1610,7 +1612,8 @@ def generate_all_plots():
             axes[1].grid(True, linestyle='--', alpha=0.5)
             
             plt.tight_layout()
-            plt.savefig(os.path.join(PLOT_DIR, "calcite_single_crystal_rocking_curve_analysis.png"), dpi=150)
+            plt.savefig(os.path.join(PLOT_DIR, "fig_a5_calcite_single_crystal_analysis.png"), dpi=300, bbox_inches='tight')
+            plt.savefig(os.path.join(PLOT_DIR, "fig_a5_calcite_single_crystal_analysis.svg"), dpi=300, bbox_inches='tight')
             plt.close()
             print("  Saved Figure A5 to results/figures/")
         except Exception as e:
