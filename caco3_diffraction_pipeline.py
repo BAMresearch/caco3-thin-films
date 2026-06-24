@@ -467,7 +467,8 @@ def run_data_processing():
                             h_guess = 100.0
                         
                         h_guess = max(h_guess, 100.0)
-                        flat_guesses.extend([h_guess, center_guess, 0.15])
+                        w_guess = 2.0 if sample in ["SH-125-A", "SH-125-G", "SH-104-1"] else 0.15
+                        flat_guesses.extend([h_guess, center_guess, w_guess])
                         bounds_min.extend(p["bounds"][0])
                         bounds_max.extend(p["bounds"][1])
                         
@@ -475,19 +476,49 @@ def run_data_processing():
                     bounds = (bounds_min, bounds_max)
                     log_intensity = np.log10(np.clip(intensity, 1.0, None))
                     
-                    def log_fit_func(t, I0, c0, c1, c2, c3, *peak_params):
-                        baseline_val = I0 / np.sin(np.radians(t)) + c0 + c1*t + c2*t**2 + c3*t**3
-                        val = baseline_val.copy()
-                        num_peaks = len(peak_params) // 3
-                        for i in range(num_peaks):
-                            h = peak_params[3*i]
-                            t0 = peak_params[3*i+1]
-                            w = peak_params[3*i+2]
-                            val += h * np.exp(-(t-t0)**2 / (2*w**2))
-                        return np.log10(np.clip(val, 1.0, None))
-                        
                     try:
-                        popt, _ = curve_fit(log_fit_func, theta, log_intensity, p0=p0, bounds=bounds)
+                        if sample in ["SH-125-A", "SH-125-G", "SH-104-1"]:
+                            # Limit to [7.5, 22.5] and fix baseline parameters for isotropic samples
+                            fit_mask = (theta >= 7.5) & (theta <= 22.5)
+                            
+                            def log_fit_func_fixed(t, *peak_params):
+                                baseline_val = I0_fit / np.sin(np.radians(t)) + c0_fit + c1_fit*t + c2_fit*t**2 + c3_fit*t**3
+                                val = baseline_val.copy()
+                                num_peaks = len(peak_params) // 3
+                                for i in range(num_peaks):
+                                    h = peak_params[3*i]
+                                    t0 = peak_params[3*i+1]
+                                    w = peak_params[3*i+2]
+                                    val += h * np.exp(-(t-t0)**2 / (2*w**2))
+                                return np.log10(np.clip(val, 1.0, None))
+                                
+                            p0_peaks = flat_guesses
+                            bounds_peaks = (bounds_min[5:], bounds_max[5:])
+                            
+                            popt_peaks, _ = curve_fit(log_fit_func_fixed, theta[fit_mask], log_intensity[fit_mask], p0=p0_peaks, bounds=bounds_peaks)
+                            popt = np.concatenate([[I0_fit, c0_fit, c1_fit, c2_fit, c3_fit], popt_peaks])
+                        else:
+                            # Full range, floating baseline joint fit for the textured sample (SH-124-B3)
+                            def log_fit_func(t, I0, c0, c1, c2, c3, *peak_params):
+                                baseline_val = I0 / np.sin(np.radians(t)) + c0 + c1*t + c2*t**2 + c3*t**3
+                                val = baseline_val.copy()
+                                num_peaks = len(peak_params) // 3
+                                for i in range(num_peaks):
+                                    h = peak_params[3*i]
+                                    t0 = peak_params[3*i+1]
+                                    w = peak_params[3*i+2]
+                                    val += h * np.exp(-(t-t0)**2 / (2*w**2))
+                                return np.log10(np.clip(val, 1.0, None))
+                                
+                            popt, _ = curve_fit(log_fit_func, theta, log_intensity, p0=p0, bounds=bounds)
+                            # Update refined baseline in the CSV file for SH-124-B3
+                            I0_res, c0_res, c1_res, c2_res, c3_res = popt[0:5]
+                            baseline_refined = I0_res / np.sin(np.radians(theta)) + c0_res + c1_res*theta + c2_res*theta**2 + c3_res*theta**3
+                            net_intensity_refined = intensity - baseline_refined
+                            df_corr["Model Baseline"] = baseline_refined
+                            df_corr["Corrected Net Intensity"] = net_intensity_refined
+                            df_corr.to_csv(os.path.join(sample_processed_dir, f"{sample}_corrected_rocking_{phi}.csv"), index=False)
+                            
                         I0_res = popt[0]
                         peak_params = popt[5:]
                         for i, p in enumerate(peaks_list):
@@ -1655,6 +1686,27 @@ def generate_all_plots():
             }
             
             for sample, info in fit_configs.items():
+                # Pre-calculate global min/max of net intensity for this sample across all phis
+                global_min = 0.0
+                global_max = 0.0
+                for phi in info["phi_values"]:
+                    csv_path = os.path.join(PROCESSED_DIR, f"Rocking_Curves/{sample}/{sample}_corrected_rocking_{phi}.csv")
+                    if os.path.exists(csv_path):
+                        df_rc = pd.read_csv(csv_path)
+                        intensity = df_rc["Raw Intensity"].values
+                        baseline = df_rc["Model Baseline"].values
+                        net_intensity = intensity - baseline
+                        global_min = min(global_min, net_intensity.min())
+                        global_max = max(global_max, net_intensity.max())
+                
+                # Dynamic range with padding
+                padding = 0.1 * (global_max - global_min)
+                ymin = global_min - padding
+                ymax = global_max + padding
+                # Ensure minimum scale range to look good even for flat curves
+                if ymax - ymin < 500:
+                    ymin, ymax = -250, 250
+
                 rows, cols = info["grid"]
                 fig, axes = plt.subplots(rows, cols, figsize=info["fig_size"], sharex=True)
                 axes_flat = axes.flatten()
@@ -1705,11 +1757,7 @@ def generate_all_plots():
                             ax.fill_between(theta, 0, y_peak, color=p_color, alpha=0.08)
                     ax.plot(theta, fit_net_intensity, 'k-', linewidth=1.5, label='Total Net Fit' if idx_phi == 0 else '')
                     
-                    # Set y-limits dynamically based on net intensity
-                    ymin = net_intensity.min() - 0.1 * (net_intensity.max() - net_intensity.min())
-                    ymax = net_intensity.max() + 0.1 * (net_intensity.max() - net_intensity.min())
-                    if ymax - ymin < 500:
-                        ymin, ymax = -250, 250
+                    # Set y-limits to the pre-calculated uniform range for this sample
                     ax.set_ylim(ymin, ymax)
                     ax.set_title(f"$\\phi$ = {phi}°", fontweight='bold', fontsize=11)
                     ax.grid(True, linestyle=':', alpha=0.4)
