@@ -101,7 +101,17 @@ To correctly read and understand the 2D polar texture figures (Figure 8), they s
 ## Helical columnar microstructure model
 Electron microscopy imaging suggests that these CaCO<sub>3</sub> films grow via a columnar mechanism, where individual columns exhibit a helical twist along their growth axis. The rocking curve data provide direct crystallographic verification of this growth model.
 
-Fitting multi-peak Gaussian assemblies to the baseline-corrected rocking curves resolves discrete tilt components. The most prominent reflections are symmetrically tilted at $\chi \approx -1.8^\circ$ and $+7.7^\circ$ relative to the substrate normal (as seen in Figure 7a, Figure 8a, and Table 2). In the context of a helical columnar microstructure, the crystal lattice planes (calcite 104) grow with a characteristic tilt angle $\alpha_0$ relative to the growth axis of the column. As the column twists helically during growth, the normal of these planes precesses around the growth axis, generating a conical distribution of plane normals. The resolved tilt components match this conical geometry, indicating a helix tilt angle $\alpha_0 \approx 5^\circ - 8^\circ$.
+Fitting multi-peak Gaussian assemblies to the baseline-corrected rocking curves resolves discrete tilt components. The most prominent reflections are symmetrically tilted at $\chi \approx -1.8^\circ$ and $+7.7^\circ$ relative to the substrate normal (as seen in Figure 7a, Figure 8a, and Table 2). 
+
+In the context of a helical columnar microstructure, the crystal lattice planes (calcite 104) grow with a characteristic tilt angle $\alpha_0$ relative to the growth axis of the column. As the column twists helically during growth, the normal of these planes precesses around the growth axis, generating a conical distribution of plane normals (a precession cone of half-angle $\alpha_0$). If the column growth axis itself is tilted by an angle $\delta$ relative to the substrate surface normal in the plane of the measurement, the observed tilt angle $\chi$ of the plane normals relative to the substrate normal varies between:
+$$\chi_{1,2} = \delta \pm \alpha_0$$
+This leads to two symmetric peak reflections in the rocking curve. 
+
+For the representative sample `SH-124-B3`, the outermost fitted peaks are Peak 1 (negative tilt, $\chi_1 \approx -4.6^\circ$ to $-7.0^\circ$ across all $\phi$ angles) and Peak 5 (positive tilt, $\chi_2 \approx +7.7^\circ$ to $+8.5^\circ$). By solving this system of equations:
+1. The precession center (column axis tilt relative to the substrate normal) is $\delta = (\chi_2 + \chi_1)/2 \approx +1.5^\circ$.
+2. The precession cone half-angle (helix tilt angle $\alpha_0$) is $\alpha_0 = (\chi_2 - \chi_1)/2 \approx 6^\circ - 7.5^\circ$.
+
+The resolved tilt components match this conical geometry, indicating a helix tilt angle $\alpha_0 \approx 5^\circ - 8^\circ$ across the different sample growth series and orientations.
 
 Furthermore, the individual peak components exhibit narrow line shapes, with full width at half maximum ($FWHM$) values ranging between $0.2^\circ$ and $0.5^\circ$. This FWHM is close to the instrumental resolution limit, demonstrating that the helical columns have high crystallographic quality with very low internal mosaicity (misorientation spread) within each domain (fitted parameters compiled in Table 2; see Figure A2 for peak deconvolution and Figure A5 for the single-crystal calibration standard).
 
