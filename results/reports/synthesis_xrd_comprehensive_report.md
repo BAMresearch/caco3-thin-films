@@ -53,7 +53,7 @@ Figure 5 shows the symmetric $2\theta-\theta$ diffraction patterns for all measu
 ![**Figure 5:** Azimuthal dependence of symmetric $2\theta-\theta$ scans for all samples: (a) `SH-125-G`, (b) `SH-124-B3`, (c) `SH-125-A`, and (d) `SH-104-1`. The shaded band indicates the scattering angle range for the vaterite (110) reflection. High-resolution vector graphics are available in [fig2_stacked_2theta_all_samples.svg](../figures/fig2_stacked_2theta_all_samples.svg).](../figures/fig2_stacked_2theta_all_samples.png){width=85%}
 
 ## Phase metrics vs. phi
-Figure 6 displays the integrated area of the calcite (104) and vaterite (110) peaks as a function of the azimuthal angle $\phi$, illustrating the selective orientation window.
+Figure 6 displays the integrated area of the calcite (104) and vaterite (110) peaks as a function of the azimuthal angle $\phi$, illustrating the selective orientation window. These integrated Bragg peak areas are determined by fitting a 3rd-order polynomial background and Gaussian peaks to each symmetric scan (illustrated in Appendix Figure A6).
 
 ![**Figure 6:** Integrated Bragg peak areas of calcite (104) and vaterite (110) as a function of the azimuthal rotation angle $\phi$, illustrating the narrow in-plane epitaxial window of the vaterite phase. High-resolution vector graphics are available in [fig5_phase_metrics_vs_phi.svg](../figures/fig5_phase_metrics_vs_phi.svg).](../figures/fig5_phase_metrics_vs_phi.png){width=85%}
 
@@ -145,6 +145,10 @@ The figures presented in this report have been exported as high-resolution, vect
 5. Figure 8 (2D polar texture pole figures for all samples): [fig4_texture_pole_figures.svg](../figures/fig4_texture_pole_figures.svg)
 6. Figure A1 (Rocking curve background subtraction): [fig_a1_background_subtraction.svg](../figures/fig_a1_background_subtraction.svg)
 7. Figure A2 (Zoomed net peak deconvolution): [fig_a2_peak_deconvolution.svg](../figures/fig_a2_peak_deconvolution.svg)
+8. Figure A3 (Zoomed rocking curve fit at phi=30): [SH-124-B3_fit_phi_30_zoom.png](../figures/SH-124-B3_fit_phi_30_zoom.png)
+9. Figure A4 (Zoomed net peak deconvolution at phi=30): [SH-124-B3_fit_phi_30_net_zoom.png](../figures/SH-124-B3_fit_phi_30_net_zoom.png)
+10. Figure A5 (Calcite single crystal rocking curve): [calcite_single_crystal_rocking_curve_analysis.png](../figures/calcite_single_crystal_rocking_curve_analysis.png)
+11. Figure A6 (Symmetric diffraction scan peak fitting demonstration): [fig_a6_symmetric_peak_fits.svg](../figures/fig_a6_symmetric_peak_fits.svg)
 
 \newpage
 
@@ -195,3 +199,7 @@ Figures A3 and A4 show the corresponding raw fit and baseline-corrected net peak
 Figure A5 shows the rocking curve and Gaussian fit for the calcite single crystal calibration standard. The sharp, symmetric profile confirms the alignment and instrumental resolution profile.
 
 ![**Figure A5:** Calcite single crystal rocking curve analysis. (a) Raw intensity with fitted model baseline. (b) Net residual intensity showing a single, narrow cleavage-miscut peak.](../figures/calcite_single_crystal_rocking_curve_analysis.png){width=85%}
+
+Figure A6 shows a representative symmetric diffraction scan peak fitting sequence for sample `SH-125-G` at $\phi = 30^\circ$. This specimen contains both calcite and vaterite phases, demonstrating how the 3rd-order polynomial baseline and the individual Gaussian functions are fitted to resolve the integrated areas of the calcite (104) and vaterite (110) reflections.
+
+![**Figure A6:** Symmetric diffraction scan peak fitting sequence for `SH-125-G` at $\phi = 30^\circ$. (a) Raw intensity, fitted 3rd-order polynomial background, and total fit envelope. (b) Baseline-corrected net intensity showing the individual fitted Gaussians and areas for the calcite (104) and vaterite (110) reflections.](../figures/fig_a6_symmetric_peak_fits.png){width=85%}

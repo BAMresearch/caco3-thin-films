@@ -1508,6 +1508,89 @@ def generate_all_plots():
         except Exception as e:
             print(f"  Error plotting Figure A5: {e}")
 
+    # --------------------------------------------------------------------------
+    # FIGURE A6: DEMONSTRATION OF SYMMETRIC DIFFRACTION PEAK FITTING SEQUENCE
+    # --------------------------------------------------------------------------
+    print("Generating Appendix Figure A6: Symmetric peak fitting demonstration...")
+    g_30_files = glob.glob(os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-G/*_2Theta_30_exported.xy"))
+    if g_30_files:
+        try:
+            arr = np.loadtxt(g_30_files[0], skiprows=1)
+            twotheta = arr[:, 0]
+            intensity = arr[:, 1]
+            
+            # Re-run fitting to get individual components
+            poly_coeff = np.polyfit(twotheta, intensity, 3)
+            baseline = np.polyval(poly_coeff, twotheta)
+            net_intensity = intensity - baseline
+            
+            # Calcite (104) at ~29.4
+            c_mask = (twotheta >= 28.5) & (twotheta <= 30.5)
+            popt_c, _ = curve_fit(gaussian, twotheta[c_mask], net_intensity[c_mask], p0=[intensity.max() - baseline.max(), 29.4, 0.15])
+            h_c, t0_c, w_c = popt_c
+            area_c = h_c * w_c * np.sqrt(2 * np.pi)
+            
+            # Vaterite (110) at ~32.8
+            v_mask = (twotheta >= 31.8) & (twotheta <= 33.8)
+            popt_v, _ = curve_fit(gaussian, twotheta[v_mask], net_intensity[v_mask], p0=[1000.0, 32.8, 0.15])
+            h_v, t0_v, w_v = popt_v
+            area_v = h_v * w_v * np.sqrt(2 * np.pi)
+            
+            # Full model fit
+            fit_calcite = gaussian(twotheta, h_c, t0_c, w_c)
+            fit_vaterite = gaussian(twotheta, h_v, t0_v, w_v)
+            total_fit = baseline + fit_calcite + fit_vaterite
+            
+            fig, axes = plt.subplots(2, 1, figsize=(10, 9), sharex=True)
+            
+            # Panel (a): Raw data and baseline
+            axes[0].plot(twotheta, intensity, 'o', color='#7f7f7f', markersize=4, alpha=0.6, label='Raw Symmetric Scan Data')
+            axes[0].plot(twotheta, baseline, 'r-', linewidth=2, label='Fitted 3rd-order Polynomial Background')
+            axes[0].plot(twotheta, total_fit, 'k--', linewidth=1.5, label='Total Fit (Background + Bragg Peaks)')
+            axes[0].set_ylabel('Intensity (counts)', fontsize=12)
+            axes[0].legend(loc='upper right', framealpha=0.9)
+            axes[0].grid(True, linestyle=':', alpha=0.5)
+            axes[0].set_title('Symmetric Scan Peak Fitting Sequence (SH-125-G, $\phi = 30^\circ$)', fontsize=14, fontweight='bold')
+            axes[0].text(-0.08, 1.05, "(a)", transform=axes[0].transAxes, fontsize=14, fontweight='bold', va='top')
+            
+            # Panel (b): Net intensity and Gaussian deconvolution
+            axes[1].plot(twotheta, net_intensity, 'o', color='#7f7f7f', markersize=4, alpha=0.6, label='Experimental Net Data (Raw - Background)')
+            axes[1].plot(twotheta, fit_calcite + fit_vaterite, 'k-', linewidth=2, label='Sum of Crystalline Reflections')
+            
+            axes[1].plot(twotheta, fit_calcite, color='#2ca02c', linewidth=1.8, linestyle='--', label='Fitted Calcite (104)')
+            axes[1].fill_between(twotheta, 0, fit_calcite, color='#2ca02c', alpha=0.15)
+            
+            axes[1].plot(twotheta, fit_vaterite, color='#9467bd', linewidth=1.8, linestyle='--', label='Fitted Vaterite (110)')
+            axes[1].fill_between(twotheta, 0, fit_vaterite, color='#9467bd', alpha=0.15)
+            
+            axes[1].axhline(0, color='gray', linestyle='--', linewidth=0.8)
+            axes[1].set_xlabel('2$\\theta$ (°)', fontsize=12)
+            axes[1].set_ylabel('Net Residual Intensity (counts)', fontsize=12)
+            axes[1].set_xlim(27.0, 35.0)
+            axes[1].legend(loc='upper right', framealpha=0.9)
+            axes[1].grid(True, linestyle=':', alpha=0.5)
+            axes[1].text(-0.08, 1.05, "(b)", transform=axes[1].transAxes, fontsize=14, fontweight='bold', va='top')
+            
+            # Add text box with fit results
+            fit_text = (
+                f"Calcite (104) Fit:\n"
+                f"  Center = {t0_c:.3f}°\n"
+                f"  Area = {area_c/1e3:.2f} kcounts·°\n\n"
+                f"Vaterite (110) Fit:\n"
+                f"  Center = {t0_v:.3f}°\n"
+                f"  Area = {area_v/1e3:.2f} kcounts·°"
+            )
+            axes[1].text(27.2, axes[1].get_ylim()[1]*0.45, fit_text, fontsize=10, 
+                         bbox=dict(facecolor='white', alpha=0.8, boxstyle='round,pad=0.4'))
+            
+            plt.tight_layout()
+            plt.savefig(os.path.join(PLOT_DIR, "fig_a6_symmetric_peak_fits.png"), dpi=300, bbox_inches='tight')
+            plt.savefig(os.path.join(PLOT_DIR, "fig_a6_symmetric_peak_fits.svg"), dpi=300, bbox_inches='tight')
+            plt.close()
+            print("  Saved Figure A6 to results/figures/")
+        except Exception as e:
+            print(f"  Error plotting Figure A6: {e}")
+
     print("\nSTAGE 2 COMPLETE: All publication figures generated successfully in results/figures/ directory.")
 
 if __name__ == "__main__":
