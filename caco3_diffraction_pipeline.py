@@ -159,12 +159,14 @@ def bg_model(t, I0, c0, c1, c2, c3):
 
 def fit_symmetric_scan(twotheta, intensity):
     """Fits background baseline and symmetric Bragg reflections for calcite (104) and vaterite (110)."""
-    poly_coeff = np.polyfit(twotheta, intensity, 3)
+    bg_mask = (twotheta < 28.0) | ((twotheta > 31.0) & (twotheta < 31.8)) | (twotheta > 34.0)
+    if not bg_mask.any():
+        bg_mask = np.ones_like(twotheta, dtype=bool)
+    poly_coeff = np.polyfit(twotheta[bg_mask], intensity[bg_mask], 3)
     baseline = np.polyval(poly_coeff, twotheta)
     net_intensity = intensity - baseline
-    
-    # Calcite (104) at ~29.4
-    c_mask = (twotheta >= 28.5) & (twotheta <= 30.5)
+
+    c_mask = (twotheta >= 28.2) & (twotheta <= 30.8)
     h_c, t0_c, w_c, area_c = 0.0, 29.4, 0.15, 0.0
     try:
         popt_c, _ = curve_fit(gaussian, twotheta[c_mask], net_intensity[c_mask], p0=[intensity.max() - baseline.max(), 29.4, 0.15])
@@ -1539,12 +1541,14 @@ def generate_all_plots():
             intensity = arr[:, 1]
             
             # Re-run fitting to get individual components
-            poly_coeff = np.polyfit(twotheta, intensity, 3)
+            bg_mask = (twotheta < 28.0) | ((twotheta > 31.0) & (twotheta < 31.8)) | (twotheta > 34.0)
+            if not bg_mask.any():
+                bg_mask = np.ones_like(twotheta, dtype=bool)
+            poly_coeff = np.polyfit(twotheta[bg_mask], intensity[bg_mask], 3)
             baseline = np.polyval(poly_coeff, twotheta)
             net_intensity = intensity - baseline
             
-            # Calcite (104) at ~29.4
-            c_mask = (twotheta >= 28.5) & (twotheta <= 30.5)
+            c_mask = (twotheta >= 28.2) & (twotheta <= 30.8)
             popt_c, _ = curve_fit(gaussian, twotheta[c_mask], net_intensity[c_mask], p0=[intensity.max() - baseline.max(), 29.4, 0.15])
             h_c, t0_c, w_c = popt_c
             area_c = h_c * w_c * np.sqrt(2 * np.pi)
@@ -1692,13 +1696,14 @@ def generate_all_plots():
                     
                     ax.plot(theta, fit_intensity, 'k-', linewidth=1.5, label='Total Fit' if idx_phi == 0 else '')
                     
-                    ax.set_yscale('log')
-                    ax.set_ylim(100, 3e5)
-                    ax.set_title(f"$\\phi$ = {phi}°", fontweight='bold', fontsize=11)
-                    ax.grid(True, which='both', linestyle=':', alpha=0.4)
+                    ymin = max(0, intensity.min() * 0.95)
+                    ymax = intensity.max() * 1.05
+                    ax.set_ylim(ymin, ymax)
+                    ax.set_title(f"$\phi$ = {phi}°", fontweight='bold', fontsize=11)
+                    ax.grid(True, linestyle=':', alpha=0.4)
                     
                     if idx_phi % cols == 0:
-                        ax.set_ylabel('Intensity (counts, log scale)')
+                        ax.set_ylabel('Intensity (counts)')
                     if idx_phi >= (rows - 1) * cols or idx_phi == len(info["phi_values"]) - 1:
                         ax.set_xlabel('Theta $\\theta$ (°)')
                         
