@@ -49,7 +49,7 @@ thin films/
 │           └── Reference/
 ├── results/
 │   ├── figures/                    # Publication-quality plots (PNG and vector SVG formats)
-│   └── reports/                    # Final PDF and Markdown comprehensive reports
+│   └── reports/                    # Final reports
 └── scripts/                        # Consolidated analysis scripts and entrypoints
     ├── 2D_XRD/
     │   └── 01_process_2d_xrd.py       # Precursor 2D-XRD data reduction and screening (Precursor)
@@ -63,7 +63,7 @@ thin films/
 
 ## Data structure
 
-The dataset spans multiple file formats representing different stages of data acquisition and reduction:
+The dataset spans several file formats representing different stages of data acquisition and reduction:
 
 ### 1. Raw data (`data/raw/`)
 * **`.gfrm`**: Bruker 2D flat-panel detector frames containing spatial intensity data from stationary measurements.
@@ -113,7 +113,7 @@ The core analysis pipeline (`caco3_diffraction_pipeline.py`) implements the foll
 * **Parameter Extraction**: Computes tilt angles ($\chi$), peak heights, full width at half maximum (FWHM) values, and relative calcite/vaterite phase distributions.
 
 ### 5. Automated publication plot generation
-* Renders 20 publication-ready PNG and vector SVG diagrams, including waterfall plots, stacked net rocking curves, phase composition maps, and polar projection pole figures (texture maps).
+* Renders publication-ready PNG and vector SVG diagrams, including waterfall plots, stacked net rocking curves, phase composition maps, and polar projection pole figures (texture maps).
 
 ---
 
@@ -132,7 +132,7 @@ To convert binary `.gfrm` Bruker frame files directly, `silx` is used. If `silx`
 
 ## Usage
 
-To re-run the entire data processing pipeline and regenerate all publication-ready plots:
+To re-run the entire data processing pipeline and regenerate all plots:
 
 ```bash
 python run_entire_analysis.py
