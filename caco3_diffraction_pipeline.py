@@ -513,18 +513,37 @@ def run_data_processing():
                                 "Area/Base Ratio": ratio
                             })
                     except Exception as e:
-                        # Fallback simple metrics
+                        # Fallback simple metrics - try fitting Gaussian directly to net_intensity
                         for p in peaks_list:
+                            h_fit, t0_fit, fwhm_fit, area_fit = 0.0, p["init_center"], 0.0, 0.0
+                            try:
+                                c_min, c_max = p["bounds"][0][1], p["bounds"][1][1]
+                                p_mask = (theta >= c_min) & (theta <= c_max)
+                                popt_net, _ = curve_fit(
+                                    gaussian, 
+                                    theta[p_mask], 
+                                    net_intensity[p_mask], 
+                                    p0=[max(net_intensity[p_mask]), p["init_center"], 2.0]
+                                )
+                                h_fit, t0_fit, w_fit = popt_net
+                                fwhm_fit = 2.355 * w_fit
+                                area_fit = h_fit * w_fit * np.sqrt(2 * np.pi)
+                            except:
+                                pass
+                            
+                            iso_val = I0_fit / np.sin(np.radians(t0_fit)) if I0_fit > 0 else 1.0
+                            ratio = area_fit / iso_val if area_fit > 0 else 0.0
+                            
                             all_metrics.append({
                                 "Sample": sample,
                                 "Phi (degrees)": phi,
                                 "Peak Name": p["name"],
-                                "Peak Center (Theta)": p["init_center"],
-                                "Tilt Angle (Chi)": p["init_center"] - t0_c/2,
-                                "FWHM (degrees)": 0.0,
-                                "Net Height": 0.0,
-                                "Net Area (cts deg)": 0.0,
-                                "Area/Base Ratio": 0.0
+                                "Peak Center (Theta)": t0_fit,
+                                "Tilt Angle (Chi)": t0_fit - t0_c/2,
+                                "FWHM (degrees)": fwhm_fit if h_fit > 10.0 else 0.0,
+                                "Net Height": h_fit if h_fit > 10.0 else 0.0,
+                                "Net Area (cts deg)": area_fit if h_fit > 10.0 else 0.0,
+                                "Area/Base Ratio": ratio if h_fit > 10.0 else 0.0
                             })
                 except Exception as e:
                     print(f"    Error processing rocking curve at Phi={phi}: {e}")

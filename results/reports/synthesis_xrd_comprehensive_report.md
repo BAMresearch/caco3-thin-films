@@ -89,7 +89,7 @@ Furthermore, the individual peak components exhibit narrow line shapes, with ful
 
 ## Microstructural interpretation of the resolved peaks
 The multiple components resolved within the rocking curve profiles provide detailed insights into the thin-film growth history:
-1. **The specular orientation peak ($\chi \approx 0^\circ$):** The peak centered near $\chi \approx -0.3^\circ$ (active in samples like `SH-125-A` and `SH-104-1`) corresponds to the specular condition. It represents a population of calcite crystallites whose (104) lattice planes grow parallel to the substrate surface, forming a standard out-of-plane fibre texture.
+1. **The specular orientation peak ($\chi \approx 0^\circ$):** The peak centered near $\chi \approx -0.3^\circ$ (active in samples like `SH-125-A`, `SH-125-G`, and `SH-104-1`) corresponds to the specular condition. It represents a population of calcite crystallites whose (104) lattice planes grow parallel to the substrate surface, forming a standard out-of-plane fibre texture. Unlike the sharp tilt domain peaks of `SH-124-B3` (FWHM $\approx 0.6^\circ$), these specular reflections are extremely broad (FWHM $\approx 5.5^\circ - 12.8^\circ$), indicating a wide orientation distribution (high mosaicity) of the specularly aligned crystallites.
 2. **The symmetrical tilt peaks ($\chi \approx -1.8^\circ$ and $+7.7^\circ$$):** These peaks match the precession of the (104) plane normals in helical columns. The asymmetric tilt distribution suggests a slight tilt of the column growth axes or a preferred chirality during growth. Specifically, the component at $\chi \approx -1.8^\circ$ may represent early-stage column growth before the helical twist pitch is fully established.
 3. **The minor peak components ($\chi \approx +2.5^\circ$ and $+2.9^\circ$):** These narrow tilt reflections represent secondary crystalline facets or variations in the helical pitch as the columnar structures evolve. The high reproducibility of these minor tilt components across independent growth series (`SH-124-B3` and `SH-125-A`) indicates a highly deterministic orientation pathway, likely dictated by specific low-energy growth facets.
 
@@ -107,6 +107,9 @@ The quantitative parameters of key active tilt reflections are summarised in Tab
 | **SH-124-B3** | 120 | Peak 1b (Tilt) | 10.819° | -3.881° | 0.596° | 2313.1 | 1466.9 | 1.152% |
 | **SH-124-B3** | 120 | Peak 2a (Tilt) | 11.700° | -3.000° | 0.613° | 2244.2 | 1464.6 | 1.243% |
 | **SH-124-B3** | 120 | Peak 2b (Tilt) | 13.167° | -1.533° | 0.604° | 2077.8 | 1334.8 | 1.272% |
+| **SH-125-A** | 0 | Broad Specular Peak | 13.484° | -1.221° | 12.793° | 5078.6 | 69.15k | 72.930% |
+| **SH-125-G** | 60 | Broad Specular Peak | 13.030° | -1.659° | 5.681° | 3775.9 | 22.83k | 29.558% |
+| **SH-104-1** | 60 | Broad Specular Peak | 14.613° | -0.104° | 5.954° | 5932.3 | 37.60k | 114.908% |
 
 **Table 2:** Rocking curve peak parameters and tilt state metrics for representative active azimuthal orientations.
 
