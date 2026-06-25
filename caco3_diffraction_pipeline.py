@@ -306,6 +306,7 @@ def run_data_processing():
                 {"name": "Peak 1b (Tilt)", "init_center": 10.60, "bounds": ([0, 10.4, 0.0425], [200000, 11.4, 0.276])},
                 {"name": "Peak 2a (Tilt)", "init_center": 12.10, "bounds": ([0, 11.7, 0.0425], [200000, 12.3, 0.276])},
                 {"name": "Peak 2b (Tilt)", "init_center": 12.88, "bounds": ([0, 12.4, 0.0425], [200000, 13.5, 0.276])},
+                {"name": "Peak 2c (Tilt)", "init_center": 14.10, "bounds": ([0, 13.6, 0.0425], [200000, 14.9, 0.276])},
                 {"name": "Peak 3 (Near-specular)", "init_center": 15.72, "bounds": ([0, 15.0, 0.0425], [200000, 16.0, 0.276])},
                 {"name": "Peak 4 (Near-specular)", "init_center": 16.30, "bounds": ([0, 16.1, 0.0425], [200000, 16.7, 0.276])},
                 {"name": "Minor Peak A (Tilt)", "init_center": 17.10, "bounds": ([0, 16.8, 0.0425], [100000, 17.3, 0.276])},
@@ -461,7 +462,10 @@ def run_data_processing():
                     residuals_bg = intensity - baseline
                     diffs = np.diff(residuals_bg[config["bg_mask_fn"](theta)])
                     noise_std = np.std(diffs) / np.sqrt(2) if len(diffs) > 1 else 350.0
-                    threshold = 1.5 * noise_std
+                    if sample == "SH-124-B3" and phi == 150:
+                        threshold = 4.0 * noise_std  # Prevent overfitting in noisy 150 deg scan
+                    else:
+                        threshold = 1.5 * noise_std
                     
                     peaks_list = list(config["peaks"])
                     flat_guesses = []
