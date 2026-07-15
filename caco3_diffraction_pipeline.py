@@ -1098,7 +1098,7 @@ def generate_all_plots():
         ax2.set_xlim(-5, 185)
         ax2.text(-0.08, 1.05, "(b)", transform=ax2.transAxes, fontsize=14, fontweight='bold', va='top')
         ax2.axvspan(25, 65, color='#9467bd', alpha=0.1)
-        ax2.text(45, ax2.get_ylim()[1]*0.8, "Epitaxial vaterite\norientation zone", color='#5c3d75', ha='center', fontweight='bold', fontsize=9)
+        ax2.text(45, ax2.get_ylim()[1]*0.8, "Preferred vaterite\norientation zone", color='#5c3d75', ha='center', fontweight='bold', fontsize=9)
         
         plt.tight_layout()
         plt.savefig(os.path.join(PLOT_DIR, "fig6_phase_metrics_vs_phi.png"), dpi=300, bbox_inches='tight')

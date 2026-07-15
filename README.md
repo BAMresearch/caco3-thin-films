@@ -12,7 +12,10 @@ This repository contains the data processing, peak deconvolution, and plotting s
 
 The project is structured to transition raw experimental data (from stationary detector frames and rocking curve scans) into baseline-corrected, multi-peak fitted datasets, and compile them into publication figures and technical reports.
 
-This repository serves as supporting information for our publication (not submitted yet).
+This repository serves as partial supporting information for the manuscript:
+
+**Beyond Templating: Mechanical Boundary Conditions Regularize Crystallographic Texture Gradients During Shape-Preserving Crystallization of Amorphous Precursors**
+*Sarah Haase, Joe Harris, Simon Leupold, Thi Q. Nhi Dao, Michel Kuhfuß, Udo Eckstein, Kyle Webber, Julien Bachmann, Tomasz M. Stawski\*, Tilman Grünewald\* and Stephan E. Wolf*
 
 ---
 
@@ -86,7 +89,7 @@ The analysis covers four distinct specimens representing different growth condit
 * **`SH-104-1` (Reference Film)**: A reference $CaCO_3$ thin film. The stationary 2D-XRD profile exhibits a mainly isotropic character with low anisotropy, serving as a baseline for comparing phase composition and tilt distributions against the newer growth series.
 * **`SH-124-B3` (Pure Calcite Film)**: A $CaCO_3$ thin film grown under Condition B3, consisting of pure calcite phase. Rocking curve deconvolution reveals distinct, narrow domain tilts ($\chi \approx -1.8^\circ$ and $+7.7^\circ$) that suggest a helical columnar microstructure growth mechanism.
 * **`SH-125-A` (Mixed Calcite-Vaterite Film)**: A thin film grown under Condition A, exhibiting a biphasic mineralogical composition with coexisting calcite and vaterite phases. This specimen is used to validate background-subtraction stability and sample-absorption volume corrections.
-* **`SH-125-G` (Mixed Calcite-Vaterite Film)**: A thin film grown under Condition G, featuring a mixed calcite-vaterite composition. The transient vaterite (110) reflection exhibits a highly localized azimuthal selectiveness, satisfying the Bragg condition only at specific rotations ($\phi = 30^\circ$ and $60^\circ$), which indicates template-guided in-plane epitaxial locking.
+* **`SH-125-G` (Mixed Calcite-Vaterite Film)**: A thin film grown under Condition G, featuring a mixed calcite-vaterite composition. The transient vaterite (110) reflection exhibits a highly localized azimuthal selectiveness, satisfying the Bragg condition only at specific rotations ($\phi = 30^\circ$ and $60^\circ$), which indicates template-guided in-plane alignment.
 
 ---
 
