@@ -1,10 +1,6 @@
 # CaCO3 thin film crystallographic characterisation and analysis
 
-## Authors
 
-- **Analysis**: Tomasz Stawski (tomasz.stawski@bam.de)
-- **Version**: 1.0
-- **Date**: 2026-06-23
 
 ---
 
@@ -142,5 +138,10 @@ python run_entire_analysis.py
 ```
 
 This runs the core routines from `caco3_diffraction_pipeline.py`, which populates `data/processed/` with baseline-corrected tables and exports publication-ready figures to `results/figures/`.
+
+
+- **Analysis**: Tomasz Stawski (tomasz.stawski@bam.de)
+- **Version**: 1.0
+- **Date**: 2026-06-23
 
 
