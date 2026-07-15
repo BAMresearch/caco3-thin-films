@@ -1,6 +1,6 @@
 # Summary
 
-This study establishes the crystallographic texture and helical columnar growth mechanism of calcium carbonate ($\text{CaCO}_3$) thin films through a combination of two-dimensional X-ray diffraction (2D-XRD) screening and systematic azimuthal-rotation-dependent ($\phi$) rocking curve ($\theta$) sweeps. While initial stationary 2D-XRD measurements yield continuous Debye–Scherrer rings that classify all films as "mainly isotropic" (Figures S1–S4, Table 1), the local intensity fluctuations (graininess) along the rings suggest a highly oriented microstructure. High-resolution $\theta-\phi$ rocking curve mapping of the calcite (104) reflection reveals a clear distinction in texture: samples `SH-125-A`, `SH-125-G`, and `SH-104-1` exhibit a uniaxial fibre texture (in-plane isotropic but out-of-plane tilted, Figure S7b–d and Figure S8b–d), whereas sample `SH-124-B3` exhibits strong template-guided in-plane alignment, with intensities concentrated at specific substrate-guided azimuthal orientations ($\phi \approx 60^\circ$ and $120^\circ$, Figure S8a). Multi-peak fitting of the baseline-corrected rocking curves resolves discrete tilt domains (Table 2); for the in-plane aligned `SH-124-B3`, the intensity peaks symmetrically at $\chi_1 \approx -4.6^\circ$ (Tilted 1) and $\chi_2 \approx +7.7^\circ$ (Tilted 2), while falling to near-zero at the specular orientation ($\chi \approx 0^\circ$, Figure S7a). This split tilt distribution is crystallographically consistent with a helical columnar growth model where the calcite (104) plane normals precess in a cone around a slightly tilted growth axis ($\delta \approx 1.5^\circ$) with a helix tilt angle $\alpha_0 \approx 5^\circ - 8^\circ$. The universal emergence of these tilted components, resolved as sharp peaks in the in-plane aligned film (Figure S7a, Figure A7) and as broad coexisting specular and tilted domains in the fibre-textured films (Figures S9–S11, Figures A8–A10), resolves the unphysically large peak widths of single-peak models. This confirms that tilted columnar growth is an intrinsic, universal feature of the carbonate film synthesis, with substrate-template interaction determining the degree of in-plane alignment.
+This study establishes the crystallographic texture and helical columnar growth mechanism of calcium carbonate ($\text{CaCO}_3$) thin films through a combination of two-dimensional X-ray diffraction (2D-XRD) screening and systematic azimuthal-rotation-dependent ($\phi$) rocking curve ($\theta$) sweeps. While initial stationary 2D-XRD measurements yield continuous Debye–Scherrer rings that classify all films as "mainly isotropic" (Figures S1–S4, Table 1), the local intensity fluctuations (graininess) along the rings suggest a highly oriented microstructure. High-resolution $\theta-\phi$ rocking curve mapping of the calcite (104) reflection reveals a clear distinction in texture: samples `SH-125-A` (PVA|PAsp), `SH-125-G` (Chitosan|PAsp), and `SH-104-1` (PVA|PAA) exhibit a uniaxial fibre texture (in-plane isotropic but out-of-plane tilted, Figure S7b–d and Figure S8b–d), whereas sample `SH-124-B3` (Chitosan|PAA) exhibits strong template-guided in-plane alignment, with intensities concentrated at specific substrate-guided azimuthal orientations ($\phi \approx 60^\circ$ and $120^\circ$, Figure S8a). Multi-peak fitting of the baseline-corrected rocking curves resolves discrete tilt domains (Table 2); for the in-plane aligned `SH-124-B3` (Chitosan|PAA), the intensity peaks symmetrically at $\chi_1 \approx -4.6^\circ$ (Tilted 1) and $\chi_2 \approx +7.7^\circ$ (Tilted 2), while falling to near-zero at the specular orientation ($\chi \approx 0^\circ$, Figure S7a). This split tilt distribution is crystallographically consistent with a helical columnar growth model where the calcite (104) plane normals precess in a cone around a slightly tilted growth axis ($\delta \approx 1.5^\circ$) with a helix tilt angle $\alpha_0 \approx 5^\circ - 8^\circ$. The universal emergence of these tilted components, resolved as sharp peaks in the in-plane aligned film (Figure S7a, Figure A7) and as broad coexisting specular and tilted domains in the fibre-textured films (Figures S9–S11, Figures A8–A10), resolves the unphysically large peak widths of single-peak models. This confirms that tilted columnar growth is an intrinsic, universal feature of the carbonate film synthesis, with substrate-template interaction determining the degree of in-plane alignment.
 
 ## Characterisation Scheme and Information Flow
 To clarify how these disparate experimental observations are integrated into the final growth model, the flowchart below outlines the path from initial screening to the unified helical growth mode:
@@ -8,14 +8,14 @@ To clarify how these disparate experimental observations are integrated into the
 ![Structural characterisation scheme and information flow diagram. The diagram outlines how phase identification and initial 2D-XRD texture screening feed into the high-resolution rocking curve sweeps, which resolve the split tilt domains. These domains are then interpreted through the lens of substrate alignment, culminating in the unified helical columnar growth mode.](../figures/fig_flowchart.png){width=95%}
 
 ### Explanation of the Information Flow:
-1. **Study Specimens (Top)**: The investigation begins with two classes of $\text{CaCO}_3$ thin film samples: the monophasic calcite film (`SH-124-B3`) and the biphasic calcite/vaterite films (`SH-125-A,G` and `SH-104-1`).
+1. **Study Specimens (Top)**: The investigation begins with two classes of $\text{CaCO}_3$ thin film samples: the monophasic calcite film (`SH-124-B3`, Chitosan|PAA) and the biphasic calcite/vaterite films (`SH-125-A` [PVA|PAsp], `SH-125-G` [Chitosan|PAsp], and `SH-104-1` [PVA|PAA]).
 2. **Measurement Streams**:
    - **2D-XRD Screening (Left)**: Establishes initial phase fractions and reveals grainy Debye–Scherrer rings. This graininess is the critical indicator of out-of-plane orientation, justifying the need for high-resolution sweeps.
    - **$2\theta-\theta$ vs. Azimuth (Center)**: Confirms that the phase ratio (calcite/vaterite) remains constant regardless of the azimuthal angle $\phi$, verifying the structural stability of the films.
    - **Rocking Curves (Right)**: Sweeps the calcite (104) reflection across $\theta$ and $\phi$ to resolve the exact tilt angles and azimuthal distributions of the crystallites.
 3. **Key Findings & Models**:
-   - For `SH-124-B3`, the rocking curves resolve discrete, sharp tilt peaks at specific $\phi$ angles, leading directly to the **In-plane Alignment Model** (in-plane substrate locking).
-   - For `SH-125-A,G` and `SH-104-1`, the rocking curves yield azimuthally isotropic intensity but multi-peak out-of-plane features, leading to the **Uniaxial Fibre Texture Model**.
+   - For `SH-124-B3` (Chitosan|PAA), the rocking curves resolve discrete, sharp tilt peaks at specific $\phi$ angles, leading directly to the **In-plane Alignment Model** (in-plane substrate locking).
+   - For `SH-125-A,G` (PVA|PAsp, Chitosan|PAsp) and `SH-104-1` (PVA|PAA), the rocking curves yield azimuthally isotropic intensity but multi-peak out-of-plane features, leading to the **Uniaxial Fibre Texture Model**.
 4. **Unified Growth Mode (Bottom)**: By linking both models, we establish that they are two expressions of the same physical growth process—**Helical Columnar Growth**—where the degree of substrate templating determines whether the precessing helical columns are in-plane locked or azimuthally free.
 
 \newpage
@@ -34,7 +34,7 @@ To clarify how these disparate experimental observations are integrated into the
 ## Rationale for azimuthal rocking curves based on 2D-XRD graininess
 Two-dimensional X-ray diffraction (2D-XRD) measurements using a flat-panel detector represent a standard initial characterisation step for phase and texture screening. However, a single stationary 2D detector frame only intersects a specific (and random) planar slice of reciprocal space. It is therefore mathematically unable to distinguish between an isotropic out-of-plane fibre texture (where crystallite tilts are randomly distributed around the surface normal) and a true template-guided in-plane confinement.
 
-Initial 2D-XRD characterisation of the calcium carbonate (CaCO<sub>3</sub>) films (samples `SH-124-B3`, `SH-125-A`, `SH-125-G`, and `SH-104-1`) yielded continuous Debye–Scherrer rings. Automated statistical analysis of the azimuthal intensity variations along these rings, executed by the screening script `scripts/2D_XRD/01_process_2d_xrd.py` and output to the 2D texture metrics table (Table 1), resulted in low values for both the Coefficient of Variation (CV < 0.04) and the Degree of Anisotropy (DoA < 0.10). Consequently, all samples were automatically classified as "mainly isotropic".
+Initial 2D-XRD characterisation of the calcium carbonate (CaCO<sub>3</sub>) films (samples `SH-124-B3` (Chitosan|PAA), `SH-125-A` (PVA|PAsp), `SH-125-G` (Chitosan|PAsp), and `SH-104-1` (PVA|PAA)) yielded continuous Debye–Scherrer rings. Automated statistical analysis of the azimuthal intensity variations along these rings, executed by the screening script `scripts/2D_XRD/01_process_2d_xrd.py` and output to the 2D texture metrics table (Table 1), resulted in low values for both the Coefficient of Variation (CV < 0.04) and the Degree of Anisotropy (DoA < 0.10). Consequently, all samples were automatically classified as "mainly isotropic".
 
 Despite this classification, the azimuthal intensity profiles along the rings exhibited distinct localised intensity fluctuations and discrete high-intensity reflections (graininess). This graininess is physically inconsistent with a homogeneous, fine-grained isotropic powder. Instead, it indicates a multimodal crystallite size distribution consisting of a fine-grained, randomly oriented polycrystalline matrix superimposed with larger, possibly, co-orientated crystalline domains. To resolve whether these co-orientated domains represent a weak fibre texture or are aligned in-plane relative to the substrate, systematic azimuthal-rotation-dependent ($\phi$) rocking curve ($\theta$) sweeps were performed.
 
@@ -43,25 +43,25 @@ The quantitative parameters extracted from the initial stationary 2D-XRD pattern
 
 | Sample ID | Description | calcite peaks | vaterite peaks | calcite CV | vaterite CV | Max DoA | Classification |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **SH-104-1** | CaCO<sub>3</sub> Thin Film | 7 | 1 | 0.020 | 0.022 | 0.084 | Mainly Isotropic |
-| **SH-124-B3 S1** | CaCO<sub>3</sub> Film, Condition B3 | 7 | 1 | 0.012 | 0.010 | - | Mainly Isotropic |
-| **SH-124-B3 S2** | CaCO<sub>3</sub> Film, Condition B3 (Rep) | 7 | 1 | 0.018 | 0.037 | - | Mainly Isotropic |
-| **SH-125-A S1** | CaCO<sub>3</sub> Film, Condition A | 5 | 6 | 0.011 | 0.007 | - | Mainly Isotropic |
-| **SH-125-A S2** | CaCO<sub>3</sub> Film, Condition A (Rep) | 5 | 7 | 0.009 | 0.006 | - | Mainly Isotropic |
-| **SH-125-G** | CaCO<sub>3</sub> Film, Condition G | 7 | 6 | 0.009 | 0.009 | - | Mainly Isotropic |
+| **SH-104-1** | CaCO<sub>3</sub> Thin Film (PVA|PAA) | 7 | 1 | 0.020 | 0.022 | 0.084 | Mainly Isotropic |
+| **SH-124-B3 S1** | CaCO<sub>3</sub> Film, Condition B3 (Chitosan|PAA) | 7 | 1 | 0.012 | 0.010 | - | Mainly Isotropic |
+| **SH-124-B3 S2** | CaCO<sub>3</sub> Film, Condition B3 (Chitosan|PAA, Rep) | 7 | 1 | 0.018 | 0.037 | - | Mainly Isotropic |
+| **SH-125-A S1** | CaCO<sub>3</sub> Film, Condition A (PVA|PAsp) | 5 | 6 | 0.011 | 0.007 | - | Mainly Isotropic |
+| **SH-125-A S2** | CaCO<sub>3</sub> Film, Condition A (PVA|PAsp, Rep) | 5 | 7 | 0.009 | 0.006 | - | Mainly Isotropic |
+| **SH-125-G** | CaCO<sub>3</sub> Film, Condition G (Chitosan|PAsp) | 7 | 6 | 0.009 | 0.009 | - | Mainly Isotropic |
 
 **Table 1:** Summary of phase matches and orientation metrics from stationary 2D-XRD cake-plot profiles. CV denotes the Coefficient of Variation, which measures the relative variability of the azimuthal intensity along the diffraction rings. DoA denotes the Degree of Anisotropy, representing the anisotropy metric calculated from the Fourier coefficients of the azimuthal profile.
 
 ## 2D-XRD visualisation
 Figure S1 shows the precursor 2D-XRD dataset for the biphasic thin film `SH-125-G`. The continuous rings in the cake plot show subtle intensity modulations (graininess) that provided a foundation for the rocking curve sweeps. Similar continuous ring features and low anisotropy metrics were observed for all other samples (`SH-124-B3`, `SH-125-A`, and `SH-104-1`), confirming their initial screening as mainly isotropic. Figures S1, S2, S3, and S4 present the 2D-XRD analysis for the four CaCO3 thin-film samples, including both the resampled polar cake plots and the original detector images before resampling.
 
-![2D-XRD analysis of sample `SH-125-G`. (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile showing peak matching with calcite (104) and vaterite (110) crystallographic reference data. High-resolution vector graphics are available in [fig1_2d_xrd_analysis_sh_125_g.svg](../figures/fig1_2d_xrd_analysis_sh_125_g.svg).](../figures/fig1_2d_xrd_analysis_sh_125_g.png){width=85%}
+![2D-XRD analysis of sample `SH-125-G` (Chitosan|PAsp). (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile showing peak matching with calcite (104) and vaterite (110) crystallographic reference data. High-resolution vector graphics are available in [fig1_2d_xrd_analysis_sh_125_g.svg](../figures/fig1_2d_xrd_analysis_sh_125_g.svg).](../figures/fig1_2d_xrd_analysis_sh_125_g.png){width=85%}
 
-![2D-XRD analysis of sample `SH-124-B3`. (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile. High-resolution vector graphics are available in [fig2_2d_xrd_analysis_sh_124_b3.svg](../figures/fig2_2d_xrd_analysis_sh_124_b3.svg).](../figures/fig2_2d_xrd_analysis_sh_124_b3.png){width=85%}
+![2D-XRD analysis of sample `SH-124-B3` (Chitosan|PAA). (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile. High-resolution vector graphics are available in [fig2_2d_xrd_analysis_sh_124_b3.svg](../figures/fig2_2d_xrd_analysis_sh_124_b3.svg).](../figures/fig2_2d_xrd_analysis_sh_124_b3.png){width=85%}
 
-![2D-XRD analysis of sample `SH-125-A`. (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile. High-resolution vector graphics are available in [fig3_2d_xrd_analysis_sh_125_a.svg](../figures/fig3_2d_xrd_analysis_sh_125_a.svg).](../figures/fig3_2d_xrd_analysis_sh_125_a.png){width=85%}
+![2D-XRD analysis of sample `SH-125-A` (PVA|PAsp). (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile. High-resolution vector graphics are available in [fig3_2d_xrd_analysis_sh_125_a.svg](../figures/fig3_2d_xrd_analysis_sh_125_a.svg).](../figures/fig3_2d_xrd_analysis_sh_125_a.png){width=85%}
 
-![2D-XRD analysis of sample `SH-104-1`. (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile. High-resolution vector graphics are available in [fig4_2d_xrd_analysis_sh_104_1.svg](../figures/fig4_2d_xrd_analysis_sh_104_1.svg).](../figures/fig4_2d_xrd_analysis_sh_104_1.png){width=85%}
+![2D-XRD analysis of sample `SH-104-1` (PVA|PAA). (a) Original detector frame before resampling. (b) Resampled polar cake plot showing the intensity as a function of the scattering angle $2\theta$ and the azimuthal angle $\phi$. (c) Azimuthally integrated 1D profile. High-resolution vector graphics are available in [fig4_2d_xrd_analysis_sh_104_1.svg](../figures/fig4_2d_xrd_analysis_sh_104_1.svg).](../figures/fig4_2d_xrd_analysis_sh_104_1.png){width=85%}
 
 \newpage
 
@@ -70,12 +70,12 @@ Figure S1 shows the precursor 2D-XRD dataset for the biphasic thin film `SH-125-
 ## In-plane alignment of transient vaterite (110) crystallites
 Symmetric $2\theta-\theta$ diffraction scans collected at different azimuthal rotation angles $\phi$ (varying from $0^\circ$ to $180^\circ$ in steps of $30^\circ$) reveal distinct phase-stability and texture behaviours. While calcite (104) is stable and detected at $2\theta \approx 29.4^\circ$ across all azimuthal rotations, the vaterite (110) reflection (at $2\theta \approx 32.8^\circ$) is highly localised.
 
-In sample `SH-125-G`, vaterite is exclusively resolved at $\phi = 30^\circ$ and $\phi = 60^\circ$ (with calcite-to-vaterite integrated area ratios of 189.2 and 117.5, respectively; see Figure S6 for the phase area analysis and Figure S5 for the stacked $2\theta-\theta$ scans). In samples `SH-104-1` and `SH-124-B3`, vaterite is not resolved above the detection limit at any azimuthal angle. Since the physical phase fraction in the film is stationary, this azimuthal selectivity demonstrates that the vaterite crystallites are not randomly oriented in-plane. Instead, they exhibit a strong preferred in-plane confinement, satisfying the Bragg condition only at these specific substrate-guided azimuthal orientations.
+In sample `SH-125-G` (Chitosan|PAsp), vaterite is exclusively resolved at $\phi = 30^\circ$ and $\phi = 60^\circ$ (with calcite-to-vaterite integrated area ratios of 189.2 and 117.5, respectively; see Figure S6 for the phase area analysis and Figure S5 for the stacked $2\theta-\theta$ scans). In samples `SH-104-1` (PVA|PAA) and `SH-124-B3` (Chitosan|PAA), vaterite is not resolved above the detection limit at any azimuthal angle. Since the physical phase fraction in the film is stationary, this azimuthal selectivity demonstrates that the vaterite crystallites are not randomly oriented in-plane. Instead, they exhibit a strong preferred in-plane confinement, satisfying the Bragg condition only at these specific substrate-guided azimuthal orientations.
 
 ## Symmetric 2Theta scans stacked
-Figure S5 shows the symmetric $2\theta-\theta$ diffraction patterns for all measured $CaCO_3$ thin-film samples, stacked with vertical offsets. Panel (a) highlights the highly selective azimuthal emergence of the vaterite (110) reflection in `SH-125-G`, while panels (b) and (c) display the profiles for `SH-124-B3` (pure calcite) and `SH-125-A` (isotropic mixed phase), respectively, and panel (d) shows sample `SH-104-1`.
+Figure S5 shows the symmetric $2\theta-\theta$ diffraction patterns for all measured $CaCO_3$ thin-film samples, stacked with vertical offsets. Panel (a) highlights the highly selective azimuthal emergence of the vaterite (110) reflection in `SH-125-G` (Chitosan|PAsp), while panels (b) and (c) display the profiles for `SH-124-B3` (Chitosan|PAA, pure calcite) and `SH-125-A` (PVA|PAsp, mixed calcite-vaterite), respectively, and panel (d) shows sample `SH-104-1` (PVA|PAA).
 
-![Azimuthal dependence of symmetric $2\theta-\theta$ scans for all samples: (a) `SH-125-G`, (b) `SH-124-B3`, (c) `SH-125-A`, and (d) `SH-104-1`. The shaded band indicates the scattering angle range for the vaterite (110) reflection. High-resolution vector graphics are available in [fig5_stacked_2theta_all_samples.svg](../figures/fig5_stacked_2theta_all_samples.svg).](../figures/fig5_stacked_2theta_all_samples.png){width=85%}
+![Azimuthal dependence of symmetric $2\theta-\theta$ scans for all samples: (a) `SH-125-G` (Chitosan|PAsp), (b) `SH-124-B3` (Chitosan|PAA), (c) `SH-125-A` (PVA|PAsp), and (d) `SH-104-1` (PVA|PAA). The shaded band indicates the scattering angle range for the vaterite (110) reflection. High-resolution vector graphics are available in [fig5_stacked_2theta_all_samples.svg](../figures/fig5_stacked_2theta_all_samples.svg).](../figures/fig5_stacked_2theta_all_samples.png){width=85%}
 
 ## Phase metrics vs. phi
 Figure S6 displays the integrated area of the calcite (104) and vaterite (110) peaks as a function of the azimuthal angle $\phi$, illustrating the selective orientation window. These integrated Bragg peak areas are determined by fitting a 3rd-order polynomial background and Gaussian peaks to each symmetric scan (illustrated in Appendix Figure A6).
@@ -97,17 +97,17 @@ The net crystallite tilt angle $\chi$ is then calculated for each data point as 
 $$\chi = \theta - \theta_0(\phi)$$
 
 
-The baseline-corrected net intensity profiles are highly anisotropic and depend strongly on the azimuth $\phi$. For the pure calcite film `SH-124-B3`, active tilt domains appear at $\chi \approx -1.8^\circ$ and $+7.7^\circ$, localised within the $\phi = 60^\circ - 120^\circ$ sector. Similarly, the biphasic film `SH-125-G` exhibits active tilt reflections peaking at $\phi = 60^\circ$ and $120^\circ$, while showing negligible intensity at other rotations. This localised, grainy modulation of rocking curve peak profiles as a function of $\phi$ provides direct crystallographic evidence of in-plane alignment and confirms the absence of an isotropic out-of-plane fibre texture (shown in the 1D rocking curves of Figure S7 and mapped in the 2D polar projections of Figure S8).
+The baseline-corrected net intensity profiles are highly anisotropic and depend strongly on the azimuth $\phi$. For the pure calcite film `SH-124-B3` (Chitosan|PAA), active tilt domains appear at $\chi \approx -1.8^\circ$ and $+7.7^\circ$, localised within the $\phi = 60^\circ - 120^\circ$ sector. Similarly, the biphasic film `SH-125-G` (Chitosan|PAsp) exhibits active tilt reflections peaking at $\phi = 60^\circ$ and $120^\circ$, while showing negligible intensity at other rotations. This localised, grainy modulation of rocking curve peak profiles as a function of $\phi$ provides direct crystallographic evidence of in-plane alignment and confirms the absence of an isotropic out-of-plane fibre texture (shown in the 1D rocking curves of Figure S7 and mapped in the 2D polar projections of Figure S8).
 
 ## Stacked net rocking curves
 Figure S7 displays the baseline-corrected net rocking curves stacked on a linear scale.
 
-![Baseline-corrected net rocking curves ($\theta$) stacked with vertical offsets for (a) `SH-124-B3`, (b) `SH-125-A`, (c) `SH-104-1`, and (d) `SH-125-G`, demonstrating the strong azimuthal ($\phi$) modulation of the Bragg intensities. The shaded bands highlight the specular domain (green) and first tilted domain (blue). [Vector version](../figures/fig7_stacked_net_rocking_curves.svg).](../figures/fig7_stacked_net_rocking_curves.png){width=85%}
+![Baseline-corrected net rocking curves ($\theta$) stacked with vertical offsets for (a) `SH-124-B3` (Chitosan|PAA), (b) `SH-125-A` (PVA|PAsp), (c) `SH-104-1` (PVA|PAA), and (d) `SH-125-G` (Chitosan|PAsp), demonstrating the strong azimuthal ($\phi$) modulation of the Bragg intensities. The shaded bands highlight the specular domain (green) and first tilted domain (blue). [Vector version](../figures/fig7_stacked_net_rocking_curves.svg).](../figures/fig7_stacked_net_rocking_curves.png){width=85%}
 
 ## 2D polar texture figures
 Figure S8 compares the reconstructed 2D polar texture plots (pole figures) for the four samples.
 
-![2D polar projection (pole figures) of the calcite (104) net rocking curve intensities for (a) `SH-124-B3`, (b) `SH-125-A`, (c) `SH-104-1`, and (d) `SH-125-G`. The radial axis represents the tilt angle $\chi$ up to $10^\circ$, and the angular axis represents the azimuth $\phi$. Concentric blue/green circles highlight active tilt domains at $\chi = 1.8^\circ$ and $\chi = 7.7^\circ$. [Vector version](../figures/fig8_texture_pole_figures.svg).](../figures/fig8_texture_pole_figures.png){width=85%}
+![2D polar projection (pole figures) of the calcite (104) net rocking curve intensities for (a) `SH-124-B3` (Chitosan|PAA), (b) `SH-125-A` (PVA|PAsp), (c) `SH-104-1` (PVA|PAA), and (d) `SH-125-G` (Chitosan|PAsp). The radial axis represents the tilt angle $\chi$ up to $10^\circ$, and the angular axis represents the azimuth $\phi$. Concentric blue/green circles highlight active tilt domains at $\chi = 1.8^\circ$ and $\chi = 7.7^\circ$. [Vector version](../figures/fig8_texture_pole_figures.svg).](../figures/fig8_texture_pole_figures.png){width=85%}
 
 ### Interpretation of 2D polar texture figures (pole figures)
 To correctly read and understand the 2D polar texture figures (Figure S8), they should be interpreted as follows:
@@ -116,8 +116,8 @@ To correctly read and understand the 2D polar texture figures (Figure S8), they 
   - **Angular coordinate ($\phi$)**: Represents the azimuthal rotation angle of the sample in-plane, spanning from $0^\circ$ to $360^\circ$.
 * **Intensity Color Mapping**: The colorbar indicates the net diffraction intensity. Darker colors (blue/purple) indicate background noise or the absence of Bragg diffraction, while brighter colors (yellow/white) represent high-intensity diffraction peaks where the Bragg condition is strongly satisfied.
 * **Texture Characteristics**:
-  - **Isotropic Texture (Random In-plane Orientation)**: Appears as continuous, uniform circular rings in the pole figures. For example, in `SH-125-A` (Figure S8b) and `SH-104-1` (Figure S8c), the intensity is distributed evenly across all $\phi$ angles, showing that the crystallites are randomly oriented in-plane, despite having a preferred out-of-plane tilt.
-  - **Anisotropic/In-plane Aligned Texture**: Appears as localized, high-intensity spots ("poles") rather than complete rings. In `SH-124-B3` (Figure S8a), the intensity is highly concentrated at $\phi \approx 60^\circ$ and $120^\circ$ along the outer green dashed ring ($\chi = 7.7^\circ$), showing a strong in-plane confinement matching the substrate symmetry. In `SH-125-G` (Figure S8d), the intensity is similarly localized at $\phi \approx 60^\circ$ and $120^\circ$ along the inner blue dashed ring ($\chi = 1.8^\circ$).
+  - **Isotropic Texture (Random In-plane Orientation)**: Appears as continuous, uniform circular rings in the pole figures. For example, in `SH-125-A` (PVA|PAsp) (Figure S8b) and `SH-104-1` (PVA|PAA) (Figure S8c), the intensity is distributed evenly across all $\phi$ angles, showing that the crystallites are randomly oriented in-plane, despite having a preferred out-of-plane tilt.
+  - **Anisotropic/In-plane Aligned Texture**: Appears as localized, high-intensity spots ("poles") rather than complete rings. In `SH-124-B3` (Chitosan|PAA) (Figure S8a), the intensity is highly concentrated at $\phi \approx 60^\circ$ and $120^\circ$ along the outer green dashed ring ($\chi = 7.7^\circ$), showing a strong in-plane confinement matching the substrate symmetry. In `SH-125-G` (Chitosan|PAsp) (Figure S8d), the intensity is similarly localized at $\phi \approx 60^\circ$ and $120^\circ$ along the inner blue dashed ring ($\chi = 1.8^\circ$).
 
 \newpage
 
@@ -132,7 +132,7 @@ In the context of a helical columnar microstructure, the crystal lattice planes 
 $$\chi_{1,2} = \delta \pm \alpha_0$$
 This leads to two symmetric peak reflections in the rocking curve. 
 
-For the representative sample `SH-124-B3`, the outermost fitted peaks are Peak 1 (negative tilt, $\chi_1 \approx -4.6^\circ$ to $-7.0^\circ$ across all $\phi$ angles) and Peak 5 (positive tilt, $\chi_2 \approx +7.7^\circ$ to $+8.5^\circ$). By solving this system of equations:
+For the representative sample `SH-124-B3` (Chitosan|PAA), the outermost fitted peaks are Peak 1 (negative tilt, $\chi_1 \approx -4.6^\circ$ to $-7.0^\circ$ across all $\phi$ angles) and Peak 5 (positive tilt, $\chi_2 \approx +7.7^\circ$ to $+8.5^\circ$). By solving this system of equations:
 1. The precession center (column axis tilt relative to the substrate normal) is $\delta = (\chi_2 + \chi_1)/2 \approx +1.5^\circ$.
 2. The precession cone half-angle (helix tilt angle $\alpha_0$) is $\alpha_0 = (\chi_2 - \chi_1)/2 \approx 6^\circ - 7.5^\circ$.
 
@@ -142,9 +142,9 @@ Furthermore, the individual peak components exhibit narrow line shapes, with ful
 
 ## Microstructural interpretation of the resolved peaks
 The multiple components resolved within the rocking curve profiles provide detailed insights into the thin-film growth history:
-1. **The coexistence of specular and tilted domains in isotropic-like samples:** In the mainly isotropic-like samples (`SH-125-A`, `SH-125-G`, and `SH-104-1`), a 2-peak deconvolution reveals that the rocking curves are not composed of a single extremely broad specular reflection. Instead, they consist of two distinct, overlapping components: a **Specular Peak** centered near the specular angle ($\theta \approx 14.5^\circ$ to $16.5^\circ$, corresponding to $\chi \approx -0.8^\circ$ to $+2.0^\circ$) and a **Tilted Peak** centered at $\theta \approx 11.5^\circ$ to $13.0^\circ$ ($\chi \approx -2.5^\circ$ to $-3.0^\circ$). Fitting these rocking curves with a single peak would yield an unphysically large mosaicity (FWHM). Resolving them into two separate populations of crystallites—one growing perfectly flat (specular) and one growing with a preferred tilt—proves that tilted columnar growth is a universal growth feature of these carbonate films, regardless of their apparent 1D azimuthal symmetry (see Figures S7b-d, Figures S8b-d, Table 2, and Appendix Figures A8–A10).
+1. **The coexistence of specular and tilted domains in isotropic-like samples:** In the mainly isotropic-like samples (`SH-125-A` (PVA|PAsp), `SH-125-G` (Chitosan|PAsp), and `SH-104-1` (PVA|PAA)), a 2-peak deconvolution reveals that the rocking curves are not composed of a single extremely broad specular reflection. Instead, they consist of two distinct, overlapping components: a **Specular Peak** centered near the specular angle ($\theta \approx 14.5^\circ$ to $16.5^\circ$, corresponding to $\chi \approx -0.8^\circ$ to $+2.0^\circ$) and a **Tilted Peak** centered at $\theta \approx 11.5^\circ$ to $13.0^\circ$ ($\chi \approx -2.5^\circ$ to $-3.0^\circ$). Fitting these rocking curves with a single peak would yield an unphysically large mosaicity (FWHM). Resolving them into two separate populations of crystallites—one growing perfectly flat (specular) and one growing with a preferred tilt—proves that tilted columnar growth is a universal growth feature of these carbonate films, regardless of their apparent 1D azimuthal symmetry (see Figures S7b-d, Figures S8b-d, Table 2, and Appendix Figures A8–A10).
 2. **The symmetrical tilt peaks ($\chi \approx -1.8^\circ$ and $+7.7^\circ$):** These peaks match the precession of the (104) plane normals in helical columns. The asymmetric tilt distribution suggests a slight tilt of the column growth axes or a preferred chirality during growth. Specifically, the component at $\chi \approx -1.8^\circ$ may represent early-stage column growth before the helical twist pitch is fully established (see Table 2, Figure S7a, and Figure S8a).
-3. **The minor peak components ($\chi \approx +2.5^\circ$ and $+2.9^\circ$):** These narrow tilt reflections represent secondary crystalline facets or variations in the helical pitch as the columnar structures evolve. The high reproducibility of these minor tilt components across independent growth series (`SH-124-B3` and `SH-125-A`) indicates a highly deterministic orientation pathway, likely dictated by specific low-energy growth facets (see Table 2).
+3. **The minor peak components ($\chi \approx +2.5^\circ$ and $+2.9^\circ$):** These narrow tilt reflections represent secondary crystalline facets or variations in the helical pitch as the columnar structures evolve. The high reproducibility of these minor tilt components across independent growth series (`SH-124-B3` (Chitosan|PAA) and `SH-125-A` (PVA|PAsp)) indicates a highly deterministic orientation pathway, likely dictated by specific low-energy growth facets (see Table 2).
 
 ## Rocking curve peak fit parameters table
 The quantitative parameters of key active tilt reflections are summarised in Table 2.
@@ -152,20 +152,20 @@ The quantitative parameters of key active tilt reflections are summarised in Tab
 | Sample | $\phi$ (°) | Peak Name | Center $\theta$ (°) | Tilt $\chi$ (°) | FWHM (°) | Height (cts) | Area (cts·°) | Area/Base |
 | :--- | :---: | :--- | :---: | :---: | :---: | ---: | ---: | ---: |
 | **Single Crystal** | Reference | calcite (104) reference | 17.455° | 2.769° | 4.133° | 2655872.9 | 11.68M | 3528.6% |
-| **SH-124-B3** | 60 | Peak 1 (Tilt) | 10.114° | -4.603° | 0.650° | 4976.1 | 3442.6 | 17.001% |
-| **SH-124-B3** | 60 | Peak 1b (Tilt) | 10.980° | -3.737° | 0.650° | 2821.5 | 1952.0 | 10.455% |
-| **SH-124-B3** | 60 | Peak 2a (Tilt) | 12.136° | -2.580° | 0.637° | 2124.4 | 1439.6 | 8.511% |
-| **SH-124-B3** | 60 | Peak 2b (Tilt) | 12.763° | -1.954° | 0.650° | 2576.3 | 1782.2 | 11.071% |
-| **SH-124-B3** | 120 | Peak 1 (Tilt) | 10.123° | -4.578° | 0.645° | 1750.1 | 1201.6 | 0.884% |
-| **SH-124-B3** | 120 | Peak 1b (Tilt) | 10.819° | -3.881° | 0.596° | 2313.1 | 1466.9 | 1.152% |
-| **SH-124-B3** | 120 | Peak 2a (Tilt) | 11.700° | -3.000° | 0.613° | 2244.2 | 1464.6 | 1.243% |
-| **SH-124-B3** | 120 | Peak 2b (Tilt) | 13.167° | -1.533° | 0.604° | 2077.8 | 1334.8 | 1.272% |
-| **SH-125-A** | 0 | Tilted Peak | 11.867° | -2.838° | 3.665° | 4791.4 | 18.69k | 17.385% |
-| **SH-125-A** | 0 | Specular Peak | 15.588° | 0.883° | 3.969° | 4562.1 | 19.27k | 23.424% |
-| **SH-125-G** | 60 | Specular Peak | 15.335° | 0.646° | 4.362° | 1927.6 | 8.95k | 13.592% |
-| **SH-125-G** | 60 | Tilted Peak | 12.130° | -2.558° | 4.039° | 3303.6 | 14.20k | 17.137% |
-| **SH-104-1** | 60 | Tilted Peak | 16.958° | 2.241° | 3.099° | 2819.5 | 9.30k | 32.856% |
-| **SH-104-1** | 60 | Specular Peak | 13.897° | -0.820° | 4.341° | 5641.4 | 26.07k | 75.848% |
+| **SH-124-B3** (Chitosan|PAA) | 60 | Peak 1 (Tilt) | 10.114° | -4.603° | 0.650° | 4976.1 | 3442.6 | 17.001% |
+| **SH-124-B3** (Chitosan|PAA) | 60 | Peak 1b (Tilt) | 10.980° | -3.737° | 0.650° | 2821.5 | 1952.0 | 10.455% |
+| **SH-124-B3** (Chitosan|PAA) | 60 | Peak 2a (Tilt) | 12.136° | -2.580° | 0.637° | 2124.4 | 1439.6 | 8.511% |
+| **SH-124-B3** (Chitosan|PAA) | 60 | Peak 2b (Tilt) | 12.763° | -1.954° | 0.650° | 2576.3 | 1782.2 | 11.071% |
+| **SH-124-B3** (Chitosan|PAA) | 120 | Peak 1 (Tilt) | 10.123° | -4.578° | 0.645° | 1750.1 | 1201.6 | 0.884% |
+| **SH-124-B3** (Chitosan|PAA) | 120 | Peak 1b (Tilt) | 10.819° | -3.881° | 0.596° | 2313.1 | 1466.9 | 1.152% |
+| **SH-124-B3** (Chitosan|PAA) | 120 | Peak 2a (Tilt) | 11.700° | -3.000° | 0.613° | 2244.2 | 1464.6 | 1.243% |
+| **SH-124-B3** (Chitosan|PAA) | 120 | Peak 2b (Tilt) | 13.167° | -1.533° | 0.604° | 2077.8 | 1334.8 | 1.272% |
+| **SH-125-A** (PVA|PAsp) | 0 | Tilted Peak | 11.867° | -2.838° | 3.665° | 4791.4 | 18.69k | 17.385% |
+| **SH-125-A** (PVA|PAsp) | 0 | Specular Peak | 15.588° | 0.883° | 3.969° | 4562.1 | 19.27k | 23.424% |
+| **SH-125-G** (Chitosan|PAsp) | 60 | Specular Peak | 15.335° | 0.646° | 4.362° | 1927.6 | 8.95k | 13.592% |
+| **SH-125-G** (Chitosan|PAsp) | 60 | Tilted Peak | 12.130° | -2.558° | 4.039° | 3303.6 | 14.20k | 17.137% |
+| **SH-104-1** (PVA|PAA) | 60 | Tilted Peak | 16.958° | 2.241° | 3.099° | 2819.5 | 9.30k | 32.856% |
+| **SH-104-1** (PVA|PAA) | 60 | Specular Peak | 13.897° | -0.820° | 4.341° | 5641.4 | 26.07k | 75.848% |
 
 **Table 2:** Rocking curve peak parameters and tilt state metrics for representative active azimuthal orientations.
 
@@ -179,17 +179,17 @@ Symmetric rocking curve scans of the calcite single crystal yield a single, narr
 Diffraction scans of the empty sample holder show a featureless, flat background with a standard deviation below 0.6% of the mean intensity. This confirms that the sample holder does not introduce spurious reflections or diffraction features that could interfere with the peak fitting or be misidentified as weak thin-film reflections.
 
 ## Baseline verification for isotropic thin-film specimens
-For the mainly isotropic thin-film specimens (`SH-125-A`, `SH-125-G`, and `SH-104-1`), the baseline subtraction procedure is verified by plotting the raw intensity alongside the fitted morphological/isotropic model baseline and the resulting net residual intensity.
+For the mainly isotropic thin-film specimens (`SH-125-A` (PVA|PAsp), `SH-125-G` (Chitosan|PAsp), and `SH-104-1` (PVA|PAA)), the baseline subtraction procedure is verified by plotting the raw intensity alongside the fitted morphological/isotropic model baseline and the resulting net residual intensity.
 
-Figure S9 shows this comparison for sample `SH-125-A` at $\phi = 0^\circ$. The isotropic model baseline (red line) successfully fits the broad diffuse scatter, and the net residual intensity (purple line) resolves the deconvolution into tilted and specular peak components.
+Figure S9 shows this comparison for sample `SH-125-A` (PVA|PAsp) at $\phi = 0^\circ$. The isotropic model baseline (red line) successfully fits the broad diffuse scatter, and the net residual intensity (purple line) resolves the deconvolution into tilted and specular peak components.
 
-![Raw vs. volume-corrected rocking curve analysis for sample `SH-125-A` at $\phi = 0^\circ$. (a) Raw intensity and fitted model baseline. (b) Baseline-corrected net residual intensity showing the deconvolution into tilted and specular peak components.](../figures/fig9_sh125a_rocking_curve_analysis.png){width=85%}
+![Raw vs. volume-corrected rocking curve analysis for sample `SH-125-A` (PVA|PAsp) at $\phi = 0^\circ$. (a) Raw intensity and fitted model baseline. (b) Baseline-corrected net residual intensity showing the deconvolution into tilted and specular peak components.](../figures/fig9_sh125a_rocking_curve_analysis.png){width=85%}
 
-Figures S10 and S11 show the stacked raw curves and corresponding baseline-corrected net curves at all measured azimuthal angles for samples `SH-125-G` and `SH-104-1`, respectively. These plots demonstrate the stability of the baseline subtraction routine across the entire azimuthal range, confirming that the weak, broad specular features are consistently isolated without generating unphysical artefacts.
+Figures S10 and S11 show the stacked raw curves and corresponding baseline-corrected net curves at all measured azimuthal angles for samples `SH-125-G` (Chitosan|PAsp) and `SH-104-1` (PVA|PAA), respectively. These plots demonstrate the stability of the baseline subtraction routine across the entire azimuthal range, confirming that the weak, broad specular features are consistently isolated without generating unphysical artefacts.
 
-![Stacked side-by-side rocking curve analysis for sample `SH-125-G` across all azimuthal angles $\phi$. (a) Raw intensity with fitted model baselines in log scale. (b) Stacked baseline-corrected net curves in linear scale.](../figures/fig10_sh125g_side_by_side.png){width=85%}
+![Stacked side-by-side rocking curve analysis for sample `SH-125-G` (Chitosan|PAsp) across all azimuthal angles $\phi$. (a) Raw intensity with fitted model baselines in log scale. (b) Stacked baseline-corrected net curves in linear scale.](../figures/fig10_sh125g_side_by_side.png){width=85%}
 
-![Stacked side-by-side rocking curve analysis for sample `SH-104-1` across all azimuthal angles $\phi$. (a) Raw intensity with fitted baselines in log scale. (b) Stacked baseline-corrected net curves in linear scale.](../figures/fig11_sh1041_side_by_side.png){width=85%}
+![Stacked side-by-side rocking curve analysis for sample `SH-104-1` (PVA|PAA) across all azimuthal angles $\phi$. (a) Raw intensity with fitted baselines in log scale. (b) Stacked baseline-corrected net curves in linear scale.](../figures/fig11_sh1041_side_by_side.png){width=85%}
 
 ## Statistical and methodological basis of baseline subtraction
 The baseline subtraction procedure involves fitting a smooth background model to the off-peak regions (where there are no active Bragg reflections). Mathematically, the measured intensity at any angle is a combination of the physical Bragg reflections, the diffuse background baseline (arising from air scatter, sample holder, and substrate), and statistical measurement noise:
@@ -206,27 +206,27 @@ To ensure unbiased peak integrations, the baseline is fitted to the *mean* backg
 # 6. High-Resolution Figure Source Files
 The figures presented in this report have been exported as high-resolution, vector-format SVG files to enable direct incorporation into the manuscript:
 1. Figures S1-S4 (2D-XRD detector frame, cake plot, and 1D profile for all samples):
-   - Sample `SH-125-G` (Figure S1): [fig1_2d_xrd_analysis_sh_125_g.svg](../figures/fig1_2d_xrd_analysis_sh_125_g.svg)
-   - Sample `SH-124-B3` (Figure S2): [fig2_2d_xrd_analysis_sh_124_b3.svg](../figures/fig2_2d_xrd_analysis_sh_124_b3.svg)
-   - Sample `SH-125-A` (Figure S3): [fig3_2d_xrd_analysis_sh_125_a.svg](../figures/fig3_2d_xrd_analysis_sh_125_a.svg)
-   - Sample `SH-104-1` (Figure S4): [fig4_2d_xrd_analysis_sh_104_1.svg](../figures/fig4_2d_xrd_analysis_sh_104_1.svg)
+   - Sample `SH-125-G` (Chitosan|PAsp) (Figure S1): [fig1_2d_xrd_analysis_sh_125_g.svg](../figures/fig1_2d_xrd_analysis_sh_125_g.svg)
+   - Sample `SH-124-B3` (Chitosan|PAA) (Figure S2): [fig2_2d_xrd_analysis_sh_124_b3.svg](../figures/fig2_2d_xrd_analysis_sh_124_b3.svg)
+   - Sample `SH-125-A` (PVA|PAsp) (Figure S3): [fig3_2d_xrd_analysis_sh_125_a.svg](../figures/fig3_2d_xrd_analysis_sh_125_a.svg)
+   - Sample `SH-104-1` (PVA|PAA) (Figure S4): [fig4_2d_xrd_analysis_sh_104_1.svg](../figures/fig4_2d_xrd_analysis_sh_104_1.svg)
 2. Figure S5 (Azimuthal dependence of symmetric 2Theta scans for all samples): [fig5_stacked_2theta_all_samples.svg](../figures/fig5_stacked_2theta_all_samples.svg)
 3. Figure S6 (Phase areas vs. azimuthal angle $\phi$ for all samples): [fig6_phase_metrics_vs_phi.svg](../figures/fig6_phase_metrics_vs_phi.svg)
 4. Figure S7 (Stacked baseline-corrected net rocking curves for all samples): [fig7_stacked_net_rocking_curves.svg](../figures/fig7_stacked_net_rocking_curves.svg)
 5. Figure S8 (2D polar texture pole figures for all samples): [fig8_texture_pole_figures.svg](../figures/fig8_texture_pole_figures.svg)
 6. Figure S9 (Raw vs. volume-corrected rocking curve analysis for sample `SH-125-A` at $\phi=0^\circ$): [fig9_sh125a_rocking_curve_analysis.svg](../figures/fig9_sh125a_rocking_curve_analysis.svg)
-7. Figure S10 (Stacked side-by-side rocking curve analysis for sample `SH-125-G` across all azimuthal angles $\phi$): [fig10_sh125g_side_by_side.svg](../figures/fig10_sh125g_side_by_side.svg)
-8. Figure S11 (Stacked side-by-side rocking curve analysis for sample `SH-104-1` across all azimuthal angles $\phi$): [fig11_sh1041_side_by_side.svg](../figures/fig11_sh1041_side_by_side.svg)
+7. Figure S10 (Stacked side-by-side rocking curve analysis for sample `SH-125-G` (Chitosan|PAsp) across all azimuthal angles $\phi$): [fig10_sh125g_side_by_side.svg](../figures/fig10_sh125g_side_by_side.svg)
+8. Figure S11 (Stacked side-by-side rocking curve analysis for sample `SH-104-1` (PVA|PAA) across all azimuthal angles $\phi$): [fig11_sh1041_side_by_side.svg](../figures/fig11_sh1041_side_by_side.svg)
 9. Figure A1 (Rocking curve background subtraction): [fig_a1_background_subtraction.svg](../figures/fig_a1_background_subtraction.svg)
 10. Figure A2 (Zoomed net peak deconvolution): [fig_a2_peak_deconvolution.svg](../figures/fig_a2_peak_deconvolution.svg)
 11. Figure A3 (Zoomed rocking curve fit at phi=30): [fig_a3_sh124b3_fit_phi_30_zoom.svg](../figures/fig_a3_sh124b3_fit_phi_30_zoom.svg)
 12. Figure A4 (Zoomed net peak deconvolution at phi=30): [fig_a4_sh124b3_fit_phi_30_net_zoom.svg](../figures/fig_a4_sh124b3_fit_phi_30_net_zoom.svg)
 13. Figure A5 (Calcite single crystal rocking curve): [fig_a5_calcite_single_crystal_analysis.svg](../figures/fig_a5_calcite_single_crystal_analysis.svg)
 14. Figure A6 (Symmetric diffraction scan peak fitting demonstration): [fig_a6_symmetric_peak_fits.svg](../figures/fig_a6_symmetric_peak_fits.svg)
-15. Figure A7 (Comprehensive rocking curve fits for sample `SH-124-B3` at all azimuthal angles): [fig_a7_sh124b3_fits.svg](../figures/fig_a7_sh124b3_fits.svg)
-16. Figure A8 (Comprehensive rocking curve fits for sample `SH-125-A` at all azimuthal angles): [fig_a8_sh125a_fits.svg](../figures/fig_a8_sh125a_fits.svg)
-17. Figure A9 (Comprehensive rocking curve fits for sample `SH-125-G` at all azimuthal angles): [fig_a9_sh125g_fits.svg](../figures/fig_a9_sh125g_fits.svg)
-18. Figure A10 (Comprehensive rocking curve fits for sample `SH-104-1` at all azimuthal angles): [fig_a10_sh1041_fits.svg](../figures/fig_a10_sh1041_fits.svg)
+15. Figure A7 (Comprehensive rocking curve fits for sample `SH-124-B3` (Chitosan|PAA) at all azimuthal angles): [fig_a7_sh124b3_fits.svg](../figures/fig_a7_sh124b3_fits.svg)
+16. Figure A8 (Comprehensive rocking curve fits for sample `SH-125-A` (PVA|PAsp) at all azimuthal angles): [fig_a8_sh125a_fits.svg](../figures/fig_a8_sh125a_fits.svg)
+17. Figure A9 (Comprehensive rocking curve fits for sample `SH-125-G` (Chitosan|PAsp) at all azimuthal angles): [fig_a9_sh125g_fits.svg](../figures/fig_a9_sh125g_fits.svg)
+18. Figure A10 (Comprehensive rocking curve fits for sample `SH-104-1` (PVA|PAA) at all azimuthal angles): [fig_a10_sh1041_fits.svg](../figures/fig_a10_sh1041_fits.svg)
 
 # Appendix: Data processing steps
 
@@ -259,21 +259,21 @@ This appendix outlines the quantitative data processing and analysis steps perfo
    The grid was expanded to $360^\circ$ by applying standard crystallographic 2-fold inversion symmetry: $I(\chi, \phi + 180^\circ) = I(-\chi, \phi)$. Grid interpolation was performed using a cubic spline function.
 
 ## 3. Background subtraction and peak deconvolution visualisation
-To demonstrate the physical validity of the background subtraction and multi-peak Gaussian fitting procedures, representative azimuthal scans from the pure calcite sample `SH-124-B3` are illustrated in Figures A1, A2, A3, and A4.
+To demonstrate the physical validity of the background subtraction and multi-peak Gaussian fitting procedures, representative azimuthal scans from the pure calcite sample `SH-124-B3` (Chitosan|PAA) are illustrated in Figures A1, A2, A3, and A4.
 
-Figure A1 shows the raw rocking curve intensity of `SH-124-B3` at $\phi = 60^\circ$ alongside the fitted 3rd-order polynomial background baseline and the total fit envelope in both linear and logarithmic scales. The background baseline captures the diffuse substrate scatter, and the logarithmic plot demonstrates that the fit envelope matches the experimental data points across more than two orders of magnitude in intensity, justifying the baseline subtraction rationale.
+Figure A1 shows the raw rocking curve intensity of `SH-124-B3` (Chitosan|PAA) at $\phi = 60^\circ$ alongside the fitted 3rd-order polynomial background baseline and the total fit envelope in both linear and logarithmic scales. The background baseline captures the diffuse substrate scatter, and the logarithmic plot demonstrates that the fit envelope matches the experimental data points across more than two orders of magnitude in intensity, justifying the baseline subtraction rationale.
 
-![Background subtraction profile for sample `SH-124-B3` at $\phi = 60^\circ$. (a) Linear scale and (b) logarithmic scale showing raw intensity, fitted background baseline, total fit envelope, and individual peak profiles.](../figures/fig_a1_background_subtraction.png){width=85%}
+![Background subtraction profile for sample `SH-124-B3` (Chitosan|PAA) at $\phi = 60^\circ$. (a) Linear scale and (b) logarithmic scale showing raw intensity, fitted background baseline, total fit envelope, and individual peak profiles.](../figures/fig_a1_background_subtraction.png){width=85%}
 
 Figure A2 shows the resulting baseline-corrected net intensity profile at $\phi = 60^\circ$. Subtracting the baseline isolates the crystalline Bragg reflections at the $y=0$ baseline. Non-linear least-squares fitting of the net profile resolves the individual Gaussian tilt components, showing agreement with the experimental net data points and confirming that individual domain tilts can be deconvoluted from the overlapping Bragg reflections.
 
 ![Deconvoluted net rocking curve and individual Gaussian peak components for sample `SH-124-B3` at $\phi = 60^\circ$ inside the domain tilt range ($\theta \in [10.0^\circ, 14.5^\circ]$).](../figures/fig_a2_peak_deconvolution.png){width=85%}
 
-Figures A3 and A4 show the corresponding raw fit and baseline-corrected net peak deconvolution for the same sample `SH-124-B3` at $\phi = 30^\circ$. These figures highlight the consistency of the fitting model at a different azimuthal angle, where the peak intensities are lower but the same tilt domain centers are resolved.
+Figures A3 and A4 show the corresponding raw fit and baseline-corrected net peak deconvolution for the same sample `SH-124-B3` (Chitosan|PAA) at $\phi = 30^\circ$. These figures highlight the consistency of the fitting model at a different azimuthal angle, where the peak intensities are lower but the same tilt domain centers are resolved.
 
-![Zoomed rocking curve fit for sample `SH-124-B3` at $\phi = 30^\circ$, showing the raw intensity, baseline, and individual peak component fits.](../figures/fig_a3_sh124b3_fit_phi_30_zoom.png){width=85%}
+![Zoomed rocking curve fit for sample `SH-124-B3` (Chitosan|PAA) at $\phi = 30^\circ$, showing the raw intensity, baseline, and individual peak component fits.](../figures/fig_a3_sh124b3_fit_phi_30_zoom.png){width=85%}
 
-![Zoomed net peak deconvolution for sample `SH-124-B3` at $\phi = 30^\circ$, showing the baseline-corrected net intensity and deconvoluted Gaussian components.](../figures/fig_a4_sh124b3_fit_phi_30_net_zoom.png){width=85%}
+![Zoomed net peak deconvolution for sample `SH-124-B3` (Chitosan|PAA) at $\phi = 30^\circ$, showing the baseline-corrected net intensity and deconvoluted Gaussian components.](../figures/fig_a4_sh124b3_fit_phi_30_net_zoom.png){width=85%}
 
 Figure A5 shows the rocking curve and Gaussian fit for the calcite single crystal calibration standard. The sharp, symmetric profile confirms the alignment and instrumental resolution profile.
 
@@ -285,11 +285,11 @@ Figure A6 shows a representative symmetric diffraction scan peak fitting sequenc
 
 Figures A7 to A10 compile the complete, step-by-step rocking curve fits for all samples at all measured azimuthal orientations $\phi$, allowing a detailed review of the fits on a log-intensity scale.
 
-![Rocking curve fits for sample `SH-124-B3` across all azimuthal orientations $\phi = 0^\circ$ to $180^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline background, solid black line is the total fit envelope, and shaded peaks represent the resolved tilt domains.](../figures/fig_a7_sh124b3_fits.png){width=100%}
+![Rocking curve fits for sample `SH-124-B3` (Chitosan|PAA) across all azimuthal orientations $\phi = 0^\circ$ to $180^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline background, solid black line is the total fit envelope, and shaded peaks represent the resolved tilt domains.](../figures/fig_a7_sh124b3_fits.png){width=100%}
 
-![Rocking curve fits for sample `SH-125-A` across all azimuthal orientations $\phi = 0^\circ$ to $150^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline, solid black line is the total fit, and the blue shaded peak represents the broad specular reflection.](../figures/fig_a8_sh125a_fits.png){width=100%}
+![Rocking curve fits for sample `SH-125-A` (PVA|PAsp) across all azimuthal orientations $\phi = 0^\circ$ to $150^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline, solid black line is the total fit, and the blue shaded peak represents the broad specular reflection.](../figures/fig_a8_sh125a_fits.png){width=100%}
 
-![Rocking curve fits for sample `SH-125-G` across all azimuthal orientations $\phi = 0^\circ$ to $180^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline, solid black line is the total fit, and the blue shaded peak represents the broad specular reflection.](../figures/fig_a9_sh125g_fits.png){width=100%}
+![Rocking curve fits for sample `SH-125-G` (Chitosan|PAsp) across all azimuthal orientations $\phi = 0^\circ$ to $180^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline, solid black line is the total fit, and the blue shaded peak represents the broad specular reflection.](../figures/fig_a9_sh125g_fits.png){width=100%}
 
-![Rocking curve fits for sample `SH-104-1` across all azimuthal orientations $\phi = 0^\circ$ to $150^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline, solid black line is the total fit, and the blue shaded peak represents the broad specular reflection.](../figures/fig_a10_sh1041_fits.png){width=100%}
+![Rocking curve fits for sample `SH-104-1` (PVA|PAA) across all azimuthal orientations $\phi = 0^\circ$ to $150^\circ$. Dots represent experimental data, red dashed line is the polynomial baseline, solid black line is the total fit, and the blue shaded peak represents the broad specular reflection.](../figures/fig_a10_sh1041_fits.png){width=100%}
 

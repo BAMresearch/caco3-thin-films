@@ -181,13 +181,13 @@ def generate_all_plots():
             "processed_dir": os.path.join(PROCESSED_DIR, "Rocking_Curves/SH-124-B3"),
             "phi_values": [0, 30, 60, 90, 120, 150, 180],
             "net_offset": 5000,
-            "title": "Sample SH-124-B3 (pure calcite)"
+            "title": "Sample SH-124-B3 (Chitosan|PAA, pure calcite)"
         },
         "SH-125-G": {
             "processed_dir": os.path.join(PROCESSED_DIR, "Rocking_Curves/SH-125-G"),
             "phi_values": [0, 30, 60, 120, 150, 180],
             "net_offset": 5000,
-            "title": "Sample SH-125-G (mixed calcite-vaterite)"
+            "title": "Sample SH-125-G (Chitosan|PAsp, mixed calcite-vaterite)"
         }
     }
     try:

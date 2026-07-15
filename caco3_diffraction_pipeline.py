@@ -777,10 +777,10 @@ def generate_all_plots():
     # --------------------------------------------------------------------------
     print("Generating Figure 2: Stacked 2Theta scans for all samples...")
     samples_2theta = {
-        "SH-125-G": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-G"), "title": "(a) SH-125-G (mixed calcite-vaterite)"},
-        "SH-124-B3": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-124-B3"), "title": "(b) SH-124-B3 (pure calcite)"},
-        "SH-125-A": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-A"), "title": "(c) SH-125-A (mixed calcite-vaterite)"},
-        "SH-104-1": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-104-1"), "title": "(d) SH-104-1 (mainly calcite)"}
+        "SH-125-G": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-G"), "title": "(a) SH-125-G (Chitosan|PAsp, mixed calcite-vaterite)"},
+        "SH-124-B3": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-124-B3"), "title": "(b) SH-124-B3 (Chitosan|PAA, pure calcite)"},
+        "SH-125-A": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-125-A"), "title": "(c) SH-125-A (PVA|PAsp, mixed calcite-vaterite)"},
+        "SH-104-1": {"dir": os.path.join(PROCESSED_DIR, "Symmetric_Scans/SH-104-1"), "title": "(d) SH-104-1 (PVA|PAA, mainly calcite)"}
     }
     
     try:
@@ -844,25 +844,25 @@ def generate_all_plots():
             "processed_dir": os.path.join(PROCESSED_DIR, "Rocking_Curves/SH-124-B3"),
             "phi_values": [0, 30, 60, 90, 120, 150, 180],
             "net_offset": 5000,
-            "title": "Sample SH-124-B3 (pure calcite)"
+            "title": "Sample SH-124-B3 (Chitosan|PAA, pure calcite)"
         },
         "SH-125-A": {
             "processed_dir": os.path.join(PROCESSED_DIR, "Rocking_Curves/SH-125-A"),
             "phi_values": [0, 30, 60, 90, 120, 150],
             "net_offset": 5000,
-            "title": "Sample SH-125-A (pure calcite)"
+            "title": "Sample SH-125-A (PVA|PAsp, mixed calcite-vaterite)"
         },
         "SH-104-1": {
             "processed_dir": os.path.join(PROCESSED_DIR, "Rocking_Curves/SH-104-1"),
             "phi_values": [0, 30, 60, 90, 120, 150],
             "net_offset": 3000,
-            "title": "Sample SH-104-1 (mixed calcite-vaterite)"
+            "title": "Sample SH-104-1 (PVA|PAA, mainly calcite)"
         },
         "SH-125-G": {
             "processed_dir": os.path.join(PROCESSED_DIR, "Rocking_Curves/SH-125-G"),
             "phi_values": [0, 30, 60, 120, 150, 180],
             "net_offset": 5000,
-            "title": "Sample SH-125-G (mixed calcite-vaterite)"
+            "title": "Sample SH-125-G (Chitosan|PAsp, mixed calcite-vaterite)"
         }
     }
     try:
@@ -1012,7 +1012,13 @@ def generate_all_plots():
             ax.plot(theta_grid, np.ones_like(theta_grid) * 1.8, color="#1d6396", linestyle="--", linewidth=1.2, alpha=0.7)
             ax.plot(theta_grid, np.ones_like(theta_grid) * 7.7, color="#2ca02c", linestyle="--", linewidth=1.2, alpha=0.7)
             
-            ax.set_title(f"({chr(97 + idx_s)}) {sample}", y=1.08, fontweight='bold', fontsize=12)
+            sample_title_map = {
+                "SH-104-1": "SH-104-1 (PVA|PAA)",
+                "SH-124-B3": "SH-124-B3 (Chitosan|PAA)",
+                "SH-125-A": "SH-125-A (PVA|PAsp)",
+                "SH-125-G": "SH-125-G (Chitosan|PAsp)"
+            }
+            ax.set_title(f"({chr(97 + idx_s)}) {sample_title_map.get(sample, sample)}", y=1.08, fontweight='bold', fontsize=12)
             
             cbar = fig.colorbar(contour, ax=ax, pad=0.08, shrink=0.7)
             cbar.ax.tick_params(labelsize=9)
@@ -1078,11 +1084,17 @@ def generate_all_plots():
                 except Exception as e:
                     print(f"    Error fitting {sample} Phi {phi}: {e}")
                     
+            sample_label_map = {
+                "SH-104-1": "SH-104-1 (PVA|PAA)",
+                "SH-124-B3": "SH-124-B3 (Chitosan|PAA)",
+                "SH-125-A": "SH-125-A (PVA|PAsp)",
+                "SH-125-G": "SH-125-G (Chitosan|PAsp)"
+            }
             ax1.plot(valid_phis, calcite_areas, marker=config["marker"], linestyle=config["ls"],
-                     color=config["color_c"], linewidth=2, label=f"{sample} calcite (104)")
+                     color=config["color_c"], linewidth=2, label=f"{sample_label_map.get(sample, sample)} calcite (104)")
             if any(a > 0.0 for a in vaterite_areas):
                 ax2.plot(valid_phis, vaterite_areas, marker=config["marker"], linestyle=config["ls"],
-                         color=config["color_v"], linewidth=2, label=f"{sample} vaterite (110)")
+                         color=config["color_v"], linewidth=2, label=f"{sample_label_map.get(sample, sample)} vaterite (110)")
                      
         ax1.set_ylabel("calcite (104) peak area\n(kcounts·°)")
         ax1.set_title("Peak areas vs. azimuthal angle $\phi$ (symmetric XRD scans)", fontweight='bold')
@@ -1131,7 +1143,7 @@ def generate_all_plots():
             axes[0].set_ylabel('Intensity (counts)')
             axes[0].legend()
             axes[0].grid(True)
-            axes[0].set_title('SH-125-A Rocking Curve Analysis (2Theta = 29.3425°)')
+            axes[0].set_title('SH-125-A (PVA|PAsp) Rocking Curve Analysis (2Theta = 29.3425°)')
             
             axes[1].plot(theta, net_intensity, '.', color='#7f7f7f', markersize=4, alpha=0.5, label='Experimental Net Data')
             fit_total = np.zeros_like(theta)
@@ -1219,7 +1231,7 @@ def generate_all_plots():
             ax2.set_title("Baseline-Corrected Net Curves (Linear Scale)")
             ax2.grid(True, which='both', linestyle=':', alpha=0.5)
             ax2.set_xlim(theta.min() - 0.5, theta.max() + 1.5)
-            fig.suptitle("SH-125-G Rocking Curve Analysis: Raw vs. Baseline-Corrected", fontsize=14, fontweight='bold')
+            fig.suptitle("SH-125-G (Chitosan|PAsp) Rocking Curve Analysis: Raw vs. Baseline-Corrected", fontsize=14, fontweight='bold')
             plt.tight_layout()
             plt.savefig(os.path.join(PLOT_DIR, "fig10_sh125g_side_by_side.png"), dpi=300, bbox_inches='tight')
             plt.savefig(os.path.join(PLOT_DIR, "fig10_sh125g_side_by_side.svg"), dpi=300, bbox_inches='tight')
@@ -1279,7 +1291,7 @@ def generate_all_plots():
             ax2.set_title("Baseline-Corrected Net Curves (Linear Scale)")
             ax2.grid(True, which='both', linestyle=':', alpha=0.5)
             ax2.set_xlim(theta.min() - 0.5, theta.max() + 1.5)
-            fig.suptitle("SH-104-1 Rocking Curve Analysis: Raw vs. Baseline-Corrected", fontsize=14, fontweight='bold')
+            fig.suptitle("SH-104-1 (PVA|PAA) Rocking Curve Analysis: Raw vs. Baseline-Corrected", fontsize=14, fontweight='bold')
             plt.tight_layout()
             plt.savefig(os.path.join(PLOT_DIR, "fig11_sh1041_side_by_side.png"), dpi=300, bbox_inches='tight')
             plt.savefig(os.path.join(PLOT_DIR, "fig11_sh1041_side_by_side.svg"), dpi=300, bbox_inches='tight')
@@ -1326,7 +1338,7 @@ def generate_all_plots():
                     })
             
             fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(18, 5.5))
-            fig.suptitle("Rocking curve background subtraction sequence (SH-124-B3, $\phi = 60^\circ$)", fontsize=14, fontweight='bold', y=0.98)
+            fig.suptitle("Rocking curve background subtraction sequence (SH-124-B3 (Chitosan|PAA), $\phi = 60^\circ$)", fontsize=14, fontweight='bold', y=0.98)
             
             ax1.plot(theta, raw_int, 'o', color='gray', markersize=3, alpha=0.5, label='Raw data')
             ax1.set_xlabel("Theta $\\theta$ (°)")
@@ -1428,7 +1440,7 @@ def generate_all_plots():
             plt.ylim(y_min - (y_max - y_min)*0.1, y_max + (y_max - y_min)*0.1)
             plt.xlabel("Theta $\\theta$ (°)", fontsize=12)
             plt.ylabel("Net Intensity (counts)", fontsize=12)
-            plt.title("Deconvoluted net rocking curve and tilt components (SH-124-B3, $\phi = 60^\circ$)", fontsize=13, fontweight='bold')
+            plt.title("Deconvoluted net rocking curve and tilt components (SH-124-B3 (Chitosan|PAA), $\phi = 60^\circ$)", fontsize=13, fontweight='bold')
             plt.grid(True, which='both', linestyle=':', alpha=0.5)
             plt.legend(loc='upper right', fontsize=10, framealpha=0.9)
             plt.tight_layout()
@@ -1497,7 +1509,7 @@ def generate_all_plots():
             plt.ylim(max(0, y_min - (y_max - y_min)*0.1), y_max + (y_max - y_min)*0.1)
             plt.xlabel("Theta (degrees)", fontsize=13)
             plt.ylabel("Intensity (counts)", fontsize=13)
-            plt.title("SH-124-B3 Fit Zoom — Phi = 30° (Peak 2a/2b Region)", fontsize=14, fontweight='bold')
+            plt.title("SH-124-B3 (Chitosan|PAA) Fit Zoom — Phi = 30° (Peak 2a/2b Region)", fontsize=14, fontweight='bold')
             plt.grid(True, which='both', linestyle=':', alpha=0.6)
             plt.legend(loc='upper right', fontsize=10, framealpha=0.9)
             plt.tight_layout()
@@ -1566,7 +1578,7 @@ def generate_all_plots():
             plt.ylim(y_min - (y_max - y_min)*0.1, y_max + (y_max - y_min)*0.1)
             plt.xlabel("Theta (degrees)", fontsize=13)
             plt.ylabel("Net Intensity (counts)", fontsize=13)
-            plt.title("SH-124-B3 Net Fit Zoom — Phi = 30° (Baseline Subtracted)", fontsize=14, fontweight='bold')
+            plt.title("SH-124-B3 (Chitosan|PAA) Net Fit Zoom — Phi = 30° (Baseline Subtracted)", fontsize=14, fontweight='bold')
             plt.grid(True, which='both', linestyle=':', alpha=0.6)
             plt.legend(loc='upper right', fontsize=10, framealpha=0.9)
             plt.tight_layout()
@@ -1787,28 +1799,28 @@ def generate_all_plots():
                     "grid": (4, 2),
                     "fig_size": (12, 16),
                     "fig_name": "fig_a7_sh124b3_fits",
-                    "title": "Appendix Figure A7: Rocking Curve Fits for Sample SH-124-B3"
+                    "title": "Appendix Figure A7: Rocking Curve Fits for Sample SH-124-B3 (Chitosan|PAA)"
                 },
                 "SH-125-A": {
                     "phi_values": [0, 30, 60, 90, 120, 150],
                     "grid": (3, 2),
                     "fig_size": (12, 12),
                     "fig_name": "fig_a8_sh125a_fits",
-                    "title": "Appendix Figure A8: Rocking Curve Fits for Sample SH-125-A"
+                    "title": "Appendix Figure A8: Rocking Curve Fits for Sample SH-125-A (PVA|PAsp)"
                 },
                 "SH-125-G": {
                     "phi_values": [0, 30, 60, 120, 150, 180],
                     "grid": (3, 2),
                     "fig_size": (12, 12),
                     "fig_name": "fig_a9_sh125g_fits",
-                    "title": "Appendix Figure A9: Rocking Curve Fits for Sample SH-125-G"
+                    "title": "Appendix Figure A9: Rocking Curve Fits for Sample SH-125-G (Chitosan|PAsp)"
                 },
                 "SH-104-1": {
                     "phi_values": [0, 30, 60, 90, 120, 150],
                     "grid": (3, 2),
                     "fig_size": (12, 12),
                     "fig_name": "fig_a10_sh1041_fits",
-                    "title": "Appendix Figure A10: Rocking Curve Fits for Sample SH-104-1"
+                    "title": "Appendix Figure A10: Rocking Curve Fits for Sample SH-104-1 (PVA|PAA)"
                 }
             }
             

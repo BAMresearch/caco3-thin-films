@@ -82,10 +82,10 @@ The dataset spans several file formats representing different stages of data acq
 
 The analysis covers four distinct specimens representing different growth conditions and mineralogical compositions of calcium carbonate ($CaCO_3$) thin films on substrates:
 
-* **`SH-104-1` (Reference Film)**: A reference $CaCO_3$ thin film. The stationary 2D-XRD profile exhibits a mainly isotropic character with low anisotropy, serving as a baseline for comparing phase composition and tilt distributions against the newer growth series.
-* **`SH-124-B3` (Pure Calcite Film)**: A $CaCO_3$ thin film grown under Condition B3, consisting of pure calcite phase. Rocking curve deconvolution reveals distinct, narrow domain tilts ($\chi \approx -1.8^\circ$ and $+7.7^\circ$) that suggest a helical columnar microstructure growth mechanism.
-* **`SH-125-A` (Mixed Calcite-Vaterite Film)**: A thin film grown under Condition A, exhibiting a biphasic mineralogical composition with coexisting calcite and vaterite phases. This specimen is used to validate background-subtraction stability and sample-absorption volume corrections.
-* **`SH-125-G` (Mixed Calcite-Vaterite Film)**: A thin film grown under Condition G, featuring a mixed calcite-vaterite composition. The transient vaterite (110) reflection exhibits a highly localized azimuthal selectiveness, satisfying the Bragg condition only at specific rotations ($\phi = 30^\circ$ and $60^\circ$), which indicates template-guided in-plane alignment.
+* **`SH-104-1` (PVA|PAA, Reference Film)**: A reference $CaCO_3$ thin film containing PVA and PAA. The stationary 2D-XRD profile exhibits a mainly isotropic character with low anisotropy, serving as a baseline for comparing phase composition and tilt distributions against the newer growth series.
+* **`SH-124-B3` (Chitosan|PAA, Pure Calcite Film)**: A $CaCO_3$ thin film grown with Chitosan and PAA under Condition B3, consisting of pure calcite phase. Rocking curve deconvolution reveals distinct, narrow domain tilts ($\chi \approx -1.8^\circ$ and $+7.7^\circ$) that suggest a helical columnar microstructure growth mechanism.
+* **`SH-125-A` (PVA|PAsp, Mixed Calcite-Vaterite Film)**: A thin film grown with PVA and PAsp under Condition A, exhibiting a biphasic mineralogical composition with coexisting calcite and vaterite phases. This specimen is used to validate background-subtraction stability and sample-absorption volume corrections.
+* **`SH-125-G` (Chitosan|PAsp, Mixed Calcite-Vaterite Film)**: A thin film grown with Chitosan and PAsp under Condition G, featuring a mixed calcite-vaterite composition. The transient vaterite (110) reflection exhibits a highly localized azimuthal selectiveness, satisfying the Bragg condition only at specific rotations ($\phi = 30^\circ$ and $60^\circ$), which indicates template-guided in-plane alignment.
 
 ---
 
@@ -139,7 +139,7 @@ python run_entire_analysis.py
 
 This runs the core routines from `caco3_diffraction_pipeline.py`, which populates `data/processed/` with baseline-corrected tables and exports publication-ready figures to `results/figures/`.
 
-
+---
 - **Analysis**: Tomasz Stawski (tomasz.stawski@bam.de)
 - **Version**: 1.0
 - **Date**: 2026-06-23
