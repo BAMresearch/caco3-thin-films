@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Author**: Tomasz Stawski (tomasz.stawski@bam.de)
+- **Analysis**: Tomasz Stawski (tomasz.stawski@bam.de)
 - **Version**: 1.0
 - **Date**: 2026-06-23
 
