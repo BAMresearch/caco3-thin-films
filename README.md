@@ -11,7 +11,7 @@ The project is structured to transition raw experimental data (from stationary d
 This repository serves as partial supporting information for the manuscript:
 
 **Beyond Templating: Mechanical Boundary Conditions Regularize Crystallographic Texture Gradients During Shape-Preserving Crystallization of Amorphous Precursors**
-*Sarah Haase, Joe Harris, Simon Leupold, Thi Q. Nhi Dao, Michel Kuhfuß, Udo Eckstein, Kyle Webber, Julien Bachmann, Tomasz M. Stawski\*, Tilman Grünewald\* and Stephan E. Wolf*
+*Sarah Haase, Joe Harris, Simon Leupold, Thi Q. Nhi Dao, Michel Kuhfuß, Udo Eckstein, Kyle Webber, Julien Bachmann, Tomasz M. Stawski\*, Tilman Grünewald\* and Stephan E. Wolf\*
 
 ---
 
